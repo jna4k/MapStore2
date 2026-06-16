@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import { Simulate } from 'react-dom/test-utils';
 import { VisualizationModes } from '../../../../../../utils/MapTypeUtils';
 import NodeEditor from '../NodeEditor';
@@ -32,7 +31,7 @@ describe('NodeEditor component', () => {
             tooltipId: 'layerProperties.general',
             glyph: 'wrench',
             visible: true,
-            Component: createSink(() => {})
+            Component: () => null
         }]} element={{}} />, document.getElementById("container"));
         const container = document.getElementById('container');
         // search the icon rendered

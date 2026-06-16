@@ -9,7 +9,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 setObservableConfig(rxjsConfig);
 import expect from 'expect';
@@ -64,7 +64,7 @@ describe('MapCatalog component', () => {
     });
 
     it('mapCatalog enhancer', (done) => {
-        const Sink = mapCatalog(createSink( props => {
+        const Sink = mapCatalog((props) => {
             if (props.items && props.items.length > 0) {
                 expect(props).toExist();
                 const item = props.items[0];
@@ -73,11 +73,12 @@ describe('MapCatalog component', () => {
                 expect(item.title).toExist();
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('mapCatalogWithEmptyMap enhancer', (done) => {
-        const Sink = mapCatalogWithEmptymap(createSink(props => {
+        const Sink = mapCatalogWithEmptymap((props) => {
             if (props.items && props.items.length > 0) {
                 expect(props).toExist();
                 const item = props.items[0];
@@ -86,7 +87,8 @@ describe('MapCatalog component', () => {
                 expect(item.title).toExist();
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 });

@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import wpsCounter from '../wpsCounter';
 
@@ -24,13 +23,14 @@ describe('wpsChart enhancer', () => {
         setTimeout(done);
     });
     it('wpsCounter data retrieval', (done) => {
-        const Sink = wpsCounter(createSink( ({data, loading} = {}) => {
+        const Sink = wpsCounter(({data, loading} = {}) => {
             if (!loading) {
                 expect(data).toExist();
                 expect(data.length).toBe(6);
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             layer: {
                 name: "test",
@@ -45,12 +45,13 @@ describe('wpsChart enhancer', () => {
         ReactDOM.render(<Sink {...props} />, document.getElementById("container"));
     });
     it('wpsCounter error management', (done) => {
-        const Sink = wpsCounter(createSink( ({error, loading} = {}) => {
+        const Sink = wpsCounter( ({error, loading} = {}) => {
             if (!loading && error) {
                 expect(error).toExist();
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             layer: {
                 name: "test",
@@ -65,12 +66,13 @@ describe('wpsChart enhancer', () => {
         ReactDOM.render(<Sink {...props} />, document.getElementById("container"));
     });
     it('wpsCounter with mapSync with mapWidget and dependencies', (done) => {
-        const Sink = wpsCounter(createSink( ({data, loading} = {}) => {
+        const Sink = wpsCounter(({data, loading} = {}) => {
             if (!loading) {
                 expect(data).toExist();
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             mapSync: true,
             dependencies: {
@@ -102,12 +104,13 @@ describe('wpsChart enhancer', () => {
         ReactDOM.render(<Sink {...props} />, document.getElementById("container"));
     });
     it('wpsCounter with mapSync standard Map', (done) => {
-        const Sink = wpsCounter(createSink( ({data, loading} = {}) => {
+        const Sink = wpsCounter(({data, loading} = {}) => {
             if (!loading) {
                 expect(data).toExist();
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             mapSync: true,
             dependencies: {

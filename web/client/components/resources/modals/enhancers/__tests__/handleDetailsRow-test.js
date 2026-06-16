@@ -9,7 +9,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
-import {compose, lifecycle, createSink} from 'recompose';
+import {compose, lifecycle} from 'recompose';
 
 import handleDetailsRow from '../handleDetailsRow';
 
@@ -25,6 +25,7 @@ const createTestRun = (onMount = () => {}, testFunc = () => {}) => {
         if (ranMount) {
             testFunc(props);
         }
+        return null;
     };
     return {runOnMount, testProps};
 };
@@ -50,7 +51,7 @@ describe('handleDetailsRow enhancer', () => {
         let Sink = compose(
             handleDetailsRow,
             run.runOnMount
-        )(createSink(run.testProps));
+        )(run.testProps);
         ReactDOM.render(<Sink/>, document.getElementById('container'));
 
         run = createTestRun(({onHidePreview}) => {
@@ -63,7 +64,7 @@ describe('handleDetailsRow enhancer', () => {
         Sink = compose(
             handleDetailsRow,
             run.runOnMount
-        )(createSink(run.testProps));
+        )(run.testProps);
         ReactDOM.render(<Sink/>, document.getElementById('container'));
     });
 });

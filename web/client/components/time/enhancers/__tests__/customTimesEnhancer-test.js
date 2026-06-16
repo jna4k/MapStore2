@@ -1,7 +1,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import customTimesEnhancer from '../customTimesEnhancer';
 
@@ -35,16 +34,17 @@ describe('customTimesEnhancer enhancer', () => {
         setTimeout(done);
     });
     it('customTimesEnhancer rendering with defaults', (done) => {
-        const Sink = customTimesEnhancer(createSink( props => {
+        const Sink = customTimesEnhancer((props) => {
             expect(props.rangeItems).toExist();
             expect(props.rangeItems.length).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('playbackEnabled and playbackRange add range items and cursors', (done) => {
 
-        const Sink = customTimesEnhancer(createSink( props => {
+        const Sink = customTimesEnhancer((props) => {
             expect(props.rangeItems).toExist();
             expect(props.rangeItems.length).toBe(1);
             expect(props.rangeItems[0].id).toBe('playback-range');
@@ -54,22 +54,24 @@ describe('customTimesEnhancer enhancer', () => {
             expect(props.customTimes.startPlaybackTime).toBe(CURRENT_PLAYBACK_START);
             expect(props.customTimes.endPlaybackTime).toBe(CURRENT_PLAYBACK_END);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink items={TEST_ITEMS} playbackEnabled playbackRange={playbackRange} />, document.getElementById("container"));
     });
     it('current time add cursor for currentTime', (done) => {
 
-        const Sink = customTimesEnhancer(createSink(props => {
+        const Sink = customTimesEnhancer((props) => {
             expect(props.rangeItems).toExist();
             expect(props.rangeItems.length).toBe(0);
             expect(props.customTimes.currentTime).toBe(CURRENT_TIME);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink items={TEST_ITEMS} playbackEnabled currentTime={CURRENT_TIME} />, document.getElementById("container"));
     });
     it('offsetEnabled currentTimeRange add draggable range and cursors', (done) => {
 
-        const Sink = customTimesEnhancer(createSink(props => {
+        const Sink = customTimesEnhancer((props) => {
             expect(props.rangeItems).toExist();
             expect(props.rangeItems.length).toBe(1);
             expect(props.rangeItems[0].id).toBe("current-range");
@@ -80,11 +82,12 @@ describe('customTimesEnhancer enhancer', () => {
             expect(props.customTimes.currentTime).toBe(CURRENT_TIME);
             expect(props.customTimes.offsetTime).toBe(CURRENT_OFFSET);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink items={TEST_ITEMS} offsetEnabled currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} />, document.getElementById("container"));
     });
     it('readOnly', (done) => {
-        const Sink = customTimesEnhancer(createSink(props => {
+        const Sink = customTimesEnhancer((props) => {
             expect(props.rangeItems).toExist();
             expect(props.rangeItems.length).toBe(1);
             expect(props.rangeItems[0].id).toBe("current-range");
@@ -93,17 +96,19 @@ describe('customTimesEnhancer enhancer', () => {
             expect(props.rangeItems[0].end).toBe(CURRENT_OFFSET);
             expect(props.customTimes.currentTime).toBe(CURRENT_TIME);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink items={TEST_ITEMS} offsetEnabled readOnly currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} />, document.getElementById("container"));
     });
     it('Test Component callback', () => {
-        const Sink = customTimesEnhancer(createSink(props => {
+        const Sink = customTimesEnhancer((props) => {
             props.options.onMove({
                 id: 'current-range',
                 start: new Date(NEW_DATE),
                 end: new Date(props.rangeItems[0].end)
             }, () => {});
-        }));
+            return null;
+        });
         const actions = {
             moveCurrentRange: () => {}
         };

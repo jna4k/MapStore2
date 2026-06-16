@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { compose, createSink, mapPropsStream, setObservableConfig } from 'recompose';
+import { compose, mapPropsStream, setObservableConfig } from 'recompose';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 
 import processFiles from '../processFiles';
@@ -37,22 +37,24 @@ describe('processFiles enhancer', () => {
         setTimeout(done);
     });
     it('processFiles rendering with defaults', (done) => {
-        const Sink = processFiles(createSink( props => {
+        const Sink = processFiles((props) => {
             expect(props).toBeTruthy();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read error', (done) => {
         const Sink = compose(
             processFiles,
             mapPropsStream(props$ => props$.merge(props$.take(1).do(({ onDrop = () => { } }) =>onDrop({ files: ["ABC"], options: {} })).ignoreElements()))
-        )(createSink( props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.error) {
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read shp', (done) => {
@@ -62,13 +64,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getShapeFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read kmz', (done) => {
@@ -78,13 +81,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getKmzFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read gpx', (done) => {
@@ -94,13 +98,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getGpxFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read kml', (done) => {
@@ -110,13 +115,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getKmlFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read geojson', (done) => {
@@ -126,13 +132,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getGeoJsonFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read annotation geojson', (done) => {
@@ -142,7 +149,7 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getAnnotationGeoJsonFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             try {
                 expect(props).toBeTruthy();
                 if (props.files) {
@@ -154,7 +161,8 @@ describe('processFiles enhancer', () => {
             } catch (e) {
                 done(e);
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read geojson files with geojson extension', (done) => {
@@ -164,13 +172,14 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getGeoJsonFile("file.geojson").map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('processFiles read map file', (done) => {
@@ -180,14 +189,15 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getMapFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.files) {
                 expect(props.files.layers.length).toBe(0);
                 expect(props.files.maps.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('an error was thrown while processFiles read map file that has an unsupported projection', (done) => {
@@ -197,12 +207,13 @@ describe('processFiles enhancer', () => {
                 props$
                     .take(1)
                     .switchMap(({ onDrop = () => { } }) => getUnsupportedMapFile().map((file) => onDrop({ files: [file], options: {} }))).ignoreElements()))
-        )(createSink(props => {
+        )((props) => {
             expect(props).toBeTruthy();
             if (props.error) {
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 });

@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import ReactTestUtils from 'react-dom/test-utils';
 
@@ -31,14 +30,15 @@ describe('editableText enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = editableText(createSink( props => {
+        const Sink = editableText((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('editor appears when toggleEditing is called', (done) => {
-        const Sink = editableText(createSink(props => {
+        const Sink = editableText((props) => {
             props.toggleEditing(true, '<p>test</p>');
             check = setInterval(() => {
                 const isFocus = document.activeElement && document.activeElement.contentEditable && document.activeElement.className.indexOf("DraftEditor") >= 0;
@@ -47,7 +47,8 @@ describe('editableText enhancer', () => {
                     done();
                 }
             }, 20);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it.skip('save is called and editor is called when blur', (done) => {
@@ -57,7 +58,7 @@ describe('editableText enhancer', () => {
                 done();
             }
         };
-        const Sink = editableText(createSink(props => {
+        const Sink = editableText((props) => {
             if (!check) {
                 props.toggleEditing(true, '<p>test</p>');
             }
@@ -69,7 +70,8 @@ describe('editableText enhancer', () => {
                     document.activeElement.dispatchEvent(new Event('blur'));
                 }
             }, 20);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink save={actions.save} />, document.getElementById("container"));
     });
 
@@ -81,7 +83,7 @@ describe('editableText enhancer', () => {
                 done();
             }
         };
-        const Sink = editableText(createSink(props => {
+        const Sink = editableText((props) => {
             if (!check) {
                 props.toggleEditing(true, EMPTY_CONTENT);
             }
@@ -93,7 +95,8 @@ describe('editableText enhancer', () => {
                     document.activeElement.dispatchEvent(new Event('blur'));
                 }
             }, 20);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink save={actions.save} />, document.getElementById("container"));
     });
 
@@ -175,7 +178,7 @@ describe('editableText enhancer', () => {
                 ]
             }
         ];
-        const Sink = withGeoStoryEditor(createSink(() => {}));
+        const Sink = withGeoStoryEditor(() => null);
         const rendered = ReactDOM.render(<Sink sections={sections}/>, document.getElementById("container"));
         const m = ReactTestUtils.findAllInRenderedTree(rendered, (c) => !!c?.props?.availableStorySections);
         expect(m[0].props.availableStorySections).toEqual(flattenedSections);

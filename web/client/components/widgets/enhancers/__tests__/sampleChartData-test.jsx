@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import sampleChartData from '../sampleChartData';
 
@@ -24,13 +23,14 @@ describe('sampleChartData enhancer', () => {
         setTimeout(done);
     });
     it('sampleChartData rendering with defaults', (done) => {
-        const Sink = sampleChartData(createSink( props => {
+        const Sink = sampleChartData((props) => {
             expect(props).toExist();
             expect(props.data).toExist();
             expect(props.series).toExist();
             expect(props.xAxis).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 });

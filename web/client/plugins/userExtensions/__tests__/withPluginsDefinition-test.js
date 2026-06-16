@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withPluginDefinition from '../withPluginsDefinition';
 import MockAdapter from 'axios-mock-adapter';
@@ -25,7 +24,7 @@ describe('withPluginDefinition enhancer', () => {
     });
     it('withPluginDefinition rendering with defaults', (done) => {
         mockAxios.onGet().reply(() => [200, PLUGINS_CONFIG]);
-        const Sink = withPluginDefinition()(createSink(({ pluginsConfig, extensions }) => {
+        const Sink = withPluginDefinition()(({ pluginsConfig, extensions }) => {
             if (pluginsConfig) {
                 try {
                     expect(extensions[0].title).toBe(PLUGINS_CONFIG.plugins[0].title);
@@ -36,7 +35,8 @@ describe('withPluginDefinition enhancer', () => {
                 }
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink extensions={[{ name: "TEST"}]} />, document.getElementById("container"));
     });
 });

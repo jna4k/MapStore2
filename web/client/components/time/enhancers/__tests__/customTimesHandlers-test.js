@@ -1,7 +1,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import clickHandlers from '../customTimesHandlers';
 const CURRENT_TIME = "2016-01-01T00:00:00.001Z";
@@ -25,11 +24,11 @@ describe('customTimesHandlers enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults defines handlers', () => {
-        const Sink = clickHandlers(createSink( props => {
+        const Sink = clickHandlers((props) => {
             expect(props.clickHandler).toExist();
             expect(props.timechangedHandler).toExist();
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('click triggers setCurrentTime', () => {
@@ -40,15 +39,15 @@ describe('customTimesHandlers enhancer', () => {
         const DATE = "2018-12-20T15:07:42.981Z";
         const LAYER = "LAYER";
         const SELECTED_LAYER = "SELECTED_LAYER";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.clickHandler({
                 time: new Date(DATE),
                 group: LAYER,
                 event: {
                     target: mockCurrentTimeTarget
                 }});
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink selectedLayer={SELECTED_LAYER} setCurrentTime={actions.setCurrentTime} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -62,7 +61,7 @@ describe('customTimesHandlers enhancer', () => {
         const spyCallback = expect.spyOn(actions, 'selectGroup');
         const DATE = "2018-12-20T15:07:42.981Z";
         const LAYER = "LAYER";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.clickHandler({
                 time: new Date(DATE),
                 group: LAYER,
@@ -71,8 +70,8 @@ describe('customTimesHandlers enhancer', () => {
                     target: mockCurrentTimeTarget
                 }
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink selectGroup={actions.selectGroup} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -86,7 +85,7 @@ describe('customTimesHandlers enhancer', () => {
         const spyCallback = expect.spyOn(actions, 'setCurrentTime');
         const DATE = "2018-12-20T15:07:42.981Z";
         const LAYER = "LAYER";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.clickHandler({
                 time: new Date(DATE),
                 group: LAYER,
@@ -94,8 +93,8 @@ describe('customTimesHandlers enhancer', () => {
                     target: mockCurrentTimeTarget
                 }
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink status="PLAY" setCurrentTime={actions.setCurrentTime} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toNotHaveBeenCalled();
@@ -107,7 +106,7 @@ describe('customTimesHandlers enhancer', () => {
         const spyCallback = expect.spyOn(actions, 'selectGroup');
         const DATE = "2018-12-20T15:07:42.981Z";
         const LAYER = "LAYER";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.clickHandler({
                 time: new Date(DATE),
                 group: LAYER,
@@ -116,8 +115,8 @@ describe('customTimesHandlers enhancer', () => {
                     target: mockCurrentTimeTarget
                 }
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink status="PLAY" selectGroup={actions.selectGroup} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toNotHaveBeenCalled();
@@ -130,13 +129,13 @@ describe('customTimesHandlers enhancer', () => {
         const spyCallback = expect.spyOn(actions, 'setCurrentTime');
         const DATE = "2018-12-20T15:07:42.981Z";
         const CURSOR = "currentTime";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink setCurrentTime={actions.setCurrentTime} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -151,13 +150,13 @@ describe('customTimesHandlers enhancer', () => {
         const DATE = "2018-12-20T15:07:42.981Z";
         const CURSOR = "currentTime";
         const SELECTED_LAYER = "SELECTED_LAYER";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink selectedLayer={SELECTED_LAYER} setCurrentTime={actions.setCurrentTime} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -177,13 +176,13 @@ describe('customTimesHandlers enhancer', () => {
         };
         const NEW_DATE = "2015-12-20T15:07:42.981Z";
         const CURSOR = "currentTime";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(NEW_DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} setCurrentTime={actions.setCurrentTime} setOffset={actions.setOffset} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyOffsetCallback).toNotHaveBeenCalled();
@@ -202,13 +201,13 @@ describe('customTimesHandlers enhancer', () => {
         };
         const NEW_DATE = "2018-12-20T15:07:42.981Z";
         const CURSOR = "offsetTime";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(NEW_DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} setOffset={actions.setOffset} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -227,13 +226,13 @@ describe('customTimesHandlers enhancer', () => {
         };
         const NEW_DATE = "2018-12-20T15:07:42.981Z";
         const CURSOR = "currentTime";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(NEW_DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} setCurrentTime={actions.setCurrentTime} setOffset={actions.setOffset} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyOffsetCallback).toHaveBeenCalled();
@@ -254,13 +253,13 @@ describe('customTimesHandlers enhancer', () => {
         };
         const NEW_DATE = "2015-12-20T15:07:42.981Z";
         const CURSOR = "offsetTime";
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(NEW_DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink currentTime={CURRENT_TIME} currentTimeRange={currentTimeRange} setCurrentTime={actions.setCurrentTime} setOffset={actions.setOffset} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyOffsetCallback).toHaveBeenCalled();
@@ -280,13 +279,13 @@ describe('customTimesHandlers enhancer', () => {
             startPlaybackTime: CURRENT_PLAYBACK_START,
             endPlaybackTime: CURRENT_PLAYBACK_END
         };
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink playbackRange={playbackRange} setPlaybackRange={actions.setPlaybackRange} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();
@@ -305,13 +304,13 @@ describe('customTimesHandlers enhancer', () => {
             startPlaybackTime: CURRENT_PLAYBACK_START,
             endPlaybackTime: CURRENT_PLAYBACK_END
         };
-        const Sink = clickHandlers(createSink(props => {
+        const Sink = clickHandlers((props) => {
             props.timechangedHandler({
                 time: new Date(DATE),
                 id: CURSOR
             });
-
-        }));
+            return null;
+        });
         const cmp = ReactDOM.render(<Sink playbackRange={playbackRange} setPlaybackRange={actions.setPlaybackRange} />, document.getElementById("container"));
         expect(cmp).toExist();
         expect(spyCallback).toHaveBeenCalled();

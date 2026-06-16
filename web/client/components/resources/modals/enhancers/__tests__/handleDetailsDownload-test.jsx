@@ -11,7 +11,7 @@ import expect from 'expect';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import MockAdapter from "axios-mock-adapter";
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 
 import handleDetailsDownload from '../handleDetailsDownload';
@@ -41,7 +41,7 @@ describe('handleDetailsDownload enhancer', () => {
                 details: 'rest/geostore/data/1000'
             }
         };
-        const Sink = handleDetailsDownload(createSink(props => {
+        const Sink = handleDetailsDownload((props) => {
             if (!props.loading) {
                 try {
                     expect(props.linkedResources).toExist();
@@ -53,7 +53,8 @@ describe('handleDetailsDownload enhancer', () => {
                 }
                 done();
             }
-        }));
+            return null;
+        });
 
         mockAxios.onGet('/rest/geostore/data/1000').reply(200, 'details data');
 
@@ -65,7 +66,7 @@ describe('handleDetailsDownload enhancer', () => {
             id: 10,
             name: 'test resource'
         };
-        const Sink = handleDetailsDownload(createSink(props => {
+        const Sink = handleDetailsDownload((props) => {
             if (!props.loading) {
                 try {
                     expect(props.linkedResources).toExist();
@@ -77,7 +78,8 @@ describe('handleDetailsDownload enhancer', () => {
                 }
                 done();
             }
-        }));
+            return null;
+        });
 
         ReactDOM.render(<Sink loading resource={res}/>, document.getElementById('container'));
     });

@@ -8,7 +8,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -34,22 +33,24 @@ describe('widgets dependenciesToExtent enhancer', () => {
         setTimeout(done);
     });
     it('dependenciesToExtent default', (done) => {
-        const Sink = dependenciesToExtent(createSink( props => {
+        const Sink = dependenciesToExtent((props) => {
             expect(props).toExist();
             expect(props.hookRegister).toEqual(null);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 
     it('dependenciesToExtent fetching bounds and triggering zoom to extent', (done) => {
-        const Sink = dependenciesToExtent(createSink( props => {
+        const Sink = dependenciesToExtent((props) => {
             expect(props).toExist();
             expect(props.hookRegister).toExist();
             const hook = props.hookRegister.getHook(MapUtils.ZOOM_TO_EXTENT_HOOK);
             expect(hook).toExist();
             done();
-        }));
+            return null;
+        });
         mockAxios.onPost().reply(
             200,
             '<?xml version="1.0" encoding="UTF-8"?><ows:BoundingBox xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/1.1" crs="EPSG:4326"><ows:LowerCorner>-124.731422 24.955967</ows:LowerCorner><ows:UpperCorner>-66.969849 49.371735</ows:UpperCorner></ows:BoundingBox>'
@@ -73,13 +74,14 @@ describe('widgets dependenciesToExtent enhancer', () => {
     });
 
     it('dependenciesToExtent fetching bounds and triggering zoom to extent, even if layers does not match', (done) => {
-        const Sink = dependenciesToExtent(createSink( props => {
+        const Sink = dependenciesToExtent((props) => {
             expect(props).toExist();
             expect(props.hookRegister).toExist();
             const hook = props.hookRegister.getHook(MapUtils.ZOOM_TO_EXTENT_HOOK);
             expect(hook).toExist();
             done();
-        }));
+            return null;
+        });
         mockAxios.onPost().reply(
             200,
             '<?xml version="1.0" encoding="UTF-8"?><ows:BoundingBox xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/1.1" crs="EPSG:4326"><ows:LowerCorner>-124.731422 24.955967</ows:LowerCorner><ows:UpperCorner>-66.969849 49.371735</ows:UpperCorner></ows:BoundingBox>'

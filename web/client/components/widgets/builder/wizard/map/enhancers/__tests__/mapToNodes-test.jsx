@@ -8,7 +8,6 @@ import expect from 'expect';
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import mapToNodes from '../mapToNodes';
 
@@ -23,7 +22,7 @@ describe('mapToNodes enhancer', () => {
         setTimeout(done);
     });
     it('mapToNodes rendering with defaults', (done) => {
-        const Sink = mapToNodes(createSink( props => {
+        const Sink = mapToNodes((props) => {
             expect(props).toExist();
             expect(props.nodes).toExist();
             expect(props.nodes.length).toBe(1);
@@ -38,7 +37,8 @@ describe('mapToNodes enhancer', () => {
             expect(lNode.group).toBe("GGG");
             expect(lNode.options).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: [{ id: 'GGG' }], layers: [{ id: "LAYER", name: "LAYER", group: "GGG", options: {} }] }}
         />, document.getElementById("container"));

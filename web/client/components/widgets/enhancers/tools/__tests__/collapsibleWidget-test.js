@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, defaultProps} from 'recompose';
+import {compose, defaultProps} from 'recompose';
 
 import collapsibleWidget from '../collapsibleWidget';
 
@@ -34,39 +34,43 @@ describe('collapsibleWidget enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = collapsibleWidget()(createSink( props => {
+        const Sink = collapsibleWidget()((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('when toolsOptions.showCollapse = true adds a widget tool', (done) => {
-        const Sink = collapsible(createSink( props => {
+        const Sink = collapsible((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             expect(props.widgetTools[0].visible).toBe(true);
             expect(props.widgetTools[0].glyph).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('hide when pinned (dataGrid.static = pinned)', (done) => {
-        const Sink = collapsible(createSink(props => {
+        const Sink = collapsible((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             expect(props.widgetTools[0].visible).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink dataGrid={{"static": true}} />, document.getElementById("container"));
     });
     it('show when hidden (hide = true hides the tool for certain types of users )', (done) => {
-        const Sink = collapsible(createSink(props => {
+        const Sink = collapsible((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             expect(props.widgetTools[0].visible).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink hide />, document.getElementById("container"));
     });
     it('toggleCollapse callback', () => {
@@ -74,10 +78,11 @@ describe('collapsibleWidget enhancer', () => {
             toggleCollapse: () => {}
         };
         const spyToggleCollapse = expect.spyOn(actions, 'toggleCollapse');
-        const Sink = collapsible(createSink(({ widgetTools = [] }) => {
+        const Sink = collapsible(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[0].onClick();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink toggleCollapse={actions.toggleCollapse}/>, document.getElementById("container"));
         expect(spyToggleCollapse).toHaveBeenCalled();
     });

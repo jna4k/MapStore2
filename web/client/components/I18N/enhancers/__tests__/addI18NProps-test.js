@@ -8,7 +8,6 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink } from 'recompose';
 import expect from 'expect';
 import addI18NProps from '../addI18NProps';
 import Localized from '../../Localized';
@@ -25,23 +24,25 @@ describe('addI18NProps enhancer', () => {
         setTimeout(done);
     });
     it('addI18NProps format with no context', () => {
-        const Sink = addI18NProps(['formatNumber'])(createSink(props => {
+        const Sink = addI18NProps(['formatNumber'])((props) => {
             expect(props).toExist();
             expect(props.formatNumber).toExist();
             // this is the default implementation.
             expect(props.formatNumber(1.1)).toBe(1.1);
             expect(props.formatNumber(1000)).toBe(1000);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('addI18NProps format numbers', () => {
-        const Sink = addI18NProps(['formatNumber'])(createSink( props => {
+        const Sink = addI18NProps(['formatNumber'])((props) => {
             expect(props).toExist();
             expect(props.formatNumber).toExist();
             expect(typeof props.formatNumber(1)).toBe('string');
             expect(props.formatNumber(1.1)).toBe("1.1");
             expect(props.formatNumber(1000)).toBe("1,000");
-        }));
+            return null;
+        });
         ReactDOM.render(<Localized locale="en-EN" messages={{}}>
             <Sink />
         </Localized>, document.getElementById("container"));

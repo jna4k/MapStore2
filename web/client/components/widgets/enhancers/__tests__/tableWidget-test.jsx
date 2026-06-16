@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import {Provider} from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 
@@ -31,7 +30,7 @@ describe('widgets tableWidget enhancer', () => {
     });
     it('tableWidget onAddFilter', (done) => {
         const someFilter = { attribute: "state"};
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridEvents).toExist();
             expect(props.gridEvents.onAddFilter).toExist();
@@ -39,7 +38,8 @@ describe('widgets tableWidget enhancer', () => {
 
             props.gridEvents.onAddFilter(someFilter);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink updateProperty={(path, filter) => {
             expect(path).toBe("quickFilters.state");
             expect(filter).toBe(someFilter);
@@ -47,7 +47,7 @@ describe('widgets tableWidget enhancer', () => {
     });
 
     it('tableWidget with gridTools including zoom icon for dashboard viewer [enable zoom in config]', (done) => {
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(1);
             props.gridTools[0].events.onClick(
@@ -56,7 +56,8 @@ describe('widgets tableWidget enhancer', () => {
                 }, {}, "", { crs: "", maxZoom: null }
             );
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget ={"true"} id="123456" mapSync={"true"} widgetType={"table"} isDashboardWidget updateProperty={(id, path, value) => {
             expect(path).toBe("dependencies.extentObj");
             expect(id).toBe("123456");
@@ -69,22 +70,24 @@ describe('widgets tableWidget enhancer', () => {
 
     });
     it('tableWidget with gridTools including zoom icon for dashboard viewer in case of just table is added [No maps added]', (done) => {
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={"true"} id="123456" mapSync={false} widgetType={"table"} isDashboardWidget updateProperty={() => {}} /></Provider>, document.getElementById("container"));
         const container = document.getElementById('container');
         expect(container).toExist();
 
     });
     it('tableWidget with gridTools including zoom icon for dashboard viewer [not enable zoom in config]', (done) => {
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={false} id="123456" mapSync={"true"} widgetType={"table"} isDashboardWidget updateProperty={() => {}}/></Provider>, document.getElementById("container"));
         const container = document.getElementById('container');
         expect(container).toExist();
@@ -108,7 +111,7 @@ describe('widgets tableWidget enhancer', () => {
                 widgetType: 'map', id: "notConnectedMapID"
             }
         ];
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(1);
             props.gridTools[0].events.onClick(
@@ -120,7 +123,8 @@ describe('widgets tableWidget enhancer', () => {
             let mapWidgetsConnectedWithTbl = props.widgets.filter(i=>i.widgetType === 'map' && i?.dependenciesMap && i?.dependenciesMap?.mapSync?.includes(props.id) && i.mapSync) || [];
             expect(mapWidgetsConnectedWithTbl.length).toEqual(2);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={"true"} widgets={widgets} id="123456" mapSync={"true"} widgetType={"table"} isDashboardWidget updateProperty={(id, path, value) => {
             expect(path).toBe("dependencies.extentObj");
             expect(id).toBe("123456");
@@ -140,21 +144,22 @@ describe('widgets tableWidget enhancer', () => {
                 widgetType: 'map', id: "notConnectedMapID"
             }
         ];
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(0);
             expect(props.widgets.length).toEqual(2);
             let mapWidgetsConnectedWithTbl = props.widgets.filter(i=>i.widgetType === 'map' && i?.dependenciesMap && i?.dependenciesMap?.mapSync?.includes(props.id) && i.mapSync) || [];
             expect(mapWidgetsConnectedWithTbl.length).toEqual(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={"true"} widgets={widgets} id="123456" mapSync={false} widgetType={"table"} isDashboardWidget updateProperty={() => {}}/></Provider>, document.getElementById("container"));
         const container = document.getElementById('container');
         expect(container).toExist();
 
     });
     it('tableWidget with gridTools including zoom icon for mapViewer [enable zoom in config]', (done) => {
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(1);
             props.gridTools[0].events.onClick(
@@ -163,7 +168,8 @@ describe('widgets tableWidget enhancer', () => {
                 }, {}, "", { crs: "", maxZoom: null }
             );
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={"true"} id="123456" widgetType={"table"} updateProperty={(id, path, value) => {
             expect(path).toBe("dependencies.extentObj");
             expect(id).toBe("123456");
@@ -176,11 +182,12 @@ describe('widgets tableWidget enhancer', () => {
 
     });
     it('tableWidget with gridTools including zoom icon for mapViewer [not enable zoom in config]', (done) => {
-        const Sink = tableWidget(createSink( props => {
+        const Sink = tableWidget(props => {
             expect(props).toExist();
             expect(props.gridTools.length).toEqual(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render( <Provider store={store}><Sink enableZoomInTblWidget={false} id="123456" widgetType={"table"} /></Provider>, document.getElementById("container"));
         const container = document.getElementById('container');
         expect(container).toExist();

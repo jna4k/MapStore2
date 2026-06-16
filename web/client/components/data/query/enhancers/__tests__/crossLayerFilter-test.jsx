@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import crossLayerFilter from '../crossLayerFilter';
 
@@ -24,28 +23,28 @@ describe('crossLayerFilter enhancer', () => {
         setTimeout(done);
     });
     it('crossLayerFilter WFS Capabilities', (done) => {
-        const Sink = crossLayerFilter(createSink( props => {
+        const Sink = crossLayerFilter((props) => {
             expect(props).toExist();
             if (!props.loadingCapabilities) {
                 expect(props.errorObj).toNotExist();
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             crossLayerExpanded
             searchUrl="base/web/client/test-resources/wfs/states-capabilities.xml"
         />), document.getElementById("container"));
     });
     it('crossLayerFilter not supported', (done) => {
-        const Sink = crossLayerFilter(createSink( props => {
+        const Sink = crossLayerFilter((props) => {
             expect(props).toExist();
             if (!props.loadingCapabilities) {
                 expect(props.errorObj).toExist();
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             crossLayerExpanded
             searchUrl="base/web/client/test-resources/wfs/states-capabilities-nocoll.xml"
@@ -57,7 +56,7 @@ describe('crossLayerFilter enhancer', () => {
             setCrossLayerFilterParameter: () => { }
         };
         const spysetCrossLayerFilterParameter = expect.spyOn(actions, 'setCrossLayerFilterParameter');
-        const Sink = crossLayerFilter(createSink( props => {
+        const Sink = crossLayerFilter((props) => {
             expect(props).toExist();
             if (!props.loadingAttributes) {
                 expect(props.attributes).toExist();
@@ -66,7 +65,8 @@ describe('crossLayerFilter enhancer', () => {
                 done();
             }
 
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             setCrossLayerFilterParameter={actions.setCrossLayerFilterParameter}
             crossLayerExpanded
@@ -91,7 +91,7 @@ describe('crossLayerFilter enhancer', () => {
             setCrossLayerFilterParameter: () => { }
         };
         const spysetCrossLayerFilterParameter = expect.spyOn(actions, 'setCrossLayerFilterParameter');
-        const Sink = crossLayerFilter(createSink( props => {
+        const Sink = crossLayerFilter((props) => {
             try {
                 expect(props).toExist();
                 if (!props.loadingAttributes) {
@@ -105,8 +105,8 @@ describe('crossLayerFilter enhancer', () => {
             } catch (e) {
                 done(e);
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             setCrossLayerFilterParameter={actions.setCrossLayerFilterParameter}
             crossLayerExpanded

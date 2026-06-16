@@ -10,7 +10,6 @@ import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import {createSink} from  'recompose';
 
 import Toolbar from '../../../../misc/toolbar/Toolbar';
 import withMapEnhancer, { withLocalMapState, withMapEditingAndLocalMapState, withToolbar, handleMapUpdate } from '../map';
@@ -34,12 +33,13 @@ describe("geostory media map component enhancers", () => {
             subscribe: () => {}, getState: () => ({geostory: {currentStory: {resources}}})
         };
         const resourceId = "1";
-        const Sink = withMapEnhancer(createSink( props => {
+        const Sink = withMapEnhancer((props) => {
             expect(props).toBeTruthy();
             expect(props.map).toBeTruthy();
             expect(props.map).toEqual({id: "2", layers: [], groups: []});
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink resourceId={resourceId} map={{}}/></Provider>, document.getElementById("container"));
     });
     it('withMapEnhancer generate correct props for legacy geostory', (done) => {
@@ -52,7 +52,7 @@ describe("geostory media map component enhancers", () => {
             subscribe: () => {}, getState: () => ({geostory: {currentStory: {resources}}})
         };
         const resourceId = "1";
-        const Sink = withMapEnhancer(createSink( props => {
+        const Sink = withMapEnhancer((props) => {
             expect(props).toBeTruthy();
             expect(props.map).toBeTruthy();
             expect(props.map).toEqual({id: "2", layers: [ {
@@ -61,18 +61,20 @@ describe("geostory media map component enhancers", () => {
                 "expanded": false
             }]});
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink resourceId={resourceId} map={{}}/></Provider>, document.getElementById("container"));
     });
     it('withLocalMapState generate correct props', (done) => {
-        const Sink = withLocalMapState(createSink( props => {
+        const Sink = withLocalMapState((props) => {
             expect(props).toExist();
             expect(props.onMapViewLocalChanges).toExist();
             expect(props.map).toExist();
             expect(props.onMapViewLocalChanges).toBeA('function');
             expect(props.map).toEqual({});
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink map={{}}/>, document.getElementById("container"));
 
     });
@@ -85,7 +87,7 @@ describe("geostory media map component enhancers", () => {
         const spyUpdate = expect.spyOn(actions, 'update');
         const spyMapViewLocalChanges = expect.spyOn(actions, 'onMapViewLocalChanges');
 
-        let SinkUpdate = withMapEditingAndLocalMapState(createSink(props => {
+        let SinkUpdate = withMapEditingAndLocalMapState((props) => {
             expect(props).toExist();
             expect(props.onMapViewLocalChanges).toExist();
             expect(props.update).toExist();
@@ -93,12 +95,13 @@ describe("geostory media map component enhancers", () => {
             props.onMapViewChanges({center: {x: 1, y: 1}});
             expect(spyUpdate).toHaveBeenCalled();
             expect(spyMapViewLocalChanges).toNotHaveBeenCalled();
-        }));
+            return null;
+        });
 
         ReactDOM.render(<SinkUpdate map={map} editMap update={actions.update} onMapViewLocalChanges={actions.onMapViewLocalChanges}/>, document.getElementById("container"));
         spyUpdate.reset();
         spyMapViewLocalChanges.reset();
-        let SinkLocalChanges = withMapEditingAndLocalMapState(createSink(props => {
+        let SinkLocalChanges = withMapEditingAndLocalMapState((props) => {
             expect(props).toExist();
             expect(props.onMapViewLocalChanges).toExist();
             expect(props.update).toExist();
@@ -107,14 +110,15 @@ describe("geostory media map component enhancers", () => {
             expect(spyUpdate).toNotHaveBeenCalled();
             expect(spyMapViewLocalChanges).toHaveBeenCalled();
             done();
-        }));
+            return null;
+        });
 
         ReactDOM.unmountComponentAtNode(document.getElementById("container"));
         ReactDOM.render(<SinkLocalChanges map={map} update={actions.update} onMapViewLocalChanges={actions.onMapViewLocalChanges}/>, document.getElementById("container"));
         spyUpdate.reset();
         spyMapViewLocalChanges.reset();
 
-        SinkUpdate = withMapEditingAndLocalMapState(createSink(props => {
+        SinkUpdate = withMapEditingAndLocalMapState((props) => {
             expect(props).toExist();
             expect(props.onMapViewLocalChanges).toExist();
             expect(props.update).toExist();
@@ -123,7 +127,8 @@ describe("geostory media map component enhancers", () => {
             expect(spyUpdate).toHaveBeenCalled();
             expect(spyMapViewLocalChanges).toNotHaveBeenCalled();
             done();
-        }));
+            return null;
+        });
         ReactDOM.unmountComponentAtNode(document.getElementById("container"));
         ReactDOM.render(<SinkUpdate map={{...map, resetPanAndZoom: true}} editMap={false} update={actions.update} onMapViewLocalChanges={actions.onMapViewLocalChanges}/>, document.getElementById("container"));
 
@@ -184,12 +189,13 @@ describe("geostory media map component enhancers", () => {
             })
         };
 
-        const Sink = handleMapUpdate(createSink(props => {
+        const Sink = handleMapUpdate((props) => {
             expect(props.onChangeMap).toBeA('function');
             expect(props.onApplyToMaps).toBeA('function');
             expect(props.isCarouselSection).toBe(false);
             done();
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             <Provider store={store}>
@@ -221,10 +227,11 @@ describe("geostory media map component enhancers", () => {
             })
         };
 
-        const Sink = handleMapUpdate(createSink(props => {
+        const Sink = handleMapUpdate((props) => {
             expect(props.isCarouselSection).toBe(true);
             done();
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             <Provider store={store}>
@@ -263,9 +270,10 @@ describe("geostory media map component enhancers", () => {
             })
         };
 
-        const Sink = handleMapUpdate(createSink(props => {
+        const Sink = handleMapUpdate((props) => {
             props.onApplyToMaps('center', {x: 1, y: 2});
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             <Provider store={store}>

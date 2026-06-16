@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import previewMap from '../previewMap';
 
@@ -28,7 +27,7 @@ describe('previewMap enhancer', () => {
             callback: () => { }
         };
         const spyCallback = expect.spyOn(actions, 'callback');
-        const Sink = previewMap(createSink( props => {
+        const Sink = previewMap((props) => {
             props.onMapViewChanges({mapStateSource: "TEST"});
             expect(spyCallback).toHaveBeenCalled();
             expect(spyCallback.calls.length).toBe(2);
@@ -36,8 +35,8 @@ describe('previewMap enhancer', () => {
             expect(spyCallback.calls[1].arguments[0]).toBe("mapStateSource");
             expect(spyCallback.calls[1].arguments[1]).toBe("TEST");
             done();
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink onChange={actions.callback}/>, document.getElementById("container"));
     });
 

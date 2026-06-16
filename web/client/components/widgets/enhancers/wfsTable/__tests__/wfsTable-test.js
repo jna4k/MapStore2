@@ -10,7 +10,7 @@ import MockAdapter from "axios-mock-adapter";
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 
 import axios from "../../../../../libs/ajax";
 import wfsTable from '../index';
@@ -40,7 +40,7 @@ describe('wfsTable enhancer', () => {
     });
     it('retrieve WFS describeFeatureType and features', (done) => {
 
-        const Sink = wfsTable(createSink(props => {
+        const Sink = wfsTable((props) => {
             expect(props).toExist();
             if (props.describeFeatureType) {
                 expect(props.describeFeatureType.featureTypes).toExist();
@@ -49,7 +49,8 @@ describe('wfsTable enhancer', () => {
                 expect(props.features.length > 0).toBe(true);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink layer={{
             name: "pois",
             describeFeatureTypeURL: "DESCRIBE",
@@ -61,7 +62,7 @@ describe('wfsTable enhancer', () => {
     });
     it('retrieve WFS describeFeatureType with virtualScroll', (done) => {
         let triggered = false;
-        const Sink = wfsTable(createSink(props => {
+        const Sink = wfsTable((props) => {
             expect(props).toExist();
             if (props.describeFeatureType) {
                 expect(props.describeFeatureType.featureTypes).toExist();
@@ -74,7 +75,8 @@ describe('wfsTable enhancer', () => {
                 expect(props.pages[1]).toBe(60);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink virtualScroll layer={{
             name: "pois",
             describeFeatureTypeURL: "DESCRIBE",
@@ -86,7 +88,7 @@ describe('wfsTable enhancer', () => {
     });
     it('test columnsettings with options propertyName', (done) => {
         let triggered = false;
-        const Sink = wfsTable(createSink(props => {
+        const Sink = wfsTable((props) => {
             expect(props).toExist();
             if (props.features.length > 0 && props?.pages?.[0] === 0 && !triggered) {
                 expect(props.pages[1]).toBe(20);
@@ -99,7 +101,8 @@ describe('wfsTable enhancer', () => {
             if (props.columnSettings) {
                 expect(Object.keys(props.columnSettings).includes('NAME')).toBeFalsy();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink virtualScroll
             describeFeatureType = {{
                 featureTypes: [{properties: []}]

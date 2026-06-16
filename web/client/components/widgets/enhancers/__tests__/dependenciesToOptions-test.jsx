@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import dependenciesToOptions from '../dependenciesToOptions';
 
@@ -24,34 +23,37 @@ describe('widgets dependenciesToOptions enhancer', () => {
         setTimeout(done);
     });
     it('dependenciesToOptions default', (done) => {
-        const Sink = dependenciesToOptions(createSink( props => {
+        const Sink = dependenciesToOptions((props) => {
             expect(props).toExist();
             expect(props.options).toBe(undefined);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('dependenciesToOptions default', (done) => {
         const options = {
             a: "a"
         };
-        const Sink = dependenciesToOptions(createSink( props => {
+        const Sink = dependenciesToOptions((props) => {
             expect(props).toExist();
             expect(props.options).toBe(options);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink options={options}/>, document.getElementById("container"));
     });
     it('dependenciesToOptions with viewParams', (done) => {
         const options = {
             a: "a"
         };
-        const Sink = dependenciesToOptions(createSink( props => {
+        const Sink = dependenciesToOptions((props) => {
             expect(props).toExist();
             expect(props.options.a).toBe("a");
             expect(props.options.viewParams).toBe("a:b");
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             mapSync
             geomProp={"geometry"}

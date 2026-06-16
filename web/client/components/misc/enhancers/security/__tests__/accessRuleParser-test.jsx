@@ -9,7 +9,6 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink } from 'recompose';
 import expect from 'expect';
 import accessRuleParser from '../accessRuleParser';
 
@@ -24,126 +23,141 @@ describe('accessRuleParser enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess />, document.getElementById("container"));
     });
     it('single rule', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink( props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: {canEdit: true, canDelete: false}}} hasAllAccess="mapInfo.canEdit" />, document.getElementById("container"));
     });
     it('single rule with equal return true', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink( props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: {role: "ADMIN"}, mapInfo: {canEdit: true, canDelete: false}}} hasAllAccess="user.role==ADMIN" />, document.getElementById("container"));
     });
     it('single rule with equal return false', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink( props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: {role: "USER"}, mapInfo: {canEdit: true, canDelete: false}}} hasAllAccess="user.role==ADMIN" />, document.getElementById("container"));
     });
     it('single rule with differ return true', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink( props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: {role: "USER"}, mapInfo: {canEdit: true, canDelete: false}}} hasAllAccess="user.role!=ADMIN" />, document.getElementById("container"));
     });
     it('single rule with differ return false', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink( props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: {role: "ADMIN"}, mapInfo: {canEdit: true, canDelete: false}}} hasAllAccess="user.role!=ADMIN" />, document.getElementById("container"));
     });
     it('array of rules', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBeFalsy();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={["mapInfo.canEdit", "mapInfo.canDelete"]} />, document.getElementById("container"));
     });
     it('array of rules with __OR__', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={["__OR__", "mapInfo.canEdit", "mapInfo.canDelete"]} />, document.getElementById("container"));
     });
     it('single negative rule', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess="!mapInfo.canEdit" />, document.getElementById("container"));
     });
     it('single negative rule with equal return true (so false)', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: { role: "ADMIN" }, mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess="!user.role==ADMIN" />, document.getElementById("container"));
     });
     it('single negative rule with equal return false (so true)', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: { role: "USER" }, mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess="!user.role==ADMIN" />, document.getElementById("container"));
     });
     it('single negative rule with differ return true (so false)', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: { role: "USER" }, mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess="!user.role!=ADMIN" />, document.getElementById("container"));
     });
     it('single negative rule with differ return false (so true)', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ user: { role: "ADMIN" }, mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess="!user.role!=ADMIN" />, document.getElementById("container"));
     });
     it('array of rules', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")(props => {
             expect(props).toExist();
             expect(props.hasAllAccess).toBeFalsy();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={["mapInfo.canEdit", "mapInfo.canDelete"]} />, document.getElementById("container"));
     });
     it('array of rules with __OR__', (done) => {
-        const Sink = accessRuleParser("hasAllAccess")(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess")((props) => {
             expect(props).toExist();
             const { accessInfo } = props;
             const { mapInfo } = accessInfo;
             const {canEdit, canDelete} = mapInfo;
             expect(props.hasAllAccess).toBe(!!(canEdit || canDelete) );
             done();
-        }));
+            return null;
+        });
         const rules = ["__OR__", "mapInfo.canEdit", "mapInfo.canDelete"];
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: false, canDelete: false } }} hasAllAccess={rules} />, document.getElementById("container"));
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={rules} />, document.getElementById("container"));
@@ -152,39 +166,43 @@ describe('accessRuleParser enhancer', () => {
 
     });
     it('asObject option', (done) => {
-        const Sink = accessRuleParser("hasAllAccess", {asObject: true})(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess", {asObject: true})((props) => {
             expect(props).toExist();
             expect(props.hasAllAccess.test).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={{test: true}} />, document.getElementById("container"));
     });
     it('asObject with single rule', (done) => {
-        const Sink = accessRuleParser("hasAllAccess", { asObject: true })(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess", { asObject: true })((props) => {
             expect(props).toExist();
             expect(props.hasAllAccess.test).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={{ test: "mapInfo.canEdit"}} />, document.getElementById("container"));
     });
     it('asObject with array of rules', (done) => {
-        const Sink = accessRuleParser("hasAllAccess", { asObject: true })(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess", { asObject: true })((props) => {
             expect(props).toExist();
             expect(props.hasAllAccess.test).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: true, canDelete: false } }} hasAllAccess={{
             test: ["mapInfo.canEdit", "mapInfo.canDelete"]
         }} />, document.getElementById("container"));
     });
     it('asObject with array of rules nested (XOR)', (done) => {
-        const Sink = accessRuleParser("hasAllAccess", { asObject: true })(createSink(props => {
+        const Sink = accessRuleParser("hasAllAccess", { asObject: true })((props) => {
             expect(props).toExist();
             const {accessInfo, hasAllAccess} = props;
             const {mapInfo} = accessInfo;
             expect(hasAllAccess.test).toBe(!!(!mapInfo.canEdit && mapInfo.canDelete || mapInfo.canEdit && !mapInfo.canDelete ));
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canEdit: false, canDelete: false } }} hasAllAccess={{
             test: ["__OR__", ["!mapInfo.canEdit", "mapInfo.canDelete"], ["mapInfo.canEdit", "!mapInfo.canDelete"]]
         }} />, document.getElementById("container"));
@@ -212,7 +230,7 @@ describe('accessRuleParser enhancer', () => {
             testDiffSyntax1: ["user.role!=ADMIN"],
             testDiffSyntax2: ["user.role!==ADMIN"]
         };
-        const Sink = accessRuleParser("permission", { asObject: true })(createSink(({permission, accessInfo}) => {
+        const Sink = accessRuleParser("permission", { asObject: true })(({permission, accessInfo}) => {
             expect(!!permission.read).toBe(!!accessInfo.mapInfo.canRead);
             expect(!!permission.edit).toBe(!!accessInfo.mapInfo.canEdit);
             expect(!!permission.save).toBe(!!((accessInfo && accessInfo.user && accessInfo.user.role) === "USER"));
@@ -226,7 +244,8 @@ describe('accessRuleParser enhancer', () => {
             expect(!!permission.testDiffSyntax2).toBe(!!((accessInfo && accessInfo.user && accessInfo.user.role) !== "ADMIN"));
 
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canRead: true, canEdit: false, canDelete: false }}} permission={permissionRules} />, document.getElementById("container"));
         ReactDOM.render(<Sink accessInfo={{ mapInfo: { canRead: true, canEdit: false, canDelete: false }}} permission={permissionRules} />, document.getElementById("container"));
         ReactDOM.render(<Sink accessInfo={{ user: {role: "USER"}, mapInfo: { canRead: true, canEdit: true, canDelete: true }}} permission={permissionRules} />, document.getElementById("container"));

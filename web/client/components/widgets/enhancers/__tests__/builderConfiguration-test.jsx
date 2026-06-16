@@ -11,7 +11,6 @@ import ReactDOM from 'react-dom';
 import expect from 'expect';
 import builderConfiguration from '../builderConfiguration';
 import WB from '../../builder/WidgetBuilder';
-import { createSink } from 'recompose';
 
 const WidgetBuilder = builderConfiguration()(WB);
 const WPSWidgetBuilder = builderConfiguration({ needsWPS: true })(WB);
@@ -105,11 +104,12 @@ describe('widgets builderConfiguration enhancer', () => {
             document.getElementById("container"));
     });
     it('with option needWPS = false, the contained component receives the hasAggregateProcess = false', (done) => {
-        const Builder = builderConfiguration()(createSink(({hasAggregateProcess}) => {
+        const Builder = builderConfiguration()(({hasAggregateProcess}) => {
             if (hasAggregateProcess === false) {
                 done();
             }
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             (<Builder
@@ -118,12 +118,13 @@ describe('widgets builderConfiguration enhancer', () => {
             document.getElementById("container"));
     });
     it('the contained component receives the hasAggregateProcess = false if WPS is not available (and needsWPS = false)', (done) => {
-        const Builder = builderConfiguration()(createSink(({ hasAggregateProcess, loading }) => {
+        const Builder = builderConfiguration()(({ hasAggregateProcess, loading }) => {
             if (hasAggregateProcess === false) {
                 expect(loading).toBeFalsy();
                 done();
             }
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             (<Builder
@@ -132,12 +133,13 @@ describe('widgets builderConfiguration enhancer', () => {
             document.getElementById("container"));
     });
     it('the contained component receives the hasAggregateProcess = false if WPS is not available (and needsWPS = false)', (done) => {
-        const Builder = builderConfiguration()(createSink(({ hasAggregateProcess, loading }) => {
+        const Builder = builderConfiguration()(({ hasAggregateProcess, loading }) => {
             if (hasAggregateProcess === true) {
                 expect(loading).toBeFalsy();
                 done();
             }
-        }));
+            return null;
+        });
 
         ReactDOM.render(
             (<Builder

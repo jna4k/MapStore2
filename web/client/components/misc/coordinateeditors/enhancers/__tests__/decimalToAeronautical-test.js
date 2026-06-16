@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, withState} from 'recompose';
+import {compose, withState} from 'recompose';
 
 import decimalToAeronautical from '../decimalToAeronautical';
 
@@ -27,7 +27,7 @@ describe("test the Annotations enahncers", () => {
         setTimeout(done);
     });
     it('rendering default values', () => {
-        const Sink = decimalToAeronautical(createSink(props => {
+        const Sink = decimalToAeronautical((props) => {
             expect(props).toExist();
             // east is default in aeronautical format
             if (props.coordinate === "lon") {
@@ -35,9 +35,8 @@ describe("test the Annotations enahncers", () => {
             } else {
                 expect(props.direction).toBe('N');
             }
-
-
-        }));
+            return null;
+        });
         // lat
         ReactDOM.render((<Sink
         />), document.getElementById("container"));
@@ -54,26 +53,28 @@ describe("test the Annotations enahncers", () => {
         />), document.getElementById("container"));
     });
     it('decimalToAeronautical conversion', (done) => {
-        const Sink = decimalToAeronautical(createSink( props => {
+        const Sink = decimalToAeronautical((props) => {
             expect(props).toExist();
             expect(props.degrees).toBe(1);
             expect(props.minutes).toBe(30);
             expect(props.seconds).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             value = {1.50}
             coordinate="lon"
         />), document.getElementById("container"));
     });
     it('decimalToAeronautical conversion with defaults', (done) => {
-        const Sink = decimalToAeronautical(createSink( props => {
+        const Sink = decimalToAeronautical((props) => {
             expect(props).toExist();
             expect(props.degrees).toBe(1);
             expect(props.minutes).toBe(33);
             expect(props.seconds).toBe(18.9193);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             value = {1.55525535}
             aeronauticalOptions={{}}
@@ -81,13 +82,14 @@ describe("test the Annotations enahncers", () => {
         />), document.getElementById("container"));
     });
     it('decimalToAeronautical conversion to 4 decimals as seconds', (done) => {
-        const Sink = decimalToAeronautical(createSink( props => {
+        const Sink = decimalToAeronautical((props) => {
             expect(props).toExist();
             expect(props.degrees).toBe(1);
             expect(props.minutes).toBe(33);
             expect(props.seconds).toBe(18.9193);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             value = {1.55525535}
             aeronauticalOptions={{seconds: {
@@ -98,13 +100,14 @@ describe("test the Annotations enahncers", () => {
     });
     it('decimalToAeronautical conversion correctly step on minutes and seconds', (done) => {
         // 13.3333333333 should be 13 degrees, 20 minutes
-        const Sink = decimalToAeronautical(createSink(props => {
+        const Sink = decimalToAeronautical((props) => {
             expect(props).toExist();
             expect(props.degrees).toBe(13);
             expect(props.minutes).toBe(20);
             expect(props.seconds).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             value={13.3333333333}
             coordinate="lon"
@@ -115,7 +118,7 @@ describe("test the Annotations enahncers", () => {
             withState('value', 'onChange', 1.5),
             decimalToAeronautical
         );
-        const Sink = enhancer(createSink(props => {
+        const Sink = enhancer((props) => {
             expect(props).toExist();
             if (props.seconds === 0) {
                 props.onChange({ "degrees": 47, "minutes": 45, "seconds": 1, "direction": "N" });
@@ -123,7 +126,8 @@ describe("test the Annotations enahncers", () => {
             if (props.seconds === 1) {
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render((<Sink
             coordinate="lon"
         />), document.getElementById("container"));

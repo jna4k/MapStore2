@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import handleNodeSelection from '../handleNodeSelection';
 
@@ -24,7 +23,7 @@ describe('handleNodeSelection enhancer', () => {
         setTimeout(done);
     });
     it('handleNodeSelection rendering with defaults', (done) => {
-        const Sink = handleNodeSelection(createSink( props => {
+        const Sink = handleNodeSelection((props) => {
             expect(props).toBeTruthy();
             expect(props.onNodeSelect).toBeTruthy();
             props.onNodeSelect('LAYER', 'layer');
@@ -33,7 +32,8 @@ describe('handleNodeSelection enhancer', () => {
                 expect(props.selectedNodes[0]).toBe('LAYER');
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: [{ id: 'GGG' }], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
         />, document.getElementById("container"));

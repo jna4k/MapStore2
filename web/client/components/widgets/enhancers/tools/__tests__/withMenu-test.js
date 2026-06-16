@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import ReactTestUtils from 'react-dom/test-utils';
 import expect from 'expect';
 import withMenu from '../withMenu';
@@ -25,10 +24,11 @@ describe('withMenu enhancer', () => {
         setTimeout(done);
     });
     it('withMenu creates needed topRightItems property', (done) => {
-        const Sink = withMenu()(createSink( props => {
+        const Sink = withMenu()((props) => {
             expect(props.topRightItems.length).toBe(1);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink widgetTools={[{target: "menu"}]}/>, document.getElementById("container"));
     });
     it('withMenu rendering widget creates menu', () => {

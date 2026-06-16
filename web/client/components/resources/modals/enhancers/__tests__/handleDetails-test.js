@@ -9,7 +9,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
-import {compose, lifecycle, createSink} from 'recompose';
+import {compose, lifecycle} from 'recompose';
 
 import handleDetails from '../handleDetails';
 
@@ -25,6 +25,7 @@ const createTestRun = (onMount = () => {}, testFunc = () => {}) => {
         if (ranMount) {
             testFunc(props);
         }
+        return null;
     };
     return {runOnMount, testProps};
 };
@@ -50,7 +51,7 @@ describe('handleDetails enhancer', () => {
         let Sink = compose(
             handleDetails,
             run.runOnMount
-        )(createSink(run.testProps));
+        )(run.testProps);
         ReactDOM.render(<Sink/>, document.getElementById('container'));
 
         run = createTestRun(({onHideDetailsSheet}) => {
@@ -63,15 +64,15 @@ describe('handleDetails enhancer', () => {
         Sink = compose(
             handleDetails,
             run.runOnMount
-        )(createSink(run.testProps));
+        )(run.testProps);
         ReactDOM.render(<Sink/>, document.getElementById('container'));
     });
     it('handleDetails savedDetailsText', () => {
-        let Sink = handleDetails(createSink(({savedDetailsText}) => expect(savedDetailsText).toBe('text')));
+        let Sink = handleDetails(({savedDetailsText}) => {expect(savedDetailsText).toBe('text'); return null;});
         ReactDOM.render(<Sink linkedResources={{details: {data: 'text'}}}/>, document.getElementById('container'));
     });
     it('handleDetails savedDetailsText when data is NODATA', () => {
-        let Sink = handleDetails(createSink(({savedDetailsText}) => expect(savedDetailsText).toNotExist()));
+        let Sink = handleDetails(({savedDetailsText}) => {expect(savedDetailsText).toNotExist(); return null;});
         ReactDOM.render(<Sink linkedResources={{details: {data: 'NODATA'}}}/>, document.getElementById('container'));
     });
 });

@@ -5,11 +5,10 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const React = require('react');
-const ReactDOM = require('react-dom');
-const {createSink} = require('recompose');
-const expect = require('expect');
-const {widthProvider, heightProvider} = require('../gridLayout');
+import React from 'react';
+import expect from 'expect';
+import ReactDOM from 'react-dom';
+import {widthProvider, heightProvider} from '../gridLayout';
 
 describe('gridLayout enhancers', () => {
     beforeEach((done) => {
@@ -22,26 +21,29 @@ describe('gridLayout enhancers', () => {
         setTimeout(done);
     });
     it('widthProvider rendering with defaults', (done) => {
-        const Sink = widthProvider()(createSink( props => {
+        const Sink = widthProvider()((props) => {
             expect(props).toExist();
             expect(props.useDefaultWidthProvider).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('widthProvider rendering override defaults', (done) => {
-        const Sink = widthProvider({overrideWidthProvider: true})(createSink(props => {
+        const Sink = widthProvider({overrideWidthProvider: true})((props) => {
             expect(props).toExist();
             expect(props.useDefaultWidthProvider).toBe(false);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('heightProvider rendering with defaults', (done) => {
-        const Sink = heightProvider()(createSink(props => {
+        const Sink = heightProvider()((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 });

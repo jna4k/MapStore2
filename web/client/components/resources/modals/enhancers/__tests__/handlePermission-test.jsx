@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 
 import handlePermission from '../handlePermission';
@@ -33,11 +33,12 @@ describe('handlePermission enhancer', () => {
                 return new Promise(resolve => resolve([]));
             }
         };
-        const Sink = handlePermission(DUMMY_API)(createSink( props => {
+        const Sink = handlePermission(DUMMY_API)( props => {
             if (props.availableGroups) {
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('Test Sink callback', (done) => {
@@ -61,21 +62,23 @@ describe('handlePermission enhancer', () => {
             }
         };
 
-        const Sink = handlePermission(DUMMY_API)(createSink(props => {
+        const Sink = handlePermission(DUMMY_API)(props => {
             expect(props.onUpdateRules).toBeTruthy(); // check that the handler is present
             if (props.rules && props.rules.length > 0) {
                 expect(props.rules.length).toBe(1);
                 done();
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink resource={{id: 1}} />, document.getElementById("container"));
     });
     it('test disablePermission', (done) => {
-        const Sink = handlePermission()(createSink( props => {
+        const Sink = handlePermission()( props => {
             expect(props).toExist();
             expect(props.onUpdateRules).toBeFalsy(); // check that the enhancer is not applied at all (verifying one of the properties added by it)
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink disablePermission />, document.getElementById("container"));
     });
 });

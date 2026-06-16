@@ -9,7 +9,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 setObservableConfig(rxjsConfig);
 import expect from 'expect';
@@ -46,12 +46,13 @@ describe('useFiles enhancer', () => {
         const spyLoadAnnotations = expect.spyOn(actions, 'loadAnnotations');
         const spySetLayers = expect.spyOn(actions, 'setLayers');
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.maps).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({maps: props.maps});
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
         ReactDOM.render(<EnhancedSink maps={[ {map: {zoom: 4, center: { x: 1, y: 1 }, bbox: { x: 1, y: 1 }, maxExtent: "TEST"}} ]}
             loadAnnotations={actions.loadAnnotations} setLayers={actions.setLayers} loadMap={actions.loadMap} onClose={actions.onClose} currentMap={{zoom: 4, center: { x: 1, y: 1 }}} />, document.getElementById("container"));
@@ -81,12 +82,13 @@ describe('useFiles enhancer', () => {
         const spyLoadAnnotations = expect.spyOn(actions, 'loadAnnotations');
         const spySetLayers = expect.spyOn(actions, 'setLayers');
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.maps).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({maps: props.maps});
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
         ReactDOM.render(<EnhancedSink maps={[ {map: { zoom: 4, center: { x: 1, y: 1 }, bbox: { x: 1, y: 1 }, maxExtent: "TEST"}, fileName: "savedMap.json" } ]}
             loadAnnotations={actions.loadAnnotations} setLayers={actions.setLayers} loadMap={actions.loadMap} loadMapInfo={actions.loadMapInfo} onClose={actions.onClose} currentMap={{zoom: 4, center: { x: 1, y: 1 }, mapId: "10"}} />, document.getElementById("container"));
@@ -109,13 +111,13 @@ describe('useFiles enhancer', () => {
         const spyOnClose = expect.spyOn(actions, 'onClose');
         const spyLoadAnnotations = expect.spyOn(actions, 'loadAnnotations');
         const spyLoadMap = expect.spyOn(actions, 'loadMap');
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.layers).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({layers: props.layers});
-
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
         const layer = {
             type: 'vector', name: "FileName", hideLoading: true,
@@ -158,13 +160,13 @@ describe('useFiles enhancer', () => {
             }
         };
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.layers).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({layers: props.layers});
-
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
 
         const layer = {
@@ -204,13 +206,13 @@ describe('useFiles enhancer', () => {
             }
         };
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.layers).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({layers: props.layers});
-
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
 
         const layers = [{
@@ -251,12 +253,13 @@ describe('useFiles enhancer', () => {
         const spySetLayers = expect.spyOn(actions, 'setLayers');
         const spyLoadMap = expect.spyOn(actions, 'loadMap');
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.layers).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({layers: props.layers});
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
         ReactDOM.render(<EnhancedSink layers={[{name: 'Annotations', features: []}]}
             loadAnnotations={actions.loadAnnotations} setLayers={actions.setLayers} onClose={actions.onClose} annotationsLayer={false}  />, document.getElementById("container"));
@@ -282,12 +285,13 @@ describe('useFiles enhancer', () => {
         const spyLoadAnnotations = expect.spyOn(actions, 'loadAnnotations');
         const spyLoadMap = expect.spyOn(actions, 'loadMap');
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.layers).toExist();
             expect(props.useFiles).toExist();
             props.useFiles({layers: props.layers});
-        });
+            return null;
+        };
         const EnhancedSink = useFiles(sink);
         ReactDOM.render(<EnhancedSink layers={[{name: 'Annotations', features: []}]}
             setLayers={actions.setLayers} loadAnnotations={actions.loadAnnotations} onClose={actions.onClose} annotationsLayer  />, document.getElementById("container"));

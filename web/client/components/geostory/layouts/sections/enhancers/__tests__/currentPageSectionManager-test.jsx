@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig, createSink } from 'recompose';
 import expect from 'expect';
 
 // config for recompose usage of RXJS
@@ -30,15 +30,16 @@ describe('currentPageSectionManager enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = currentPageSectionManager(createSink( props => {
+        const Sink = currentPageSectionManager((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 
     it('calls updateCurrentPage when onVisibilityChange is called', done => {
-        const  updateCurrentPage = ({sectionId}) => {
+        const updateCurrentPage = ({sectionId}) => {
             expect(sectionId).toBe(contents[1].id);
             done();
         };

@@ -8,7 +8,6 @@ import expect from 'expect';
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import WidgetsView from '../../WidgetsView';
 import withSelection from '../withSelection';
@@ -24,18 +23,20 @@ describe('withSelection enhancer', () => {
         setTimeout(done);
     });
     it('withSelection rendering with defaults', (done) => {
-        const Sink = withSelection(createSink( props => {
+        const Sink = withSelection( props => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('withSelection rendering with selectionActive', (done) => {
-        const Sink = withSelection(createSink(props => {
+        const Sink = withSelection(props => {
             expect(props).toExist();
             expect(props.className.indexOf('selection-active') >= 0).toBe(true);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink selectionActive className="test"/>, document.getElementById("container"));
     });
     it('withSelection applied to WidgetsView', () => {

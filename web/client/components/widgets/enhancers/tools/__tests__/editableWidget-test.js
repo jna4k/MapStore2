@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, defaultProps} from 'recompose';
+import {compose, defaultProps} from 'recompose';
 
 import editableWidget from '../editableWidget';
 
@@ -32,21 +32,23 @@ describe('editableWidget enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = editableWidget()(createSink( props => {
+        const Sink = editableWidget()((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('when canEdit = true adds a widget tool', (done) => {
-        const Sink = editable(createSink( props => {
+        const Sink = editable((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(2);
             expect(props.widgetTools[0].glyph).toExist();
             expect(props.widgetTools[1].glyph).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('callbacks', () => {
@@ -56,14 +58,16 @@ describe('editableWidget enhancer', () => {
         };
         const spyEdit = expect.spyOn(actions, 'onEdit');
         const spyDelete = expect.spyOn(actions, 'onDelete');
-        const SinkCallEdit = editable(createSink(({ widgetTools = [] }) => {
+        const SinkCallEdit = editable(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[0].onClick();
-        }));
-        const SinkCallDelete = editable(createSink(({ widgetTools = [] }) => {
+            return null;
+        });
+        const SinkCallDelete = editable(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[1].onClick();
-        }));
+            return null;
+        });
         ReactDOM.render(<SinkCallEdit onEdit={actions.onEdit} />, document.getElementById("container"));
         expect(spyEdit).toHaveBeenCalled();
         ReactDOM.render(<SinkCallDelete toggleDeleteConfirm={actions.onDelete} />, document.getElementById("container"));

@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import onMapViewChanges from '../onMapViewChanges';
 
@@ -24,11 +23,11 @@ describe('onMapViewChanges enhancer', () => {
         setTimeout(done);
     });
     it('onMapViewChanges rendering with defaults', () => {
-        const Sink = onMapViewChanges(createSink( props => {
+        const Sink = onMapViewChanges((props) => {
             expect(props.eventHandlers.onMapViewChanges).toExist();
             setTimeout(props.eventHandlers.onMapViewChanges("CENTER", "ZOOM", { bbox: { x: 2 } }, "SIZE", "mapStateSource", "projection"));
-
-        }));
+            return null;
+        });
         const actions = {
             onMapViewChanges: () => {}
         };
@@ -45,11 +44,11 @@ describe('onMapViewChanges enhancer', () => {
         expect(map.projection).toExist();
     });
     it('onMapViewChanges rendering with zoomToExtentHandler', () => {
-        const Sink = onMapViewChanges(createSink( props => {
+        const Sink = onMapViewChanges((props) => {
             expect(props.eventHandlers.onMapViewChanges).toExist();
             setTimeout(props.eventHandlers.onMapViewChanges("CENTER", "ZOOM", { bbox: { x: 2 } }, "SIZE", "mapStateSource", "projection", {}, "RESOLUTION", "ORINATE", () => {}));
-
-        }));
+            return null;
+        });
         const actions = {
             onMapViewChanges: () => {}
         };

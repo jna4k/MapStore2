@@ -9,7 +9,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import expect from 'expect';
 import autoComplete from '../autoComplete';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
@@ -28,7 +28,7 @@ describe('autoComplete enhancer', () => {
     });
     it('it calls load function', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -39,9 +39,10 @@ describe('autoComplete enhancer', () => {
                 counter++;
                 break;
             }
-            default: return;
+            default: return null;
             }
-        }));
+            return null;
+        });
         const loadData = (search, page, size, parentsFilter, count) => {
             expect(search).toBe("%");
             expect(page).toBe(0);
@@ -55,7 +56,7 @@ describe('autoComplete enhancer', () => {
     });
     it('it emits selected val', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -65,9 +66,10 @@ describe('autoComplete enhancer', () => {
                 counter++;
                 break;
             }
-            default: return;
+            default: return null;
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toBe("%");
             done();
@@ -76,7 +78,7 @@ describe('autoComplete enhancer', () => {
     });
     it('on toggle with empty val it cleans selected', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -94,10 +96,11 @@ describe('autoComplete enhancer', () => {
                 break;
             }
             default: {
-                return;
+                return null;
             }
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toNotExist();
             done();
@@ -106,7 +109,7 @@ describe('autoComplete enhancer', () => {
     });
     it('on toggle', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -135,12 +138,13 @@ describe('autoComplete enhancer', () => {
             default:
                 counter++;
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink selected="%"/>, document.getElementById("container"));
     });
     it('on toggle call onLoad function', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -156,7 +160,8 @@ describe('autoComplete enhancer', () => {
             default:
                 counter++;
             }
-        }));
+            return null;
+        });
         const loadData = (search, page, size, parentsFilter, count) => {
             expect(search).toBe("%");
             expect(page).toBe(0);
@@ -168,7 +173,7 @@ describe('autoComplete enhancer', () => {
     });
     it('on rest clean the selected value', (done) => {
         let counter = 0;
-        const Sink = autoComplete(createSink( props => {
+        const Sink = autoComplete((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -186,7 +191,8 @@ describe('autoComplete enhancer', () => {
             }
             default:
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toNotExist();
             done();

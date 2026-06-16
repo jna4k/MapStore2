@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withSelectedNode from '../withSelectedNode';
 import {isEmpty, isNull} from 'lodash';
@@ -23,7 +22,7 @@ describe('withSelectedNode enhancer', () => {
         setTimeout(done);
     });
     it('withSelectedNode selecting node from default group', (done) => {
-        const Sink = withSelectedNode(createSink( (props) => {
+        const Sink = withSelectedNode((props) => {
 
             expect(props).toExist();
             expect(props.editNode).toExist();
@@ -31,13 +30,14 @@ describe('withSelectedNode enhancer', () => {
             expect(isEmpty(props.selectedNode)).toBe(false);
             expect(props.selectedNode).toEqual({id: "layer1"});
             done();
-        }));
+            return null;
+        });
         const nodeVal = {nodes: [{id: "Default", nodes: [{id: "layer1" }]}, {id: "Meteo", nodes: [{id: "layer2" }]}]};
         ReactDOM.render( <Sink nodes={nodeVal} editNode={"layer1"} />, document.getElementById("container"));
     });
 
     it('withSelectedNode selecting node from a subgroup of Default', (done) => {
-        const Sink = withSelectedNode(createSink( (props) => {
+        const Sink = withSelectedNode((props) => {
             expect(props).toExist();
             expect(props.editNode).toExist();
             expect(isEmpty(props.nodes)).toBe(false);
@@ -46,13 +46,14 @@ describe('withSelectedNode enhancer', () => {
             expect(props.selectedNode).toEqual({id: "layer2"});
             expect(props.selectedNode).toNotEqual({id: "layer1"});
             done();
-        }));
+            return null;
+        });
         const nodeVal = {nodes: [{id: "Default", nodes: [{id: "layer1"}]}, {id: "Meteo", nodes: [{id: "layer2"}]}]};
         ReactDOM.render(<Sink nodes={nodeVal} editNode={"layer2"} />, document.getElementById("container"));
     });
 
     it('withSelectedNode selecting node from other group', (done) => {
-        const Sink = withSelectedNode(createSink( (props) => {
+        const Sink = withSelectedNode((props) => {
             expect(props).toExist();
             expect(props.editNode).toExist();
             expect(isEmpty(props.nodes)).toBe(false);
@@ -60,7 +61,8 @@ describe('withSelectedNode enhancer', () => {
             expect(isNull(props.selectedNode)).toBe(false);
             expect(props.selectedNode).toEqual({id: "layer2"});
             done();
-        }));
+            return null;
+        });
         const nodeVal = {nodes: [{id: "Default"}, {id: "someotherGroup", nodes: [{id: "layer1"}, {id: "Meteo", nodes: [{id: "layer2"}]}]}]};
         ReactDOM.render(<Sink nodes={nodeVal} editNode={"layer2"} />, document.getElementById("container"));
     });

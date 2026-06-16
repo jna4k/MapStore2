@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import handleNodePropertyChanges from '../handleNodePropertyChanges';
 
@@ -24,13 +23,14 @@ describe('handleNodePropertyChanges enhancer', () => {
         setTimeout(done);
     });
     it('handleNodePropertyChanges rendering with defaults', (done) => {
-        const Sink = handleNodePropertyChanges(createSink( props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             expect(props.changeGroupProperty).toExist();
             expect(props.changeLayerProperty).toExist();
             expect(props.changeLayerPropertyByGroup).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('Test handleNodePropertyChange onChange calls', () => {
@@ -38,7 +38,7 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "title", "TEST");
             props.changeLayerProperty("LAYER", "name", "TEST");
@@ -47,8 +47,8 @@ describe('handleNodePropertyChanges enhancer', () => {
                 a: "a",
                 b: "b"
             });
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: [{ id: 'GGG' }], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -70,7 +70,7 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "title", "TEST");
             props.changeLayerProperty("LAYER", "name", "TEST");
@@ -79,8 +79,8 @@ describe('handleNodePropertyChanges enhancer', () => {
                 a: "a",
                 b: "b"
             });
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ mapId: 'MAP_ID', groups: [{ id: 'GGG' }], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -102,10 +102,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: [{id: "GGG", expanded: false}], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -119,10 +120,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{mapId: 'MAP_ID', groups: [{id: "GGG", expanded: false}], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -136,10 +138,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: { name: 'GGG' }, layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -156,10 +159,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{mapId: 'MAP_ID', groups: { name: 'GGG' }, layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -176,10 +180,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: { id: 'GGG' }, layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -194,10 +199,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{mapId: 'MAP_ID', groups: { id: 'GGG' }, layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -212,10 +218,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{ groups: [], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));
@@ -232,10 +239,11 @@ describe('handleNodePropertyChanges enhancer', () => {
             onChange: () => {}
         };
         const spyCallbacks = expect.spyOn(actions, 'onChange');
-        const Sink = handleNodePropertyChanges(createSink(props => {
+        const Sink = handleNodePropertyChanges((props) => {
             expect(props).toExist();
             props.changeGroupProperty("GGG", "expanded", true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             map={{mapId: 'MAP_ID', groups: [], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}
             onChange={actions.onChange} />, document.getElementById("container"));

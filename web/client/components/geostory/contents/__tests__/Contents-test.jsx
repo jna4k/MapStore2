@@ -8,7 +8,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import expect from 'expect';
 import Contents from '../Contents';
@@ -94,9 +93,10 @@ describe('Contents component', () => {
     describe('modify handlers for content component', () => {
         it('add', done => {
             const TEST_NEW_CONTENT = "TEST_SECTION";
-            const DummyContentComponent = createSink(({ add }) => {
+            const DummyContentComponent = ({ add }) => {
                 add('contents', "position", TEST_NEW_CONTENT);
-            });
+                return null;
+            };
             ReactDOM.render(<Contents
                 add={(path, position, v) => {
                     expect(path).toBe(`contents[{"id": "${CONTENTS[0].id}"}].contents`);
@@ -115,10 +115,11 @@ describe('Contents component', () => {
         it('update', done => {
             const TEST_NEW_CONTENT = "TEST_SECTION";
             const TEST_VALUE = "TEST_VALUE";
-            const DummyContentComponent = createSink(({ add, update }) => {
+            const DummyContentComponent = ({ add, update }) => {
                 add('contents', "position", TEST_NEW_CONTENT);
                 update('entry', TEST_VALUE);
-            });
+                return null;
+            };
             ReactDOM.render(<Contents
                 update={(path, v) => {
                     expect(path).toBe(`contents[{"id": "${CONTENTS[0].id}"}].entry`);
@@ -134,9 +135,10 @@ describe('Contents component', () => {
             expect(el).toExist();
         });
         it('remove (without path, calls the remove of itself path)', done => {
-            const DummyContentComponent = createSink(({ remove }) => {
+            const DummyContentComponent = ({ remove }) => {
                 remove();
-            });
+                return null;
+            };
             ReactDOM.render(<Contents
                 remove={(path) => {
                     expect(path).toBe(`contents[{"id": "${CONTENTS[0].id}"}]`);
@@ -151,9 +153,10 @@ describe('Contents component', () => {
             expect(el).toExist();
         });
         it('remove (with path, for sub-pieces)', done => {
-            const DummyContentComponent = createSink(({ remove }) => {
+            const DummyContentComponent = ({ remove }) => {
                 remove("entry");
-            });
+                return null;
+            };
             ReactDOM.render(<Contents
                 remove={(path) => {
                     expect(path).toBe(`contents[{"id": "${CONTENTS[0].id}"}].entry`);

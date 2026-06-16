@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import wfsChartOptions from '../wfsChartOptions';
 
@@ -100,10 +99,11 @@ describe('wfsChartOptions enhancer', () => {
         setTimeout(done);
     });
     it('wfsChartOptions rendering with defaults', (done) => {
-        const Sink = wfsChartOptions(createSink( props => {
+        const Sink = wfsChartOptions((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     describe('Check data types', () => {
@@ -112,10 +112,11 @@ describe('wfsChartOptions enhancer', () => {
                 options
             };
 
-            const Sink = wfsChartOptions(createSink(props => {
+            const Sink = wfsChartOptions((props) => {
                 check(props);
                 done();
-            }));
+                return null;
+            });
             ReactDOM.render(<Sink data={data} featureTypeProperties={featureTypeProperties} />, document.getElementById("container"));
         };
         const NUM_OPS = [
@@ -170,10 +171,11 @@ describe('wfsChartOptions enhancer', () => {
             const data = {
                 options
             };
-            const Sink = wfsChartOptions(createSink(props => {
+            const Sink = wfsChartOptions((props) => {
                 check(props);
                 done();
-            }));
+                return null;
+            });
             ReactDOM.render(<Sink data={data} featureTypeProperties={featureTypeProperties} layer={{fields}} />, document.getElementById("container"));
         };
         const featureTypeProperties2 = [{

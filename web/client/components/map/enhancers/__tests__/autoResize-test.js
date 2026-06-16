@@ -8,7 +8,7 @@ import expect from 'expect';
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, lifecycle} from 'recompose';
+import {compose, lifecycle} from 'recompose';
 
 import autoResize from '../autoResize';
 
@@ -23,11 +23,12 @@ describe('autoResize enhancer', () => {
         setTimeout(done);
     });
     it('autoResize rendering with defaults', (done) => {
-        const Sink = autoResize()(createSink( props => {
+        const Sink = autoResize()((props) => {
             expect(props).toExist();
             expect(props.resize).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('check resize update', (done) => {

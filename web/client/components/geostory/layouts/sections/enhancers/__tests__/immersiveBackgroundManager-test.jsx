@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import expect from 'expect';
 
 // config for recompose usage of RXJS
@@ -30,14 +30,15 @@ describe('immersiveBackgroundManager enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = immersiveBackgroundManager(createSink( props => {
+        const Sink = immersiveBackgroundManager((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('holds last background ', (done) => {
-        const Sink = immersiveBackgroundManager(createSink(props => {
+        const Sink = immersiveBackgroundManager((props) => {
             expect(props).toExist();
             if (props.background.id !== contents[1].background.id) {
                 // first render, trigger onVisibility change to make the background to be 1
@@ -46,8 +47,8 @@ describe('immersiveBackgroundManager enhancer', () => {
                 // second render, the background now is the one triggered with onVisibilityChange({id: contents[1].id})
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink contents={contents}/>, document.getElementById("container"));
     });
     it('should export backgroundSectionProp HOC', () => {

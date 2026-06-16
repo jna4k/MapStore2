@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import expect from 'expect';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
 setObservableConfig(rxjsConfig);
@@ -17,46 +17,47 @@ describe('DataGrid forceScrollTop enhancer', () => {
         setTimeout(done);
     });
     it('with defaults', (done) => {
-        const Sink = forceScrollTop(createSink(({ scrollToTop}) => {
+        const Sink = forceScrollTop(({ scrollToTop}) => {
             expect(scrollToTop).toNotExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('with virtualScroll', (done) => {
-        const Sink = forceScrollTop(createSink(({ scrollToTopCounter, scrollToTop = () => { } }) => {
+        const Sink = forceScrollTop(({ scrollToTopCounter, scrollToTop = () => { } }) => {
             if (!scrollToTopCounter) {
                 scrollToTop();
             } else {
                 expect(scrollToTopCounter).toBe(1);
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink virtualScroll />, document.getElementById("container"));
     });
     it('onGridSort triggers scrollToTop', (done) => {
-        const Sink = forceScrollTop(createSink(({ scrollToTopCounter, onGridSort = () => { } }) => {
+        const Sink = forceScrollTop(({ scrollToTopCounter, onGridSort = () => { } }) => {
             if (!scrollToTopCounter) {
                 onGridSort();
             } else {
                 expect(scrollToTopCounter).toBe(1);
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink virtualScroll />, document.getElementById("container"));
     });
     it('onAddFilter triggers scrollToTop', (done) => {
-        const Sink = forceScrollTop(createSink(({ scrollToTopCounter, onAddFilter = () => { } }) => {
+        const Sink = forceScrollTop(({ scrollToTopCounter, onAddFilter = () => { } }) => {
             if (!scrollToTopCounter) {
                 onAddFilter();
             } else {
                 expect(scrollToTopCounter).toBe(1);
                 done();
             }
-
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink virtualScroll />, document.getElementById("container"));
     });
 

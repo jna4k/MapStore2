@@ -9,7 +9,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
 import SectionContents from '../SectionContents';
-import { createSink } from "recompose";
 
 describe('SectionContents component', () => {
     beforeEach((done) => {
@@ -34,10 +33,11 @@ describe('SectionContents component', () => {
         const TEST_NEW_SECTION = {type: "something"};
         const TEST_VALUE = "TEST_VALUE";
 
-        const DummyContentComponent = createSink(({id, add, update}) => {
+        const DummyContentComponent = ({id, add, update}) => {
             add('contents', id, TEST_NEW_SECTION);
             update('entry', TEST_VALUE);
-        });
+            return null;
+        };
 
         ReactDOM.render((<SectionContents
             add={(path, id, value) => {

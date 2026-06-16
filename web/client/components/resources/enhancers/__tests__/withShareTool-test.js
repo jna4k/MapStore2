@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withShareTool, { addSharePanel } from '../withShareTool';
 
@@ -22,10 +21,11 @@ describe('withShareTool enhancer', () => {
         setTimeout(done);
     });
     it('withShareTool rendering with defaults', (done) => {
-        const Sink = withShareTool(createSink( props => {
+        const Sink = withShareTool((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 
@@ -36,10 +36,11 @@ describe('withShareTool enhancer', () => {
         // "http://some-location/mapstore/#/FAKE_RESOURCE_PATH"
         const FAKE_RESOURCE_URL = `${FAKE_ORIGIN}${FAKE_PATH}#/${FAKE_RESOURCE_PATH}`;
         it('render panel with current window URL', () => {
-            const Sink = addSharePanel(createSink(props => {
+            const Sink = addSharePanel((props) => {
                 expect(props).toExist();
                 expect(props.onShare).toExist(true);
-            }));
+                return null;
+            });
             ReactDOM.render(<Sink
                 showShareModal
                 editedResource={{}}
@@ -52,7 +53,7 @@ describe('withShareTool enhancer', () => {
             expect(directLink.value).toBe(window.location.origin + window.location.pathname + "#/" + FAKE_RESOURCE_PATH);
         });
         it('URL is generated using application path', () => {
-            const Sink = addSharePanel(createSink(() => {}));
+            const Sink = addSharePanel(() => null);
             ReactDOM.render(<Sink
                 showShareModal
                 shareApi
@@ -77,7 +78,7 @@ describe('withShareTool enhancer', () => {
             expect(iframeCode.indexOf(FAKE_RESOURCE_URL)).toBeGreaterThan(0);
         });
         it('Check shareOptions (embedOptions.showTOCToggle)', () => {
-            const Sink = addSharePanel(createSink(() => { }));
+            const Sink = addSharePanel(() => null);
             ReactDOM.render(<Sink
                 showShareModal
                 shareApi
@@ -104,7 +105,7 @@ describe('withShareTool enhancer', () => {
         });
         it('tests correct shareApiUrl when share api is visible)', () => {
             const VERSION = "VERSION";
-            const Sink = addSharePanel(createSink(() => { }));
+            const Sink = addSharePanel(() => null);
             ReactDOM.render(<Sink
                 showShareModal
                 shareApi

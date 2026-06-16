@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, defaultProps} from 'recompose';
+import {compose, defaultProps} from 'recompose';
 
 import pinnableWidget from '../pinnableWidget';
 
@@ -34,20 +34,22 @@ describe('pinnableWidget enhancer', () => {
         setTimeout(done);
     });
     it('pinnableWidget rendering with defaults', (done) => {
-        const Sink = pinnableWidget()(createSink( props => {
+        const Sink = pinnableWidget()((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('when toolsOptions.showPin = true adds a widget tool', (done) => {
-        const Sink = pinnable(createSink( props => {
+        const Sink = pinnable((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             expect(props.widgetTools[0].glyph).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('Test toggleCollapse callback', () => {
@@ -55,10 +57,11 @@ describe('pinnableWidget enhancer', () => {
             updateProperty: () => {}
         };
         const spy = expect.spyOn(actions, 'updateProperty');
-        const Sink = pinnable(createSink(({ widgetTools = [] }) => {
+        const Sink = pinnable(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[0].onClick();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink id={"some_id"} updateProperty={actions.updateProperty}/>, document.getElementById("container"));
         expect(spy).toHaveBeenCalled();
         expect(spy.calls[0].arguments[0]).toBe("some_id");

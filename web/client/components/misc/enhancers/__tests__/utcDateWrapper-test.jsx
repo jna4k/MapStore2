@@ -8,7 +8,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import expect from 'expect';
 import utcDateWrapper from '../utcDateWrapper';
@@ -92,9 +91,10 @@ describe('utcDateWrapper enhancher', () => {
             expect(spyonSetDate.calls[index].arguments[0].toISOString()).toBe(expectedUTCString);
             callback();
         };
-        const Sink = utcDateWrapper()(createSink( props => {
+        const Sink = utcDateWrapper()((props) => {
             props.check(props);
-        }));
+            return null;
+        });
         const TESTS = [
             "2010-01-01T00:00:00.000Z",
             "2010-01-02T00:00:00.000Z",
@@ -129,9 +129,10 @@ describe('utcDateWrapper enhancher', () => {
             expect(spyonSetDate.calls[index].arguments[0].toISOString()).toBe(expectedUTCString);
             callback();
         };
-        const Sink = utcDateWrapper()(createSink( props => {
+        const Sink = utcDateWrapper()((props) => {
             props.check(props);
-        }));
+            return null;
+        });
         const TESTS = [
             "2010-01-01T00:00:00.000Z",
             "2010-01-02T00:00:00.000Z",
@@ -163,9 +164,10 @@ describe('utcDateWrapper enhancher', () => {
             expect(spyonSetDate.calls[index].arguments[0]).toBe(expectedUTCString);
             callback();
         };
-        const Sink = utcDateWrapper()(createSink(props => {
+        const Sink = utcDateWrapper()((props) => {
             props.check(props);
-        }));
+            return null;
+        });
         const TESTS = [
             "2010-01-01T00:00:00.000Z",
             "2010-01-02T00:00:00.000Z",
@@ -194,9 +196,10 @@ describe('utcDateWrapper enhancher', () => {
             expect(spyonSetDate.calls[index].arguments[0]).toBe(expectedUTCString);
             callback();
         };
-        const Sink = utcDateWrapper()(createSink(props => {
+        const Sink = utcDateWrapper()((props) => {
             props.check(props);
-        }));
+            return null;
+        });
         const TESTS = [
             "2010-01-01T00:00:00.000Z",
             "2010-01-02T00:00:00.000Z",

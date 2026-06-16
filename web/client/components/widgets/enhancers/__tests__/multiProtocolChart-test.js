@@ -8,7 +8,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import multiProtocolChart, { wpsAggregateToChartData, wfsToChartData } from '../multiProtocolChart';
 
@@ -23,7 +22,7 @@ describe('multiProtocolChart enhancer', () => {
         setTimeout(done);
     });
     it('multiProtocolChart WFS data fetch', (done) => {
-        const Sink = multiProtocolChart(createSink( ({data, loading} = {}) => {
+        const Sink = multiProtocolChart(({data, loading} = {}) => {
             if (!loading) {
                 try {
                     expect(data).toBeTruthy();
@@ -38,7 +37,8 @@ describe('multiProtocolChart enhancer', () => {
                 }
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             traces: [{
                 layer: {
@@ -57,7 +57,7 @@ describe('multiProtocolChart enhancer', () => {
         ReactDOM.render(<Sink {...props} />, document.getElementById("container"));
     });
     it('multiProtocolChart WPS data fetch', (done) => {
-        const Sink = multiProtocolChart(createSink(({ data, loading } = {}) => {
+        const Sink = multiProtocolChart(({ data, loading } = {}) => {
             if (!loading) {
                 try {
                     expect(data).toBeTruthy();
@@ -72,7 +72,8 @@ describe('multiProtocolChart enhancer', () => {
                 }
                 done();
             }
-        }));
+            return null;
+        });
         const props = {
             traces: [{
                 layer: {

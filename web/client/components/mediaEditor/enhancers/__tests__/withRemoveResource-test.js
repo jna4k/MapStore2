@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withRemoveResource from '../withRemoveResource';
 import  {Provider} from 'react-redux';
@@ -27,11 +26,12 @@ describe('media editor  withRemoveResource enhancer', () => {
         setTimeout(done);
     });
     it('withRemoveResource rendering with defaults', (done) => {
-        const Sink = withRemoveResource(createSink( props => {
+        const Sink = withRemoveResource((props) => {
             expect(props).toExist();
             expect(props.removeMedia).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink /></Provider>, document.getElementById("container"));
     });
 });

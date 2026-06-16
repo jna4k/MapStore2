@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, defaultProps} from 'recompose';
+import {compose, defaultProps} from 'recompose';
 
 import exportableWidget from '../exportableWidget';
 
@@ -32,11 +32,12 @@ describe('exportableWidget enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = exportableWidget()(createSink( props => {
+        const Sink = exportableWidget()( props => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 
@@ -48,10 +49,11 @@ describe('exportableWidget enhancer', () => {
             exportCSV: () => {}
         };
         const spyCSV = expect.spyOn(actions, 'exportCSV');
-        const SinkCallEdit = exportable(createSink(({ widgetTools = [] }) => {
+        const SinkCallEdit = exportable(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[0].onClick();
-        }));
+            return null;
+        });
 
         ReactDOM.render(<SinkCallEdit title="widget title" data={sampleData} exportCSV={actions.exportCSV} />, document.getElementById("container"));
         expect(spyCSV).toHaveBeenCalled();
@@ -62,10 +64,11 @@ describe('exportableWidget enhancer', () => {
     });
 
     it('should disable exportCSV or exportImage btns when data is empty', () => {
-        const Sink = exportable(createSink(({ widgetTools = [] }) => {
+        const Sink = exportable(({ widgetTools = [] }) => {
             expect(widgetTools[0].disabled).toBe(true);
             widgetTools[0].onClick();
-        }));
+            return null;
+        });
 
         ReactDOM.render(<Sink title="widget title" data={[]} />, document.getElementById("container"));
     });

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withConfirm from '../withConfirm';
 import ToolbarButton from '../toolbar/ToolbarButton';
@@ -17,10 +16,11 @@ describe('withConfirm enhancer', () => {
         setTimeout(done);
     });
     it('withConfirm rendering with defaults', (done) => {
-        const Sink = withConfirm(createSink( props => {
+        const Sink = withConfirm((props) => {
             expect(props).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('withConfirm tests confirm window', () => {

@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import dependenciesToWidget, {buildDependencies} from '../dependenciesToWidget';
 
 describe('dependenciesToWidget enhancer', () => {
@@ -23,11 +22,12 @@ describe('dependenciesToWidget enhancer', () => {
         setTimeout(done);
     });
     it('dependency transformation', (done) => {
-        const Sink = dependenciesToWidget(createSink( props => {
+        const Sink = dependenciesToWidget((props) => {
             expect(props).toExist();
             expect(props.dependencies.x).toBe("a");
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink dependenciesMap={{x: "b"}} dependencies={{b: "a"}}/>, document.getElementById("container"));
     });
     it('dependency transformation, avoid loop', (done) => {
@@ -66,12 +66,13 @@ describe('dependenciesToWidget enhancer', () => {
             mapSync: "widgets[d7e73050-3de1-11ea-8ee8-c127e39ddf83].mapSync",
             dependenciesMap: "widgets[d7e73050-3de1-11ea-8ee8-c127e39ddf83].dependenciesMap"
         };
-        const Sink = dependenciesToWidget(createSink( props => {
+        const Sink = dependenciesToWidget((props) => {
             expect(props).toExist();
             expect(props.dependencies.zoom).toBe(4);
             // if there was a loop an maximum call stack exceeded error would be thrown
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             id="c6656090-3de1-11ea-8ee8-c127e39ddf83"
             dependenciesMap={dependenciesMap}

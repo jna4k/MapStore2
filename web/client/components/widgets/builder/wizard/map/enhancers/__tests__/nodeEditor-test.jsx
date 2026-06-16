@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import nodeEditor from '../nodeEditor';
 
@@ -24,7 +23,7 @@ describe('nodeEditor enhancer', () => {
         setTimeout(done);
     });
     it('nodeEditor rendering with map', (done) => {
-        const Sink = nodeEditor(createSink( props => {
+        const Sink = nodeEditor((props) => {
             expect(props).toExist();
             expect(props.groups.length).toBe(1);
             expect(props.nodes).toExist();
@@ -32,17 +31,18 @@ describe('nodeEditor enhancer', () => {
             expect(props.activeTab).toBe("general");
             expect(props.settings.nodeType).toBe('layers');
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             editNode={"LAYER"}
             map={{ groups: [{ id: 'GGG' }], layers: [{ id: "LAYER", group: "GGG", options: {} }] }}/>, document.getElementById("container"));
     });
     it('nodeEditor rendering callback', () => {
-        const Sink = nodeEditor(createSink( props => {
+        const Sink = nodeEditor((props) => {
             expect(props.onChange).toExist();
             props.onChange("a", "b");
-
-        }));
+            return null;
+        });
         const actions = {
             onChange: () => { }
         };
@@ -54,11 +54,11 @@ describe('nodeEditor enhancer', () => {
         expect(spyonChange).toHaveBeenCalled();
     });
     it('nodeEditor onUpdateParams callback', () => {
-        const Sink = nodeEditor(createSink(props => {
+        const Sink = nodeEditor((props) => {
             expect(props.onUpdateParams).toExist();
             props.onUpdateParams({something: "newValue"}, true);
-
-        }));
+            return null;
+        });
         const actions = {
             onChange: () => { }
         };

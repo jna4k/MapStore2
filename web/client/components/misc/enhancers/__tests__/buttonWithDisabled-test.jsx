@@ -9,7 +9,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
-import { createSink } from 'recompose';
 
 import buttonWithDisabled from '../buttonWithDisabled';
 
@@ -24,7 +23,7 @@ describe('buttonWithDisabled enhancer', () => {
         setTimeout(done);
     });
     it('when disabled className changes and disabled is removed from props', (done) => {
-        const Sink = buttonWithDisabled(createSink(props => {
+        const Sink = buttonWithDisabled((props) => {
             try {
                 expect(props.disabled).toBeFalsy();
                 expect(props.className.indexOf('disabled')).toNotBe(-1);
@@ -32,18 +31,20 @@ describe('buttonWithDisabled enhancer', () => {
             } catch (e) {
                 done(e);
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink disabled/>, document.getElementById('container'));
     });
     it('when disabled onClick is ignored', (done) => {
-        const Sink = buttonWithDisabled(createSink(props => {
+        const Sink = buttonWithDisabled((props) => {
             try {
                 expect(props.onClick).toExist();
                 props.onClick();
             } catch (e) {
                 done(e);
             }
-        }));
+            return null;
+        });
 
         let onClickNotIgnored = false;
         ReactDOM.render(<Sink disabled onClick={() => {onClickNotIgnored = true;}}/>, document.getElementById('container'));

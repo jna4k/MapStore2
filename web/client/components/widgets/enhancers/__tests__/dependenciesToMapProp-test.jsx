@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import dependenciesToMapProp from '../dependenciesToMapProp';
 
@@ -24,37 +23,41 @@ describe('dependenciesToMapProp enhancer', () => {
         setTimeout(done);
     });
     it('dependenciesToMapProp rendering with defaults', (done) => {
-        const Sink = dependenciesToMapProp('center')(createSink( props => {
+        const Sink = dependenciesToMapProp('center')((props) => {
             expect(props.map.center.x).toBe(1);
             expect(props.map.center.y).toBe(1);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink selectedMapId={'MAP_ID'} maps={[{center: {x: 1, y: 1}, mapId: 'MAP_ID'}]} dependencies={{center: {x: 2, y: 2}}}/>, document.getElementById("container"));
     });
     it('dependenciesToMapProp rendering with mapSync', (done) => {
-        const Sink = dependenciesToMapProp('center')(createSink(props => {
+        const Sink = dependenciesToMapProp('center')((props) => {
             expect(props.map.center.x).toBe(2);
             expect(props.map.center.y).toBe(2);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink mapSync selectedMapId={'MAP_ID'} maps={[{center: {x: 1, y: 1}, mapId: 'MAP_ID'}]} dependencies={{ center: { x: 2, y: 2 } }} />, document.getElementById("container"));
     });
     it('dependenciesToMapProp for center rendering with selectedMapId and mapSync', (done) => {
-        const Sink = dependenciesToMapProp('center')(createSink(props => {
+        const Sink = dependenciesToMapProp('center')((props) => {
             expect(props.map.center.x).toBe(2);
             expect(props.map.center.y).toBe(2);
             expect(props.maps).toEqual([{"center": {"x": 2, "y": 2}, "mapId": "MAP_ID"}]);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink mapSync selectedMapId={'MAP_ID'} maps={[{center: {x: 1, y: 1}, mapId: 'MAP_ID'}]} dependencies={{ center: { x: 2, y: 2 } }} />, document.getElementById("container"));
     });
     it('dependenciesToMapProp rendering for zoom with selectedMapId and mapSync', (done) => {
-        const Sink = dependenciesToMapProp('zoom')(createSink(props => {
+        const Sink = dependenciesToMapProp('zoom')((props) => {
             expect(props.mapSync).toBeTruthy();
             expect(props.maps).toEqual([{zoom: 7, mapId: "MAP_ID"}]);
             expect(props.map.zoom).toBe(7);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink mapSync selectedMapId={'MAP_ID'} maps={[{zoom: 8, mapId: 'MAP_ID'}]} dependencies={{ zoom: 7 }} />, document.getElementById("container"));
     });
 });

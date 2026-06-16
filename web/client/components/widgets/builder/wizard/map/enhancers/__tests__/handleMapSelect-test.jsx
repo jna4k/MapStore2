@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import handleMapSelect from "../handleMapSelect";
 import axios from '../../../../../../../libs/ajax';
@@ -114,13 +113,14 @@ describe('handleMapSelect enhancer', () => {
             }
         };
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toBeTruthy();
             expect(props.map.id).toBeTruthy();
             expect(props.onMapChoice).toBeTruthy();
             props.onMapChoice(props.map);
             expect(['number', 'string'].includes(typeof props.map.id)).toBe(true);
-        });
+            return null;
+        };
         const EnhancedSink = handleMapSelect(sink);
         ReactDOM.render(<EnhancedSink map={{id: 3}} onMapSelected={actions.onMapSelected} />, document.getElementById("container"));
     });
@@ -139,12 +139,13 @@ describe('handleMapSelect enhancer', () => {
             }
         };
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             expect(props.map.id).toExist();
             expect(props.onMapChoice).toExist();
             props.onMapChoice(props.map);
-        });
+            return null;
+        };
         const EnhancedSink = handleMapSelect(sink);
         ReactDOM.render(<EnhancedSink map={{id: 3}} onMapSelected={actions.onMapSelected} />, document.getElementById("container"));
     });
@@ -169,10 +170,11 @@ describe('handleMapSelect enhancer', () => {
             }
         };
 
-        const sink = createSink( props => {
+        const sink = (props) => {
             expect(props).toExist();
             props.onMapChoice(props.map);
-        });
+            return null;
+        };
         const EnhancedSink = handleMapSelect(sink);
         ReactDOM.render(<EnhancedSink map={{id: 3}} onMapSelected={actions.onMapSelected} />, document.getElementById("container"));
     });

@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose, createSink, defaultProps} from 'recompose';
+import {compose, defaultProps} from 'recompose';
 
 import hidableWidget from '../hidableWidget';
 
@@ -34,20 +34,22 @@ describe('hidableWidget enhancer', () => {
         setTimeout(done);
     });
     it('hidableWidget rendering with defaults', (done) => {
-        const Sink = hidableWidget()(createSink( props => {
+        const Sink = hidableWidget()( props => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(0);
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('when toolsOptions.showHide = true adds a widget tool', (done) => {
-        const Sink = hidable(createSink( props => {
+        const Sink = hidable((props) => {
             expect(props).toExist();
             expect(props.widgetTools.length).toBe(1);
             expect(props.widgetTools[0].glyph).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('updateProperty callback', () => {
@@ -55,10 +57,11 @@ describe('hidableWidget enhancer', () => {
             updateProperty: () => {}
         };
         const spy = expect.spyOn(actions, 'updateProperty');
-        const Sink = hidable(createSink(({ widgetTools = [] }) => {
+        const Sink = hidable(({ widgetTools = [] }) => {
             expect(widgetTools[0]).toExist();
             widgetTools[0].onClick();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink id={"some_id"} updateProperty={actions.updateProperty}/>, document.getElementById("container"));
         expect(spy).toHaveBeenCalled();
         expect(spy.calls[0].arguments[0]).toBe("some_id");

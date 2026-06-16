@@ -7,7 +7,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 import expect from 'expect';
 import withMapEditing from '../withMapEditing';
 import  {Provider} from 'react-redux';
@@ -27,12 +26,13 @@ describe('media editor withMapEditing enhancer', () => {
         setTimeout(done);
     });
     it('withMapEditing rendering with defaults', (done) => {
-        const Sink = withMapEditing(createSink( props => {
+        const Sink = withMapEditing((props) => {
             expect(props).toExist();
             expect(props.openMapEditor).toExist();
             expect(props.importInLocal).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink /></Provider>, document.getElementById("container"));
     });
     it('withMapEditing open mapEditor when needed or call setAddingMedia', (done) => {
@@ -45,17 +45,18 @@ describe('media editor withMapEditing enhancer', () => {
         };
         const spyAddingMedia = expect.spyOn(actions, 'setAddingMedia');
 
-        const Sink = withMapEditing(createSink( props => {
+        const Sink = withMapEditing((props) => {
             expect(props).toExist();
             expect(props.openMapEditor).toExist();
             expect(props.importInLocal).toExist();
             expect(props.setAddingMedia).toExist();
             expect(props.editRemoteMap).toExist();
             props.setAddingMedia(true);
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink setAddingMedia={actions.setAddingMedia} mediaType="map"/></Provider>, document.getElementById("container"));
         store.dispatch = () => {};
-        const SinkAddingMedia = withMapEditing(createSink( props => {
+        const SinkAddingMedia = withMapEditing((props) => {
             expect(props).toExist();
             expect(props.openMapEditor).toExist();
             expect(props.importInLocal).toExist();
@@ -63,7 +64,8 @@ describe('media editor withMapEditing enhancer', () => {
             props.setAddingMedia(true);
             expect(spyAddingMedia).toHaveBeenCalled();
             done();
-        }));
+            return null;
+        });
         ReactDOM.unmountComponentAtNode(document.getElementById("container"));
         ReactDOM.render(<Provider store={store}><SinkAddingMedia setAddingMedia={actions.setAddingMedia} mediaType="imag"/></Provider>, document.getElementById("container"));
 
@@ -76,14 +78,15 @@ describe('media editor withMapEditing enhancer', () => {
             expect(a.map).toExist();
         };
 
-        const Sink = withMapEditing(createSink( props => {
+        const Sink = withMapEditing((props) => {
             expect(props).toExist();
             expect(props.openMapEditor).toExist();
             expect(props.editRemoteMap).toExist();
             expect(props.setAddingMedia).toExist();
             props.editRemoteMap();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Provider store={store}><Sink mediaType="map"/></Provider>, document.getElementById("container"));
         store.dispatch = () => {};
 

@@ -9,7 +9,7 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig, createSink } from 'recompose';
 import rxjsconfig from 'recompose/rxjsObservableConfig';
 import { Observable } from 'rxjs';
 
@@ -50,7 +50,7 @@ describe('loadMore enhancer', () => {
             }, {
                 initialStreamDebounce: 50
             }
-        )(createSink(props => {
+        )((props) => {
             if (props.page === undefined) {
                 props.loadFirst();
                 setTimeout(() => {
@@ -70,7 +70,8 @@ describe('loadMore enhancer', () => {
                     done(e);
                 }
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
 });

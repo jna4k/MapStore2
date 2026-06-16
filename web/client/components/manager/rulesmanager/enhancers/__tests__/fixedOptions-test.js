@@ -9,7 +9,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink, setObservableConfig } from 'recompose';
+import { setObservableConfig } from 'recompose';
 import expect from 'expect';
 import fixedOptions from '../fixedOptions';
 import rxjsConfig from 'recompose/rxjsObservableConfig';
@@ -28,7 +28,7 @@ describe('fixedOption enhancer', () => {
     });
     it('it emits selected val', (done) => {
         let counter = 0;
-        const Sink = fixedOptions(createSink( props => {
+        const Sink = fixedOptions((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -38,9 +38,10 @@ describe('fixedOption enhancer', () => {
                 counter++;
                 break;
             }
-            default: return;
+            default: return null;
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toBe("%");
             done();
@@ -49,7 +50,7 @@ describe('fixedOption enhancer', () => {
     });
     it('on toggle with empty val it cleans selected', (done) => {
         let counter = 0;
-        const Sink = fixedOptions(createSink( props => {
+        const Sink = fixedOptions((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -67,10 +68,11 @@ describe('fixedOption enhancer', () => {
                 break;
             }
             default: {
-                return;
+                return null;
             }
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toNotExist();
             done();
@@ -79,7 +81,7 @@ describe('fixedOption enhancer', () => {
     });
     it('on toggle', (done) => {
         let counter = 0;
-        const Sink = fixedOptions(createSink( props => {
+        const Sink = fixedOptions((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -108,12 +110,13 @@ describe('fixedOption enhancer', () => {
             default:
                 counter++;
             }
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink selected="%"/>, document.getElementById("container"));
     });
     it('on rest clean the selected value', (done) => {
         let counter = 0;
-        const Sink = fixedOptions(createSink( props => {
+        const Sink = fixedOptions((props) => {
             switch (counter) {
             case 0: {
                 expect(props).toExist();
@@ -131,7 +134,8 @@ describe('fixedOption enhancer', () => {
             }
             default:
             }
-        }));
+            return null;
+        });
         const onValueSelected = (val) => {
             expect(val).toNotExist();
             done();

@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import {handlingUnsupportedProjection} from '../handlingUnsupportedProjection';
 
@@ -24,7 +23,7 @@ describe('handlingUnsupportedProjection enhancer', () => {
         setTimeout(done);
     });
     it('handlingUnsupportedProjection for unsupported projection', () => {
-        const Sink = handlingUnsupportedProjection(createSink());
+        const Sink = handlingUnsupportedProjection(() => null);
         ReactDOM.render(<Sink projection="EPSG:31468" />, document.getElementById("container"));
         const title = document.querySelector("h1 span");
         const description = document.querySelector(".empty-state-description span");

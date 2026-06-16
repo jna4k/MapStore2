@@ -9,7 +9,6 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createSink} from 'recompose';
 
 import zoomToFeatureHandler from '../zoomToFeatureHandler';
 
@@ -66,10 +65,11 @@ describe('zoomToFeatureHandler enhancer', () => {
         setTimeout(done);
     });
     it('zoomToFeatureHandler rendering with defaults', (done) => {
-        const Sink = zoomToFeatureHandler(createSink( props => {
+        const Sink = zoomToFeatureHandler((props) => {
             expect(props.zoomToFeature).toExist();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
     });
     it('callback to zoomToExtent', () => {
@@ -78,9 +78,10 @@ describe('zoomToFeatureHandler enhancer', () => {
         };
         const spy = expect.spyOn(actions, 'zoomToExtent');
 
-        const Sink = zoomToFeatureHandler(createSink( props => {
+        const Sink = zoomToFeatureHandler((props) => {
             props.zoomToFeature();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             zoomToExtent={actions.zoomToExtent}
             currentFeatureCrs="EPSG:3857"
@@ -95,9 +96,10 @@ describe('zoomToFeatureHandler enhancer', () => {
         };
         const spy = expect.spyOn(actions, 'zoomToExtent');
 
-        const Sink = zoomToFeatureHandler(createSink(props => {
+        const Sink = zoomToFeatureHandler((props) => {
             props.zoomToFeature();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink
             zoomToExtent={actions.zoomToExtent}
             currentFeatureCrs="EPSG:3857"

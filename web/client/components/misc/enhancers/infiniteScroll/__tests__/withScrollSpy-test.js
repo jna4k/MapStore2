@@ -9,7 +9,6 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
-import { createSink } from 'recompose';
 import expect from 'expect';
 const CMP = () => <div><div id="mydiv" style={{ height: "100px", overflow: "auto" }}><div style={{height: "1000px"}}></div></div></div>;
 import withScrollSpy from '../withScrollSpy';
@@ -25,9 +24,10 @@ describe('withScrollSpy enhancer', () => {
         setTimeout(done);
     });
     it('rendering with defaults', (done) => {
-        const Sink = withScrollSpy({ querySelector: "div" })(createSink( () => {
+        const Sink = withScrollSpy({ querySelector: "div" })(() => {
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink />, document.getElementById("container"));
 
     });

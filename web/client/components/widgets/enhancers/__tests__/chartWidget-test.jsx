@@ -7,7 +7,6 @@
  */
 import ReactDOM from "react-dom";
 import chartWidget, {chartWidgetProps} from "../chartWidget";
-import {createSink} from "recompose";
 import expect from "expect";
 import React from "react";
 
@@ -22,32 +21,35 @@ describe('chartWidget enhancer', () => {
         setTimeout(done);
     });
     it('chartWidget default', (done) => {
-        const Sink = chartWidget(createSink(props => {
+        const Sink = chartWidget((props) => {
             expect(props).toBeTruthy();
             expect(props.toggleTableView).toBeTruthy();
             expect(props.showTable).toBeFalsy();
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink/>, document.getElementById("container"));
     });
     it('chartWidgetProps default', (done) => {
-        const Sink = chartWidgetProps(createSink(props => {
+        const Sink = chartWidgetProps((props) => {
             expect(props).toBeTruthy();
             expect(props).toEqual({charts: [], selectedChartId: undefined, options: {}});
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink/>, document.getElementById("container"));
     });
     it('chartWidgetProps on selected chart Id', (done) => {
         const charts = [{chartId: '1', layer: {name: "Test"}}, {chartId: '2'}];
-        const Sink = chartWidgetProps(createSink(props => {
+        const Sink = chartWidgetProps((props) => {
             expect(props).toBeTruthy();
             expect(props.charts).toEqual(charts);
             expect(props.selectedChartId).toEqual("1");
             expect(props.chartId).toEqual("1");
             expect(props.layer.name).toEqual("Test");
             done();
-        }));
+            return null;
+        });
         ReactDOM.render(<Sink charts={charts} selectedChartId={"1"}/>, document.getElementById("container"));
     });
 });
