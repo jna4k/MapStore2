@@ -6,7 +6,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { endsWith, replace } from 'lodash';
 import { Observable } from 'rxjs';
 
 import ajax from '../libs/ajax';
@@ -126,12 +125,17 @@ export const getDomainValues = (url, layer, domain, {
  * TODO: find out a better way to do this
  * @param {string} url the wms layers wms URL
  */
-export const getMultidimURL = ({ url } = {}) =>
-    endsWith(url, "/wms")
-        ? replace(url, /\/wms$/, "/gwc/service/wmts")
-        : endsWith(url, "/ows")
-            ? replace(url, /\/ows$/, "/gwc/service/wmts")
-            : url;
+export const getMultidimURL = ({ url } = {}) => {
+    if (url.endsWith("/wms")) {
+        return url.replace(/\/wms$/, "/gwc/service/wmts");
+    }
+
+    if (url.endsWith("/ows")) {
+        return url.replace(/\/ows$/, "/gwc/service/wmts");
+    }
+
+    return url;
+};
 
 /**
  * API for [WMTS Multidimensional](http://docs.geoserver.org/latest/en/user/community/wmts-multidimensional/index.html) that in the future

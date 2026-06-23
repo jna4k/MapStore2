@@ -9,7 +9,6 @@
 import axios from '../libs/ajax';
 import Proj4js from 'proj4';
 import { reprojectBbox } from '../utils/CoordinatesUtils';
-import trimEnd from 'lodash/trimEnd';
 import {
     isFeatureServerUrl,
     esriGeometryTypeToGeoJSON,
@@ -115,7 +114,7 @@ export const getLayerMetadata = (layerUrl, layerName) => {
                 };
             });
     }
-    return axios.get(`${trimEnd(layerUrl, '/')}/${layerName}`, { params: { f: 'json' }})
+    return axios.get(`${layerUrl.trimEnd('/')}/${layerName}`, { params: { f: 'json' }})
         .then(({ data }) => {
             const bbox = extentToBoundingBox(data?.extent);
             return {
@@ -153,7 +152,7 @@ const getData = (url, params = {}) => {
                 return searchAndPaginate(
                     services.filter(service => ['MapServer', 'ImageServer', 'FeatureServer'].includes(service.type)).map((service) => {
                         return {
-                            url: `${trimEnd(url, '/')}/${service.name}/${service.type}`,
+                            url: `${url.trimEnd('/')}/${service.name}/${service.type}`,
                             version: data.currentVersion,
                             name: service.name,
                             description: service.type
@@ -228,7 +227,7 @@ export const getCapabilities = (url, startPosition, maxRecords, text, info) => {
 };
 
 const buildFeatureLayerUrl = (url, name) => {
-    const baseUrl = trimEnd(url, '/');
+    const baseUrl = url.trimEnd('/');
     const layerId = name !== undefined && name !== null ? name : 0;
     return `${baseUrl}/${layerId}`;
 };
