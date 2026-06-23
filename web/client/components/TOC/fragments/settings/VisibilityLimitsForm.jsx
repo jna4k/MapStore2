@@ -9,7 +9,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Glyphicon, Alert } from 'react-bootstrap';
-import isNaN from 'lodash/isNaN';
 import isNil from 'lodash/isNil';
 import Select from 'react-select';
 import localizedProps from '../../../misc/enhancers/localizedProps';
@@ -68,13 +67,13 @@ function SelectInput({
             isValidNewOption={(option) => {
                 if (option.label) {
                     const newValue = parseFloat(option.label);
-                    return !isNaN(newValue) && isValidNewOption(newValue);
+                    return !Number.isNaN(newValue) && isValidNewOption(newValue);
                 }
                 return false;
             }}
             onChange={(option) => {
                 const newValue = option?.value && parseFloat(option.value);
-                onChange(isNaN(newValue) ? undefined : { ...option, value: newValue });
+                onChange(Number.isNaN(newValue) ? undefined : { ...option, value: newValue });
             }}
         />
     );

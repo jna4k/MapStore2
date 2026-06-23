@@ -11,7 +11,7 @@ import HTML from '../../../../I18N/HTML';
 import { FormControl, ControlLabel, FormGroup, InputGroup } from 'react-bootstrap';
 import DisposablePopover from '../../../../misc/popover/DisposablePopover';
 import Message from '../../../../I18N/Message';
-import {isNil, isNaN, isError} from 'lodash';
+import {isNil, isError} from 'lodash';
 
 
 import { parseExpression } from '../../../../../utils/ExpressionUtils';
@@ -23,7 +23,7 @@ function validate(value) {
         if (!value) return [true]; // "", undefined or null are valid
         const processedValue = parseExpression(value, testContext);
         // if returns null of undefined the expression is not valid, even if it doesn't throw errors
-        return [!isNil(processedValue) && !isNaN(processedValue) && !isError(processedValue), processedValue];
+        return [!isNil(processedValue) && !Number.isNaN(processedValue) && !isError(processedValue), processedValue];
     } catch (e) {
         return [false, e];
     }
@@ -35,7 +35,7 @@ function getFeedback(isValid, value) {
     if (isNil(value)) {
         return "the expression returns no value";
     }
-    if (isNaN(value)) {
+    if (Number.isNaN(value)) {
         return "the expression returned NaN";
     }
     if (isError(value)) {

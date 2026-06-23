@@ -8,7 +8,6 @@
 
 import React, { useState } from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import isNaN from 'lodash/isNaN';
 import Select from 'react-select';
 import Popover from './Popover';
 import PropertyField from './PropertyField';
@@ -44,13 +43,13 @@ function ScaleInput({
                 isValidNewOption={(option) => {
                     if (option.label) {
                         const newValue = parseFloat(option.label);
-                        return !isNaN(newValue) && isValidNewOption(newValue);
+                        return !Number.isNaN(newValue) && isValidNewOption(newValue);
                     }
                     return false;
                 }}
                 onChange={(option) => {
                     const newValue = option?.value && parseFloat(option.value);
-                    onChange(isNaN(newValue) ? undefined : newValue);
+                    onChange(Number.isNaN(newValue) ? undefined : newValue);
                 }}
             />
         </PropertyField>

@@ -6,7 +6,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import isEqual from 'lodash/isEqual';
-import isNaN from 'lodash/isNaN';
 import isNil from 'lodash/isNil';
 import isObject from 'lodash/isObject';
 import tinycolor from 'tinycolor2';
@@ -99,7 +98,7 @@ const property = {
             if (isEqual(value, ['0']) || isEqual(value, ['1', '0'])) {
                 return { [key]: undefined };
             }
-            const isValid = !(value || []).find((entry) => isNaN(parseFloat(entry)));
+            const isValid = !(value || []).find((entry) => Number.isNaN(parseFloat(entry)));
             return {
                 [key]: value !== undefined && isValid
                     ? value.map((entry) => parseFloat(entry))

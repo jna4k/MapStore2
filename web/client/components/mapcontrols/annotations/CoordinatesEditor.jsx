@@ -22,7 +22,7 @@ import Select from 'react-select';
 import tooltip from '../../misc/enhancers/tooltip';
 const Glyphicon = tooltip(GlyphiconRB);
 const DropdownButton = tooltip(DropdownButtonRB);
-import { head, isNaN, get, isEmpty } from 'lodash';
+import { head, get, isEmpty } from 'lodash';
 import { getMessageById } from '../../../utils/LocaleUtils';
 import Toolbar from '../../misc/toolbar/Toolbar';
 import draggableContainer from '../../misc/enhancers/draggableContainer';
@@ -120,7 +120,7 @@ class CoordinatesEditor extends React.Component {
 
     getValidationStateRadius = (radius) => {
         const r = parseFloat(radius);
-        if (isNaN(r)) {
+        if (Number.isNaN(r)) {
             return "error";
         }
         return null; // "success"
@@ -356,7 +356,7 @@ class CoordinatesEditor extends React.Component {
     validateCircle = (components = this.props.components, remove, radius = this.props.properties.radius) => {
         if (components && components.length) {
             const cmp = head(components);
-            return !isNaN(parseFloat(radius)) && validateCoords(cmp);
+            return !Number.isNaN(parseFloat(radius)) && validateCoords(cmp);
         }
         return false;
     }
@@ -381,9 +381,9 @@ class CoordinatesEditor extends React.Component {
     }
     change = (id, value) => {
         let tempComps = this.props.components;
-        const lat = isNaN(parseFloat(value.lat)) ? "" : parseFloat(value.lat);
-        const lon = isNaN(parseFloat(value.lon)) ? "" : parseFloat(value.lon);
-        const height = value.height !== undefined ? isNaN(parseFloat(value.height)) ? "" : parseFloat(value.height) : undefined;
+        const lat = Number.isNaN(parseFloat(value.lat)) ? "" : parseFloat(value.lat);
+        const lon = Number.isNaN(parseFloat(value.lon)) ? "" : parseFloat(value.lon);
+        const height = value.height !== undefined ? Number.isNaN(parseFloat(value.height)) ? "" : parseFloat(value.height) : undefined;
         tempComps[id] = {lat, lon, ...(height !== undefined && { height })};
         let validComponents = this.addCoordPolygon(tempComps);
         this.props.onChange(validComponents, this.props.properties.radius, this.props.properties.valueText, this.props.mapProjection);

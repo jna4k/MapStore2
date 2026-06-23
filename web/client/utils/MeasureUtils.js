@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
 */
 
-import { isArray, head, isNaN } from 'lodash';
+import { isArray, head } from 'lodash';
 
 export const MeasureTypes = {
     LENGTH: 'length',
@@ -267,7 +267,7 @@ export function convertUom(value, source = "m", dest = "m") {
 }
 
 
-export const validateCoord = c => (!isNaN(parseFloat(c[0])) && !isNaN(parseFloat(c[1])));
+export const validateCoord = c => (!Number.isNaN(parseFloat(c[0])) && !Number.isNaN(parseFloat(c[1])));
 
 /**
  * validate a geometry feature,

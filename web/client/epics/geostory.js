@@ -9,7 +9,6 @@
 
 import { Observable } from 'rxjs';
 import head from 'lodash/head';
-import isNaN from 'lodash/isNaN';
 import isString from 'lodash/isString';
 import isNil from 'lodash/isNil';
 import lastIndexOf from 'lodash/lastIndexOf';
@@ -328,7 +327,7 @@ export const loadGeostoryEpic = (action$, {getState = () => {}}) => action$
     .ofType(LOAD_GEOSTORY)
     .switchMap( ({id}) => {
         return Observable.defer(() => {
-            if (id && isNaN(parseInt(id, 10))) {
+            if (id && Number.isNaN(parseInt(id, 10))) {
                 return axios.get(`configs/${id}.json`)
                     // not return anything else that data in this case
                     // to match with data/resource object structure of getResource
@@ -358,7 +357,7 @@ export const loadGeostoryEpic = (action$, {getState = () => {}}) => action$
                 const user = isLoggedIn(state);
 
                 const story = isString(data) ? JSON.parse(data) : data;
-                if (!user && isNaN(parseInt(id, 10))) {
+                if (!user && Number.isNaN(parseInt(id, 10))) {
                     return Observable.of(loadGeostoryError({status: 403}));
                 }
 

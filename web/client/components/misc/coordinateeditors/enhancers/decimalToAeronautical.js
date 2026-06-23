@@ -1,4 +1,4 @@
-import {isNaN, round} from 'lodash';
+import { round } from 'lodash';
 import { compose, withHandlers, withProps } from 'recompose';
 
 const convertDDToDMS = (D, lng, {seconds} = {}) => {
@@ -21,7 +21,7 @@ const convertDDToDMS = (D, lng, {seconds} = {}) => {
         m = 0;
     }
 
-    if (isNaN(d) || D === "") {
+    if (Number.isNaN(d) || D === "") {
         // reset the inputs
         return {
             degrees: "",
@@ -64,13 +64,13 @@ export default compose(
             if (degrees === undefined && minutes === undefined && seconds === undefined) {
                 props.onChange(undefined);
             }
-            if (!isNaN(degrees)) {
+            if (!Number.isNaN(degrees)) {
                 deg = degrees;
             }
-            if (!isNaN(minutes)) {
+            if (!Number.isNaN(minutes)) {
                 min = minutes;
             }
-            if (!isNaN(seconds)) {
+            if (!Number.isNaN(seconds)) {
                 sec = seconds;
             }
 

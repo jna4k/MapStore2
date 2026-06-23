@@ -7,7 +7,7 @@
  */
 
 import React, { Suspense, useCallback, useRef } from 'react';
-import { isArray, castArray, max, isNaN, isNumber, isNull } from 'lodash';
+import { isArray, castArray, max, isNumber, isNull } from 'lodash';
 import LoadingView from '../misc/LoadingView';
 import { parseExpression } from '../../utils/ExpressionUtils';
 import withClassifyGeoJSONSync from './withClassifyGeoJSONSync';
@@ -40,7 +40,7 @@ const processDataProperties = (formula, key, data) => {
 const applyPercentageToLabel = (label, value, total) => {
     if (!isNull(value)) { // avoid implicit conversion of null to 0
         const percent = (value / total * 100).toPrecision(3); // use precision to be consistent with formatting of plotlyJS (3 digits)
-        if (!isNaN(percent)) {
+        if (!Number.isNaN(percent)) {
             return label + " - " + percent + "%";
         }
     }

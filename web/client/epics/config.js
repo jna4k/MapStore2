@@ -7,7 +7,7 @@
  */
 import { Observable } from 'rxjs';
 import axios from '../libs/ajax';
-import { get, isNaN, find } from 'lodash';
+import { get, find } from 'lodash';
 import {
     LOAD_NEW_MAP,
     LOAD_MAP_CONFIG,
@@ -105,7 +105,7 @@ const mapFlowWithOverride = (configName, mapId, config, mapInfo, state, override
 
     // mapstore recognizes alphanumeric map id as static json
     // avoid map info requests if the configuration is static
-    const isNumberId = !isNaN(parseFloat(mapId));
+    const isNumberId = !Number.isNaN(parseFloat(mapId));
     return (
         config ?
             Observable.of({data: applyOverrides(config, overrideConfig ), staticConfig: true}).delay(100) :

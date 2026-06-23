@@ -9,7 +9,6 @@ import React from 'react';
 
 import PropTypes from "prop-types";
 import moment from 'moment';
-import { isNaN } from 'lodash';
 import { Form, FormGroup, ControlLabel, FormControl, InputGroup, Tab, Tabs } from 'react-bootstrap';
 import classnames from 'classnames';
 import Message from '../I18N/Message';
@@ -29,7 +28,7 @@ import { getMessageById } from "../../utils/LocaleUtils";
  */
 const onValidInteger = (v, fun, errFun = () => { }) => {
     try {
-        if (!isNaN(parseInt(v, 10))) {
+        if (!Number.isNaN(parseInt(v, 10))) {
             const value = parseInt(v, 10);
             if (value < 1) {
                 return fun(1);

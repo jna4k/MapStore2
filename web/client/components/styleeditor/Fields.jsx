@@ -11,7 +11,6 @@ import { FormGroup, InputGroup, Glyphicon, MenuItem, DropdownButton, Checkbox } 
 import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
 import isNil from 'lodash/isNil';
-import isNaN from 'lodash/isNaN';
 import Toolbar from '../misc/toolbar/Toolbar';
 import ColorSelector from '../style/ColorSelector';
 import Slider from '../misc/Slider';
@@ -528,7 +527,7 @@ export const fields = {
                     isValidNewOption={(option) => {
                         if (option.label) {
                             return !option.label.split(' ')
-                                .find((entry) => isNaN(parseFloat(entry)));
+                                .find((entry) => Number.isNaN(parseFloat(entry)));
                         }
                         return false;
                     }}

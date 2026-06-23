@@ -10,7 +10,6 @@ import Layers from '../../../../utils/cesium/Layers';
 import * as Cesium from 'cesium';
 import isEqual from 'lodash/isEqual';
 import isNumber from 'lodash/isNumber';
-import isNaN from 'lodash/isNaN';
 import { getProxyUrl } from "../../../../utils/ProxyUtils";
 import { getStyleParser } from '../../../../utils/VectorStyleUtils';
 import tinycolor from 'tinycolor2';
@@ -54,7 +53,7 @@ function getStyle({ style, pointCloudShading = {} }) {
 }
 
 function updateModelMatrix(tileSet, { heightOffset }) {
-    if (!isNaN(heightOffset) && isNumber(heightOffset)) {
+    if (!Number.isNaN(heightOffset) && isNumber(heightOffset)) {
         const boundingSphere = tileSet.boundingSphere;
         const cartographic = Cesium.Cartographic.fromCartesian(boundingSphere.center);          // undefined if the cartesian is at the center of the ellipsoid
         const surface = Cesium.Cartesian3.fromRadians(cartographic?.longitude || 0, cartographic?.latitude || 0, 0.0);

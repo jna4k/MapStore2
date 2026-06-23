@@ -7,7 +7,7 @@
  */
 
 import url from "url";
-import {every, get, has, includes, inRange, isEmpty, isNaN, isNil, isObject, partial, toNumber} from "lodash";
+import {every, get, has, includes, inRange, isEmpty, isNil, isObject, partial, toNumber} from "lodash";
 
 import {getBbox} from "./MapUtils";
 import {isValidExtent} from "./CoordinatesUtils";
@@ -173,7 +173,7 @@ export const paramActions = {
             .filter((val, idx) => idx % 2 === 0
                 ? val > -180.5 && val < 180.5
                 : val >= -90 && val <= 90)
-            .filter(val => !isNaN(val));
+            .filter(val => !Number.isNaN(val));
         if (extent && extent.length === 4 && isValidExtent(extent)) {
             return [
                 zoomToExtent(extent, 'EPSG:4326', undefined, {nearest: true})

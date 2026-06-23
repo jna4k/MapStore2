@@ -7,7 +7,7 @@
 */
 
 import { v1 as uuidv1 } from 'uuid';
-import { slice, omit, head, last, get, isNaN, isEqual, isNumber } from 'lodash';
+import { slice, omit, head, last, get, isEqual, isNumber } from 'lodash';
 import turfBbox from '@turf/bbox';
 import {
     MeasureTypes,
@@ -130,9 +130,9 @@ export const createAnnotationId = (id) => !id
     : `${id}`.includes(`${ANNOTATIONS}:`)
         ? id
         : `${ANNOTATIONS}:${id}`;
-export const validateCoords = ({lat, lon, height} = {}) => !isNaN(parseFloat(lat)) && !isNaN(parseFloat(lon)) && (height !== undefined ? !isNaN(parseFloat(height)) : true);
+export const validateCoords = ({lat, lon, height} = {}) => !Number.isNaN(parseFloat(lat)) && !Number.isNaN(parseFloat(lon)) && (height !== undefined ? !Number.isNaN(parseFloat(height)) : true);
 export const coordToArray = (c = {}) => [c.lon, c.lat, ...(c.height !== undefined ? [c.height] : [])];
-export const validateCoordsArray = ([lon, lat, height] = []) => !isNaN(parseFloat(lat)) && !isNaN(parseFloat(lon)) && (height !== undefined ? !isNaN(parseFloat(height)) : true);
+export const validateCoordsArray = ([lon, lat, height] = []) => !Number.isNaN(parseFloat(lat)) && !Number.isNaN(parseFloat(lon)) && (height !== undefined ? !Number.isNaN(parseFloat(height)) : true);
 export const getStylesObject = ({type = "Point", features = []} = {}) => {
     return type === "FeatureCollection" ? features.reduce((p, c) => {
         p[c.geometry.type] = DEFAULT_ANNOTATIONS_STYLES[c.geometry.type];
@@ -540,7 +540,7 @@ export const importJSONToAnnotations = (json) => {
  * @param {number} coordinate
  * @returns {boolean}
  */
-export const checkInvalidCoordinate = (coord) => !(isNumber(coord) && !isNaN(coord));
+export const checkInvalidCoordinate = (coord) => !(isNumber(coord) && !Number.isNaN(coord));
 /**
  * Fix polygon coordinates to ensure a closed ring
  * @param {array} coordinates GeoJSON polygon coordinates

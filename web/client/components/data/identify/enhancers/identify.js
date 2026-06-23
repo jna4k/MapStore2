@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isNaN, isNil } from 'lodash';
+import { isNil } from 'lodash';
 import { compose, lifecycle, withHandlers } from 'recompose';
 
 import { set } from '../../../../utils/ImmutableUtils';
@@ -42,8 +42,8 @@ export const identifyHandlers = withHandlers({
         onSubmitClickPoint = () => {},
         point
     }) => (val) => {
-        const lat = !isNil(val.lat) && !isNaN(val.lat) ? parseFloat(val.lat) : 0;
-        const lng = !isNil(val.lon) && !isNaN(val.lon) ? parseFloat(val.lon) : 0;
+        const lat = !isNil(val.lat) && !Number.isNaN(val.lat) ? parseFloat(val.lat) : 0;
+        const lng = !isNil(val.lon) && !Number.isNaN(val.lon) ? parseFloat(val.lon) : 0;
         let newPoint = set('latlng.lng', lng, set('latlng.lat', lat, point));
         onSubmitClickPoint(newPoint);
     },

@@ -7,7 +7,7 @@
  */
 import * as Cesium from 'cesium';
 import chroma from 'chroma-js';
-import { castArray, isNumber, isEqual, range, isNaN } from 'lodash';
+import { castArray, isNumber, isEqual, range } from 'lodash';
 import { needProxy, getProxyUrl } from '../ProxyUtils';
 import {
     resolveAttributeTemplate,
@@ -50,7 +50,7 @@ function getCesiumDashArray({ color, opacity, dasharray }) {
 
 const getNumberAttributeValue = (value) => {
     const constantHeight = parseFloat(value);
-    if (!isNaN(constantHeight) && isNumber(constantHeight)) {
+    if (!Number.isNaN(constantHeight) && isNumber(constantHeight)) {
         return constantHeight;
     }
     return null;
@@ -763,7 +763,7 @@ const symbolizerToPrimitives = {
         const { src, width, height } = images.find(({ id }) => id === getImageIdFromSymbolizer(parsedSymbolizer, symbolizer)) || {};
         const side = width > height ? width : height;
         const scale = (parsedSymbolizer.radius * 2) / side;
-        return src && !isNaN(scale) ? [
+        return src && !Number.isNaN(scale) ? [
             {
                 type: 'point',
                 geometryType: 'point',
@@ -802,7 +802,7 @@ const symbolizerToPrimitives = {
         const { src, width, height } = images.find(({ id }) => id === getImageIdFromSymbolizer(parsedSymbolizer, symbolizer)) || {};
         const side = width > height ? width : height;
         const scale = parsedSymbolizer.size / side;
-        return src && !isNaN(scale) ? [{
+        return src && !Number.isNaN(scale) ? [{
             type: 'point',
             geometryType: 'point',
             entity: {
