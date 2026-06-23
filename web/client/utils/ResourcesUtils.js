@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import get from 'lodash/get';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from './Utils';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 

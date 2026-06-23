@@ -1,5 +1,5 @@
 
-import { isFunction } from 'lodash';
+import { isFunction } from '../../utils/Utils';
 import React, { forwardRef } from 'react';
 import ReactQuillEditor from 'react-quill';
 import resizeModuleIFrameToolbarConfigFactory from './modules/ResizeModule';

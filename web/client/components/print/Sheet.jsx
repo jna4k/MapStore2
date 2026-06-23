@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Choice from './Choice';
-import { isFunction } from 'lodash';
+import { isFunction } from '../../utils/Utils';
 
 class Sheet extends React.Component {
     static propTypes = {

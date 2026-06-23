@@ -9,7 +9,8 @@ import React from 'react';
 
 import Layers from '../../../utils/cesium/Layers';
 import PropTypes from 'prop-types';
-import { round, isNil, isFunction } from 'lodash';
+import { round, isNil } from 'lodash';
+import { isFunction } from '../../../utils/Utils';
 import { castArray } from '../../../utils/ArrayUtils';
 import { getResolutions } from '../../../utils/MapUtils';
 import axios from '../../../libs/ajax';

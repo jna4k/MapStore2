@@ -9,7 +9,7 @@
 import React, { useState, useLayoutEffect, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { getConfigProp } from '../../../utils/ConfigUtils';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../../utils/Utils';
 import TableOfContentItemButton from './TableOfContentItemButton';
 import { NodeTypes, ROOT_GROUP_ID, DEFAULT_GROUP_ID } from '../../../utils/LayersUtils';
 import { StatusTypes } from '../utils/TOCUtils';

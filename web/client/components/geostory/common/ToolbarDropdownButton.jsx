@@ -12,7 +12,7 @@ import { DropdownButton as DropdownButtonRB, Glyphicon, MenuItem } from 'react-b
 import tooltip from '../../misc/enhancers/buttonTooltip';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../../utils/Utils';
 import isEqual from 'lodash/isEqual';
 
 const DropdownButton = tooltip(DropdownButtonRB);

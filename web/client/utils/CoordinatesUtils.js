@@ -15,7 +15,6 @@ import axios from '../libs/ajax';
 import {
     isArray,
     isObject,
-    isFunction,
     flattenDeep,
     chunk,
     cloneDeep,
@@ -25,6 +24,7 @@ import {
     last,
     isNaN
 } from 'lodash';
+import { isFunction } from './Utils';
 import turfCircle from '@turf/circle';
 
 import lineIntersect from '@turf/line-intersect';

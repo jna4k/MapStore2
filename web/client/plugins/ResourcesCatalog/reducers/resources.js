@@ -7,7 +7,7 @@
  */
 
 import isNil from 'lodash/isNil';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../../utils/Utils';
 import set from 'lodash/fp/set';
 import { v1 as uuid } from 'uuid';
 

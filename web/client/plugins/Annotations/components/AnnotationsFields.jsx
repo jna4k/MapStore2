@@ -7,7 +7,7 @@
 */
 
 import React, { useState } from 'react';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../../utils/Utils';
 import { FormGroup, FormControl, ControlLabel, HelpBlock } from "react-bootstrap";
 import Message from '../../../components/I18N/Message';
 import { htmlToDraftJSEditorState, draftJSEditorStateToHtml } from '../../../utils/EditorUtils';

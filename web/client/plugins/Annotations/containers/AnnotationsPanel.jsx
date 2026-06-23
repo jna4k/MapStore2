@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { Nav, NavItem, Glyphicon, ButtonGroup, Alert, ControlLabel } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../../utils/Utils';
 import capitalize from 'lodash/capitalize';
 import { ANNOTATIONS } from '../utils/AnnotationsUtils';
 import { registerRowViewer } from '../../../utils/MapInfoUtils';

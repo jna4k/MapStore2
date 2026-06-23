@@ -7,7 +7,7 @@
  */
 
 const L = require('leaflet');
-const isFunction = require('lodash/isFunction');
+const { isFunction } = require('../Utils');
 
 require('leaflet-extra-markers');
 require('leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css');

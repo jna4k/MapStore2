@@ -7,7 +7,7 @@
  */
 
 import React, { useRef } from 'react';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../utils/Utils';
 import Fields from './Fields';
 import Symbolizer, { SymbolizerMenu } from './Symbolizer';
 

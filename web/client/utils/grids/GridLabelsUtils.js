@@ -1,4 +1,4 @@
-import isFunction from "lodash/isFunction";
+import { isFunction } from '../Utils';
 
 /**
  * Returns the modulo of a / b, depending on the sign of b.

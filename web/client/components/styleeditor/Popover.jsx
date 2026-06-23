@@ -10,7 +10,7 @@ import React, { useState, useEffect, useRef, useCallback, cloneElement } from 'r
 import { createPortal } from 'react-dom';
 import clamp from 'lodash/clamp';
 import { getConfigProp } from '../../utils/ConfigUtils';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../../utils/Utils';
 
 /**
  * Popover used for style components.

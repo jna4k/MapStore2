@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { debounce, endsWith, isEqual, isFunction, isObject, isString } from 'lodash';
+import { debounce, endsWith, isEqual, isObject, isString } from 'lodash';
+import { isFunction } from '../../utils/Utils';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Message from '../I18N/Message';

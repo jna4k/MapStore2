@@ -6,8 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isArray, isFunction, isNil } from 'lodash';
+import { isArray, isNil } from 'lodash';
 import { compose, lifecycle, withHandlers, withState } from 'recompose';
+import { isFunction } from "../../../utils/Utils";
 
 /**
  * Enhancer for settings state needed in TOCItemsSettings plugin

@@ -1,7 +1,7 @@
 
 import Rx from 'rxjs';
-import { isFunction } from 'lodash';
 import { ActionsObservable, combineEpics } from 'redux-observable';
+import { isFunction } from '../../utils/Utils';
 
 /**
  * The action emitted by the addTimeoutEpic

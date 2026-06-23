@@ -7,7 +7,7 @@
  */
 import React from 'react';
 
-import { isFunction } from 'lodash';
+import { isFunction } from '../../../utils/Utils';
 import { branch } from 'recompose';
 import DefaultEmptyComponent from '../EmptyView';
 

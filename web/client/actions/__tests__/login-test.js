@@ -9,7 +9,7 @@ import {
 import { RESET_ERROR } from '../security';
 
 import { SET_CONTROL_PROPERTY } from '../controls';
-import {isFunction} from 'lodash';
+import { isFunction } from '../../utils/Utils';
 import ConfigUtils from '../../utils/ConfigUtils';
 
 describe('login actions', () => {

@@ -1,5 +1,5 @@
 import omit from "lodash/omit";
-import isFunction from "lodash/isFunction";
+import { isFunction } from './Utils';
 import merge from "lodash/merge";
 import {normalizeName} from "./PluginsUtils";
 
