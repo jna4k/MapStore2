@@ -13,7 +13,8 @@ import withBackButton from './withBackButton';
 import { toLayer, addSearchObservable } from './layerSelector';
 import canGenerateCharts from '../../../observables/widgets/canGenerateCharts';
 
-import { castArray, isEmpty, isUndefined, get } from "lodash";
+import { isEmpty, isUndefined, get } from "lodash";
+import { castArray } from '../../../utils/ArrayUtils';
 
 import { onEditorChange } from '../../../actions/widgets';
 import { getDependantWidget } from "../../../utils/WidgetsUtils";

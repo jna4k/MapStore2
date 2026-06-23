@@ -7,7 +7,8 @@
  */
 import * as Cesium from 'cesium';
 import chroma from 'chroma-js';
-import { castArray, isNumber, isEqual, range } from 'lodash';
+import { isNumber, isEqual, range } from 'lodash';
+import { castArray } from '../ArrayUtils';
 import { needProxy, getProxyUrl } from '../ProxyUtils';
 import {
     resolveAttributeTemplate,

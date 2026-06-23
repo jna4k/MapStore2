@@ -16,12 +16,12 @@ import {
     isEmpty,
     cloneDeep,
     omit,
-    castArray,
     pick,
     isString,
     uniq,
     isNil
 } from 'lodash';
+import { castArray } from './ArrayUtils';
 import set from "lodash/fp/set";
 import { CHARTS_REGEX, TRACES_REGEX, MAPS_REGEX, WIDGETS_MAPS_REGEX, WIDGETS_REGEX, LAYERS_REGEX } from '../actions/widgets';
 import { findGroups } from './GraphUtils';

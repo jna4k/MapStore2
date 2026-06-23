@@ -10,7 +10,7 @@ import Rx from 'rxjs';
 import { connect } from 'react-redux';
 import { branch, compose, renderComponent, withHandlers, withProps, withState } from 'recompose';
 import find from 'lodash/find';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import { onEditorChange } from '../../actions/widgets';
 
 import BorderLayout from '../../components/layout/BorderLayout';

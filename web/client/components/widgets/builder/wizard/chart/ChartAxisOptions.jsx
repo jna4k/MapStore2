@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React, { useState } from 'react';
-import { isNil, castArray } from 'lodash';
+import { isNil } from 'lodash';
+import { castArray } from '../../../../../utils/ArrayUtils';
 import { v1 as uuidv1 } from "uuid";
 import Select from 'react-select';
 import { FormGroup, Radio, ControlLabel, InputGroup, Checkbox, Button as ButtonRB, Glyphicon, FormControl } from 'react-bootstrap';

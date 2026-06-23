@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Observable } from 'rxjs';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import { excludeGoogleBackground, extractTileMatrixFromSources } from '../../utils/LayersUtils';
 import { convertFromLegacy, normalizeConfig } from '../../utils/ConfigUtils';
 

@@ -16,7 +16,8 @@ import {
     preprocess as commonPreprocess,
     getRecordIdentifier
 } from './common';
-import { get, castArray, isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 
 const searchAndPaginate = (json = {}, startPosition, maxRecords, text) => {
 

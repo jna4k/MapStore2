@@ -23,7 +23,7 @@ import { MAP_TYPE_CHANGED, VISUALIZATION_MODE_CHANGED } from '../actions/maptype
 import ConfigUtils from '../utils/ConfigUtils';
 import { set, unset } from '../utils/ImmutableUtils';
 import { normalizeLayer } from '../utils/LayersUtils';
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import {
     getVisualizationModeFromMapLibrary,
     VisualizationModes

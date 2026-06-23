@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import {isEqual, isUndefined} from 'lodash';
 import find from 'lodash/find';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 
 import { parseStyles } from './VectorStyle';
 import { transformPolygonToCircle } from '../../../utils/openlayers/DrawSupportUtils';

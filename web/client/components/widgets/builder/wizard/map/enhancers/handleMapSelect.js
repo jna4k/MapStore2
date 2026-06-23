@@ -16,7 +16,7 @@ import { is3DVisualizationMode } from "../../../../../../utils/MapTypeUtils";
 import { getResource } from '../../../../../../api/persistence';
 import '../../../../../../libs/bindings/rxjsRecompose';
 import { v1 as uuidv1 } from 'uuid';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../../../../utils/ArrayUtils';
 
 const handleMapSelect = compose(
     withState('selected', "setSelected", null),

@@ -8,7 +8,7 @@
 
 import Layers from '../../../../utils/openlayers/Layers';
 import isEqual from 'lodash/isEqual';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../../utils/ArrayUtils';
 import head from 'lodash/head';
 import last from 'lodash/last';
 import axios from '../../../../libs/ajax';

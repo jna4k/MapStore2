@@ -9,7 +9,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { createPlugin } from '../../utils/PluginsUtils';
-import { castArray } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import ConnectedResourcesGrid from './containers/ResourcesGrid';
 import GeoStoreDAO from '../../api/GeoStoreDAO';
 import IPDialog, { DeleteConfirm } from '../../components/manager/ipmanager/IPDialog';

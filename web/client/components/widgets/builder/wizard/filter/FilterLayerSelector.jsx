@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Glyphicon } from 'react-bootstrap';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../../../utils/ArrayUtils';
 import isEmpty from 'lodash/isEmpty';
 import { withProps } from 'recompose';
 

@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import isEqual from 'lodash/isEqual';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../../utils/ArrayUtils';
 import { Glyphicon } from 'react-bootstrap';
 
 import FlexBox from '../../../../components/layout/FlexBox';

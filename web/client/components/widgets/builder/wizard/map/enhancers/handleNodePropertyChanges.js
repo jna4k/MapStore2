@@ -7,7 +7,8 @@
  */
 // handle property changes
 
-import { castArray, findIndex } from 'lodash';
+import { findIndex } from 'lodash';
+import { castArray } from '../../../../../../utils/ArrayUtils';
 import { withHandlers } from 'recompose';
 
 import {belongsToGroup} from '../../../../../../utils/LayersUtils';

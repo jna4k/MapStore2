@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isEmpty, isEqual, omit, isArray, isObject, isString, castArray, some } from 'lodash';
+import { isEmpty, isEqual, omit, isArray, isObject, isString, some } from 'lodash';
+import { castArray } from './ArrayUtils';
 import merge from 'lodash/fp/merge';
 import { v1 as uuid } from 'uuid';
 import MapUtils from './MapUtils';

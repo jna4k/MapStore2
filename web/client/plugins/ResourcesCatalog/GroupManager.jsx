@@ -17,11 +17,12 @@ import { hashLocationToHref } from '../../utils/ResourcesFiltersUtils';
 import GeoStoreDAO from '../../api/GeoStoreDAO';
 import Message from '../../components/I18N/Message';
 import { Button } from 'react-bootstrap';
-import { castArray, findIndex } from 'lodash';
+import { findIndex } from 'lodash';
 import InputControl from '../../components/catalog/resources/InputControl';
 import usergroupsReducer from '../../reducers/usergroups';
 import GroupDeleteConfirm from '../../components/manager/users/GroupDeleteConfirm';
 import GroupDialog from '../../components/manager/users/GroupDialog';
+import { castArray } from '../../utils/ArrayUtils';
 
 import {
     changeGroupMetadata,

@@ -7,7 +7,8 @@
  */
 
 import React, { Suspense, useCallback, useRef } from 'react';
-import { isArray, castArray, max, isNumber, isNull } from 'lodash';
+import { isArray, max, isNumber, isNull } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import LoadingView from '../misc/LoadingView';
 import { parseExpression } from '../../utils/ExpressionUtils';
 import withClassifyGeoJSONSync from './withClassifyGeoJSONSync';

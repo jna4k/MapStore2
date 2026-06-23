@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import Rx from 'rxjs';
 
 export const start = (stream$, actions = []) => stream$

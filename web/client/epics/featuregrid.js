@@ -7,7 +7,8 @@
  */
 import Rx from 'rxjs';
 
-import {get, head, isEmpty, find, castArray, includes, reduce} from 'lodash';
+import { get, head, isEmpty, find, includes, reduce } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import axios from '../libs/ajax';
 import bbox from '@turf/bbox';

@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isNil, castArray, isEmpty } from 'lodash';
+import { isNil, isEmpty } from 'lodash';
+import { castArray } from '../../../../../utils/ArrayUtils';
 import React from 'react';
 import { compose } from 'recompose';
 import { Glyphicon } from "react-bootstrap";

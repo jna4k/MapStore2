@@ -8,7 +8,8 @@
 import { compose, withProps, withHandlers } from 'recompose';
 
 import { connect } from 'react-redux';
-import { castArray, find } from 'lodash';
+import { find } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import { normalizeLayer } from '../../../utils/LayersUtils';
 import { onEditorChange } from '../../../actions/widgets';
 

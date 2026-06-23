@@ -9,7 +9,7 @@ import isNil from 'lodash/isNil';
 import trim from 'lodash/trim';
 import isString from 'lodash/isString';
 import isArray from 'lodash/isArray';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import head from 'lodash/head';
 import last from 'lodash/last';
 import find from 'lodash/find';

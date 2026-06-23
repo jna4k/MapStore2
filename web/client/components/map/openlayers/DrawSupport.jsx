@@ -16,7 +16,7 @@ import isArray from 'lodash/isArray';
 import last from 'lodash/last';
 import filter from 'lodash/filter';
 import isNil from 'lodash/isNil';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 
 import PropTypes from 'prop-types';
 import { v1 as uuid } from 'uuid';

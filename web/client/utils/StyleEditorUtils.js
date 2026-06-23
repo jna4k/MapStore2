@@ -18,10 +18,10 @@ import {
     omitBy,
     isUndefined,
     set,
-    castArray,
     isObject,
     isNumber
 } from "lodash";
+import { castArray } from './ArrayUtils';
 import { v1 as uuidv1 } from 'uuid';
 
 

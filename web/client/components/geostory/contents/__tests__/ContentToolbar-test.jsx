@@ -10,7 +10,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
 import ReactTestUtils from 'react-dom/test-utils';
-import {includes, castArray} from 'lodash';
+import { includes } from 'lodash';
+import { castArray } from '../../../../utils/ArrayUtils';
 
 import ContentToolbar from '../ContentToolbar';
 

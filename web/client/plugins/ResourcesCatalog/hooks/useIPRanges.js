@@ -8,7 +8,7 @@
 
 import { useState, useRef, useCallback } from 'react';
 import GeoStoreDAO from '../../../api/GeoStoreDAO';
-import { castArray } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 
 /**
  * Custom hook to manage IP ranges fetching and caching

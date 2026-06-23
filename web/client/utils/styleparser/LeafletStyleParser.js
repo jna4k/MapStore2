@@ -7,7 +7,8 @@
  */
 
 import L from 'leaflet';
-import { castArray, flatten } from 'lodash';
+import { flatten } from 'lodash';
+import { castArray } from '../ArrayUtils';
 import 'ol/geom/Polygon';
 import {
     resolveAttributeTemplate,

@@ -9,7 +9,7 @@ import React, {useRef, useState } from 'react';
 import { Glyphicon, Checkbox, SplitButton, MenuItem } from 'react-bootstrap';
 import Button from '../../layout/Button';
 import ResourceCard from '../resources/ResourceCard';
-import { isObject, isEmpty, trim, castArray } from 'lodash';
+import { isObject, isEmpty, trim } from 'lodash';
 import Message from '../../I18N/Message';
 import SharingLinks from './SharingLinks';
 import { getRecordLinks } from '../../../utils/CatalogUtils';
@@ -19,6 +19,7 @@ import Spinner from '../../layout/Spinner';
 import FlexBox from '../../layout/FlexBox';
 import Text from '../../layout/Text';
 import { getTagConfig } from '../../../utils/GeoNodeUtils';
+import { castArray } from '../../../utils/ArrayUtils';
 
 const CatalogCard = ({
     hideThumbnail,

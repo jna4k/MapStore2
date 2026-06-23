@@ -16,7 +16,7 @@ import isArray from "lodash/isArray";
 import isEmpty from "lodash/isEmpty";
 import template from "lodash/template";
 import get from "lodash/get";
-import castArray from "lodash/castArray";
+import { castArray } from './ArrayUtils';
 
 import {setStore as stateSetStore, getState} from "./StateUtils";
 import { parseUrl, WMS_GET_CAPABILITIES_VERSION } from '../api/WMS';

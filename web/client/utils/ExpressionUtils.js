@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {compileExpression, useDotAccessOperatorAndOptionalChaining} from 'filtrex';
-import { get, castArray } from 'lodash';
+import { get} from 'lodash';
+import { castArray } from './ArrayUtils';
 export const getFiltrexOptions = (state, context) => ({
     customProp: useDotAccessOperatorAndOptionalChaining,
     extraFunctions: {

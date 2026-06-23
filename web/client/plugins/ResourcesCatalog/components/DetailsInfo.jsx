@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import { Checkbox } from 'react-bootstrap';

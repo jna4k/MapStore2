@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import Message from '../../../components/I18N/Message';
 import tooltip from '../../../components/misc/enhancers/tooltip';
 import Button from '../../../components/layout/Button';

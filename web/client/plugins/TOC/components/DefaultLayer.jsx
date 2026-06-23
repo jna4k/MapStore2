@@ -7,7 +7,8 @@
 */
 
 import React, { useRef, useLayoutEffect, useState } from 'react';
-import { castArray, find } from 'lodash';
+import { find } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import { Glyphicon } from 'react-bootstrap';
 import { isInsideResolutionsLimits, getLayerTypeGlyph } from '../../../utils/LayersUtils';
 import { getLayerErrorMessage } from '../utils/TOCUtils';

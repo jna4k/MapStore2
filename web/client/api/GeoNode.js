@@ -10,7 +10,7 @@ import isEmpty from "lodash/isEmpty";
 import mergeWith from 'lodash/mergeWith';
 import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
-import castArray from 'lodash/castArray';
+import { castArray } from '../utils/ArrayUtils';
 import omit from 'lodash/omit';
 import axios from '../libs/ajax';
 import { addFilters, getFilterByField } from "../utils/ResourcesFiltersUtils";

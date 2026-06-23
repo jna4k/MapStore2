@@ -7,10 +7,10 @@
  */
 import React from 'react';
 import { FormGroup, ControlLabel, InputGroup } from 'react-bootstrap';
-import { castArray } from 'lodash';
 import Message from '../../../../I18N/Message';
 import { extractTraceData } from '../../../../../utils/WidgetsUtils';
 import Select from "react-select";
+import { castArray } from '../../../../../utils/ArrayUtils';
 
 const getTraceAxisId = ({
     axisKey,

@@ -8,7 +8,7 @@
 
 import React, { useEffect } from 'react';
 import { Col, Grid, Row } from 'react-bootstrap';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../../utils/ArrayUtils';
 import isEmpty from 'lodash/isEmpty';
 
 import Message from '../../../I18N/Message';

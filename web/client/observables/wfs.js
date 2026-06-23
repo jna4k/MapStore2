@@ -8,7 +8,8 @@
 
 import urlUtil from 'url';
 
-import { isArray, castArray, isNil, isObject } from 'lodash';
+import { isArray, isNil, isObject } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import Rx from 'rxjs';
 import { parseString } from 'xml2js';
 import { stripPrefix } from 'xml2js/lib/processors';

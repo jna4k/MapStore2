@@ -7,7 +7,8 @@
  */
 
 import * as Cesium from 'cesium';
-import { isArray, castArray } from 'lodash';
+import { isArray } from 'lodash';
+import { castArray } from '../ArrayUtils';
 import { addAuthenticationParameter, addAuthenticationToSLD, getAuthenticationHeaders } from "../SecurityUtils";
 import { getProxyUrl } from "../ProxyUtils";
 import ConfigUtils from "../ConfigUtils";

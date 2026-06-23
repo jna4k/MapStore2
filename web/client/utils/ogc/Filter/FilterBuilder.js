@@ -8,7 +8,8 @@
 import {logical, spatial, comparison, literal, propertyName, valueReference, distance, lower, upper, func} from './operators';
 import {filter, fidFilter} from './filter';
 import {processOGCGeometry} from "../GML";
-import {castArray} from 'lodash';
+import { castArray } from '../../ArrayUtils';
+
 // const isValidXML = (value, {filterNS, gmlNS}) => value.indexOf(`<${filterNS}:` === 0) || value.indexOf(`<${gmlNS}:`) === 0;
 /**
  * Returns OGC Filter Builder. The FilterBuilder returns the method to compose the filter.

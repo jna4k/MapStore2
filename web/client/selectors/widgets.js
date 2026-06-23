@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
 */
 
-import { find, get, castArray, flatten } from 'lodash';
+import { find, get, flatten } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { mapSelector } from './map';
 import { getEffectivelyVisibleLayers, getSelectedLayer, layersSelector } from './layers';
 import { generateRootTree, TARGET_TYPES, getChartAxisFromCurrentTimeTargetPath, isAnyLayerPath, isChartAxisDateType, isChartAxisDimensionTarget, isLayerDimensionTarget, isLayerTimeDimensionTarget, isMapTimeTarget } from '../utils/InteractionUtils';

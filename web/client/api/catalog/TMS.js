@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { get, castArray } from 'lodash';
+import { get } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import * as TMS100 from './TMS_1_0_0';
 
 import * as tileProvider from './tileProvider';

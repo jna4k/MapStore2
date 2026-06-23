@@ -7,7 +7,8 @@
  */
 
 import { Observable } from 'rxjs';
-import { keys, findIndex, pick, castArray, find, isObject } from 'lodash';
+import { keys, findIndex, pick, find, isObject } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 
 import {
     SYNC_LAYERS,

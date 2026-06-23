@@ -9,7 +9,8 @@
 import { urlParts } from '../utils/URLUtils';
 
 import url from 'url';
-import { sortBy, head, castArray, isNumber, isString } from 'lodash';
+import { sortBy, head, isNumber, isString } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import chroma from 'chroma-js';
 import { getLayerUrl } from '../utils/LayersUtils';
 import { standardClassificationScales as standardColors } from '../utils/ClassificationUtils';

@@ -11,7 +11,7 @@ import Select from 'react-select';
 import omit from 'lodash/omit';
 import isNil from 'lodash/isNil';
 import get from 'lodash/get';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import { ButtonGroup, Glyphicon } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 

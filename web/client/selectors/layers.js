@@ -14,7 +14,8 @@ import { denormalizeGroups, isInsideResolutionsLimits, getDerivedLayersVisibilit
 import { defaultIconStyle } from '../utils/SearchUtils';
 import { getNormalizedLatLon } from '../utils/CoordinatesUtils';
 import { clickedPointWithFeaturesSelector } from './mapInfo';
-import { get, head, find, isObject, isArray, castArray, isNil } from 'lodash';
+import { get, head, find, isObject, isArray, isNil } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { mapSelector } from './map';
 import { getSelectedMapView } from './mapviews';
 import { mergeViewLayers } from '../utils/MapViewsUtils';

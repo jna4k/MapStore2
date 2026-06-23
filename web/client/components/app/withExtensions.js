@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { loadLocale } from '../../actions/locale';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import isEqual from 'lodash/isEqual';
 import uniq from 'lodash/uniq';
 import axios from '../../libs/ajax';

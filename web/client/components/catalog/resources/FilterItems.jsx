@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import isNil from 'lodash/isNil';
 import omit from 'lodash/omit';
 import debounce from 'lodash/debounce';

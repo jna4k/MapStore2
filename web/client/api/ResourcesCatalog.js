@@ -7,7 +7,7 @@
  */
 
 import { searchListByAttributes, getResource } from '../observables/geostore';
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import GeoStoreDAO from './GeoStoreDAO';
 import { addFilters, getFilterByField, splitFilterValue } from '../utils/ResourcesFiltersUtils';
 import { parseResourceProperties } from '../utils/GeostoreUtils';

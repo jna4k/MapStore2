@@ -8,7 +8,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import endsWith from 'lodash/endsWith';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import flatten from 'lodash/flatten';
 import {Provider} from 'react-redux';
 

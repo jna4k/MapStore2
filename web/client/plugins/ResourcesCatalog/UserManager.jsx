@@ -22,8 +22,9 @@ import {
     resetSearchUsers,
     searchUsers
 } from '../../actions/users';
+import { castArray } from '../../utils/ArrayUtils';
 
-import { castArray, findIndex } from 'lodash';
+import { findIndex } from 'lodash';
 import usePluginItems from '../../hooks/usePluginItems';
 import ConnectedResourcesGrid from './containers/ResourcesGrid';
 import { hashLocationToHref } from '../../utils/ResourcesFiltersUtils';

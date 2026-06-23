@@ -7,7 +7,8 @@
  */
 
 import React, { useEffect, useRef, useState, memo } from 'react';
-import { castArray, isObject, isNil, sortBy, debounce } from 'lodash';
+import { isObject, isNil, sortBy, debounce } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import wpsAggregate from '../../../observables/wps/aggregate';
 import { getLayerJSONFeature } from '../../../observables/wfs';
 import { getWpsUrl, getSearchUrl } from '../../../utils/LayersUtils';

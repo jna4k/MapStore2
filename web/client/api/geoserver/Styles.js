@@ -8,7 +8,7 @@
 import axios from '../../libs/ajax';
 import { getVersion } from './About';
 import head from 'lodash/head';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import { getNameParts, stringifyNameParts } from '../../utils/StyleEditorUtils';
 
 const STYLE_MODULES = [

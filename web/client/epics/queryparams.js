@@ -8,7 +8,8 @@
 
 import * as Rx from 'rxjs';
 import {LOCATION_CHANGE} from 'connected-react-router';
-import {get, head, isUndefined, castArray, isString} from 'lodash';
+import {get, head, isUndefined, isString} from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 
 import { CHANGE_MAP_VIEW, CLICK_ON_MAP } from '../actions/map';
 import { MAP_CONFIG_LOADED } from '../actions/config';

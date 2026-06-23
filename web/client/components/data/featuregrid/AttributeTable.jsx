@@ -8,7 +8,8 @@
 
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
-import { castArray, includes, uniqBy, isEmpty } from "lodash";
+import { includes, uniqBy, isEmpty } from "lodash";
+import { castArray } from '../../../utils/ArrayUtils';
 
 import Message from '../../I18N/Message';
 import localizedProps from '../../misc/enhancers/localizedProps';

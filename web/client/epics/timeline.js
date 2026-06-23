@@ -1,6 +1,7 @@
 
 import Rx from 'rxjs';
-import { isString, get, head, castArray, isEmpty, isNil } from 'lodash';
+import { isString, get, head, isEmpty, isNil } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import moment from 'moment';
 import { wrapStartStop } from '../observables/epics';
 import { CHANGE_MAP_VIEW } from '../actions/map';

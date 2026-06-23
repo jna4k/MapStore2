@@ -26,11 +26,12 @@ import Dialog from '../../../components/misc/Dialog';
 import UserGroups from './UserGroups';
 import Message from '../../../components/I18N/Message';
 import Spinner from 'react-spinkit';
-import { findIndex, castArray } from 'lodash';
+import { findIndex } from 'lodash';
 import CloseConfirmButton from './CloseConfirmButton';
 import './style/userdialog.css';
 import Button from '../../../components/misc/Button';
 import controls from './AttributeControls';
+import { castArray } from '../../../utils/ArrayUtils';
 
 /**
  * A Modal window to show password reset form

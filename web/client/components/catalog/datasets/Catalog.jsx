@@ -7,7 +7,7 @@
  */
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import { buildServiceUrl } from '../../../utils/CatalogUtils';
 import API from '../../../api/catalog';
 import { Alert, Glyphicon } from 'react-bootstrap';

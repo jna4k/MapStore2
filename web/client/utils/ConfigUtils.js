@@ -9,7 +9,8 @@ import Proj4js from 'proj4';
 import PropTypes from 'prop-types';
 import url from 'url';
 import axios from 'axios';
-import { castArray, isArray, isObject, endsWith, isNil, get, mergeWith } from 'lodash';
+import { isArray, isObject, endsWith, isNil, get, mergeWith } from 'lodash';
+import { castArray } from './ArrayUtils';
 import isMobile from 'ismobilejs';
 import {mergeConfigsPatch} from "@mapstore/patcher";
 

@@ -11,7 +11,7 @@ import isArray from 'lodash/isArray';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import head from 'lodash/head';
-import castArray from 'lodash/castArray';
+import { castArray } from '../utils/ArrayUtils';
 import isEmpty from 'lodash/isEmpty';
 import { v4 as uuidv4 } from 'uuid';
 import { DASHBOARD_LOADED } from '../actions/dashboard';

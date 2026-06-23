@@ -12,7 +12,8 @@ import React from 'react';
 import { Alert, Tabs, Tab, Glyphicon, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
-import { findIndex, castArray } from 'lodash';
+import { findIndex } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 
 import Button from '../../../components/misc/Button';
 import UsersTable from './UsersTable';

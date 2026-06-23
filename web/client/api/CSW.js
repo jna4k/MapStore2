@@ -8,7 +8,8 @@
 
 import urlUtil from 'url';
 
-import { get, head, last, template, isNil, castArray, isEmpty } from 'lodash';
+import { get, head, last, template, isNil, isEmpty } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import xml2js from 'xml2js';
 import axios from '../libs/ajax';
 import { cleanDuplicatedQuestionMarks } from '../utils/ConfigUtils';

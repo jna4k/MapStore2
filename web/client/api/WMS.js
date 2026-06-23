@@ -7,7 +7,8 @@
  */
 
 import urlUtil from 'url';
-import { uniq, isArray, castArray, get } from 'lodash';
+import { uniq, isArray, get } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import xml2js from 'xml2js';
 import axios from '../libs/ajax';
 import { getConfigProp } from '../utils/ConfigUtils';

@@ -29,7 +29,7 @@ import {
 
 import { INSERT, UPDATE, DELETE } from '../actions/widgets';
 import { set } from '../utils/ImmutableUtils';
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import {
     SET_CREDENTIALS,
     CLEAR_SECURITY

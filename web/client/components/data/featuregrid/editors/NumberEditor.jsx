@@ -8,7 +8,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isNumber, castArray } from 'lodash';
+import { isNumber } from 'lodash';
+import { castArray } from '../../../../utils/ArrayUtils';
 import IntlNumberFormControl from '../../../I18N/IntlNumberFormControl';
 import { editors } from 'react-data-grid';
 

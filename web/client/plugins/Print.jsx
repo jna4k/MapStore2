@@ -9,7 +9,7 @@
 import './print/print.css';
 
 import head from 'lodash/head';
-import castArray from "lodash/castArray";
+import { castArray } from '../utils/ArrayUtils';
 import isNil from "lodash/isNil";
 import PropTypes from 'prop-types';
 import React from 'react';

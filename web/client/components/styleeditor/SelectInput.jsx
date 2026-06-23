@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../utils/ArrayUtils';
 import Message from '../I18N/Message';
 import Select from 'react-select';
 import localizedProps from '../misc/enhancers/localizedProps';

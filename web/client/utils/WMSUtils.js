@@ -5,7 +5,8 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { uniq, isObject, castArray } from 'lodash';
+import { uniq, isObject } from 'lodash';
+import { castArray } from './ArrayUtils';
 import { getAvailableInfoFormat } from "./MapInfoUtils";
 import CoordinatesUtils, { normalizeSRS } from "./CoordinatesUtils";
 import { isProjectionAvailable } from './ProjectionUtils';

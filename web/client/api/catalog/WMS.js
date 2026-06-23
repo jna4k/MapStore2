@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isArray, castArray, filter, isEmpty, isNil } from 'lodash';
+import { isArray, filter, isEmpty, isNil } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import { getResolutionObject } from "../../utils/MapUtils";
 import { Observable } from 'rxjs';
 import { getConfigProp, cleanDuplicatedQuestionMarks } from '../../utils/ConfigUtils';

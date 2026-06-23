@@ -9,7 +9,8 @@
 import Rx from 'rxjs';
 import { connect } from 'react-redux';
 import { compose, defaultProps, setDisplayName, withState, mapPropsStream, withProps } from 'recompose';
-import { castArray, isEmpty, isUndefined } from 'lodash';
+import { isEmpty, isUndefined } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 
 import withBackButton from './withBackButton';
 import { toLayer, addSearchObservable } from './layerSelector';

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import url from 'url';
 import useIsMounted from '../../../hooks/useIsMounted';
 import GeoStoreDAO from '../../../api/GeoStoreDAO';
-import { castArray } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 
 /**
  * Favorites button component

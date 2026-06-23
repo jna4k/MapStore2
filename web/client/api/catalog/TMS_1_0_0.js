@@ -8,7 +8,8 @@
 import ConfigUtils from '../../utils/ConfigUtils';
 import xml2js from 'xml2js';
 import axios from '../../libs/ajax';
-import { get, castArray } from 'lodash';
+import { get } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import { cleanAuthParamsFromURL } from '../../utils/SecurityUtils';
 import { guessFormat } from '../../utils/TMSUtils';
 

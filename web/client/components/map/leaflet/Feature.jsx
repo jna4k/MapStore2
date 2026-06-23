@@ -8,7 +8,8 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {isEqual, isArray, castArray} from 'lodash';
+import { isEqual, isArray } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import axios from 'axios';
 
 import {geometryToLayer} from '../../../utils/leaflet/Vector';

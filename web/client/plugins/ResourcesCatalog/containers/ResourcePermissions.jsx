@@ -9,7 +9,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import { Glyphicon } from 'react-bootstrap';
 
 import Permissions from '../components/Permissions';

@@ -13,7 +13,7 @@ import xml2js from 'xml2js';
 
 const capabilitiesCache = {};
 
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { getEPSGCode } from '../utils/CoordinatesUtils';
 import { getDefaultUrl } from '../utils/URLUtils';
 

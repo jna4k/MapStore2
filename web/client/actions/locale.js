@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { castArray, merge } from 'lodash';
+import { merge } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 
 import axios from '../libs/ajax';
 import { error } from './notifications';

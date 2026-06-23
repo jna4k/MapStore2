@@ -8,7 +8,8 @@
 
 import { Observable } from 'rxjs';
 import { v1 as uuid } from 'uuid';
-import { includes, isNil, omit, isArray, isObject, get, find, castArray } from 'lodash';
+import { includes, isNil, omit, isArray, isObject, get, find } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import GeoStoreDAO from '../api/GeoStoreDAO';
 import * as ResourcesCatalog from '../api/ResourcesCatalog';
 

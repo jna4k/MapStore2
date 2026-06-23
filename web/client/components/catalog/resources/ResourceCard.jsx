@@ -8,7 +8,7 @@
 
 import React, { forwardRef, useState } from 'react';
 import moment from 'moment';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../../utils/ArrayUtils';
 import { isObject } from 'lodash';
 import { Glyphicon } from 'react-bootstrap';
 

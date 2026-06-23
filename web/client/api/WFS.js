@@ -10,9 +10,9 @@ import urlUtil from 'url';
 import xml2js from 'xml2js';
 import ConfigUtils from '../utils/ConfigUtils';
 import requestBuilder from '../utils/ogc/WFS/RequestBuilder';
-import {toOGCFilterParts} from '../utils/FilterUtils';
+import { toOGCFilterParts } from '../utils/FilterUtils';
 import { getDefaultUrl } from '../utils/URLUtils';
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { isValidGetFeatureInfoFormat } from '../utils/WMSUtils';
 
 const capabilitiesCache = {};

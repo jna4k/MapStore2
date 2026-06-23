@@ -10,7 +10,7 @@ import './settings/css/settings.css';
 
 import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
-import { castArray } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { Col, FormGroup, Glyphicon, Panel, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';

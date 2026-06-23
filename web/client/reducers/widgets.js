@@ -39,7 +39,8 @@ import { REFRESH_SECURITY_LAYERS, CLEAR_SECURITY } from '../actions/security';
 import { MAP_CONFIG_LOADED } from '../actions/config';
 import { DASHBOARD_LOADED, DASHBOARD_RESET } from '../actions/dashboard';
 import set from 'lodash/fp/set';
-import { get, find, omit, mapValues, castArray, isEmpty } from 'lodash';
+import { get, find, omit, mapValues, isEmpty } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { arrayUpsert, compose, arrayDelete } from '../utils/ImmutableUtils';
 import {
     convertDependenciesMappingForCompatibility as convertToCompatibleWidgets,

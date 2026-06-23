@@ -12,7 +12,7 @@ import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import head from 'lodash/head';
-import castArray from 'lodash/castArray';
+import { castArray } from './ArrayUtils';
 import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
 import pick from 'lodash/pick';

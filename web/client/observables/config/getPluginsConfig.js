@@ -1,6 +1,6 @@
 import axios from '../../libs/ajax';
 import ConfigUtils from '../../utils/ConfigUtils';
-import castArray from "lodash/castArray";
+import { castArray } from '../../utils/ArrayUtils';
 import {mergeConfigsPatch} from "@mapstore/patcher";
 
 /**

@@ -7,7 +7,7 @@
  */
 
 import url from 'url';
-import castArray from 'lodash/castArray';
+import { castArray } from './ArrayUtils';
 import omit from 'lodash/omit';
 import uniq from 'lodash/uniq';
 import tinycolor from 'tinycolor2';

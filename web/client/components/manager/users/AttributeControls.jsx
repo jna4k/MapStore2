@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../../libs/ajax';
-import { get, castArray, isArray, isNil } from 'lodash';
+import { get, isArray, isNil } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import Select from 'react-select';
 import { FormControl } from 'react-bootstrap';
 import { DateTimePicker } from 'react-widgets';

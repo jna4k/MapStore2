@@ -8,7 +8,8 @@
 
 import Rx from 'rxjs';
 
-import { get, head, isArray, template, uniqBy, castArray } from 'lodash';
+import { get, head, isArray, template, uniqBy } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { success, error } from '../actions/notifications';
 import { UPDATE_NODE, updateNode, updateSettingsParams } from '../actions/layers';
 import { updateAdditionalLayer, removeAdditionalLayer, updateOptionsByOwner } from '../actions/additionallayers';

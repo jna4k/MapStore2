@@ -9,7 +9,7 @@
 import React from "react";
 import get from "lodash/get";
 import isEmpty from "lodash/isEmpty";
-import castArray from "lodash/castArray";
+import { castArray } from '../../utils/ArrayUtils';
 import cloneDeep from "lodash/cloneDeep";
 import ReactSelect from "react-select";
 import {

@@ -7,7 +7,8 @@
  */
 
 import { getConfigProp, cleanDuplicatedQuestionMarks } from '../../utils/ConfigUtils';
-import { castArray, isObject, isArray, isNil } from 'lodash';
+import { isObject, isArray, isNil } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import { getEPSGCode } from '../../utils/CoordinatesUtils';
 
 import {

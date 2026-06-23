@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isEqual, get, castArray, isString } from 'lodash';
+import { isEqual, get, isString } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 
 import axios from '../libs/ajax';
 import StylesAPI from './geoserver/Styles';

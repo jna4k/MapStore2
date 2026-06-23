@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import FlexBox from "../../../components/layout/FlexBox";
 import GeoStoreDAO from '../../../api/GeoStoreDAO';
-import { castArray, isEmpty, omit, uniq } from 'lodash';
+import { isEmpty, omit, uniq } from 'lodash';
 import useIsMounted from '../../../hooks/useIsMounted';
 import ConfirmDialog from '../../../components/layout/ConfirmDialog';
 import { searchResources, setSelectedResource } from '../actions/resources';
@@ -17,6 +17,7 @@ import TagsManagerPanel from '../components/TagsManagerPanel';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { getSelectedResource } from '../selectors/resources';
+import { castArray } from '../../../utils/ArrayUtils';
 
 /**
  * TagsManager panel where to add/update/remove tags

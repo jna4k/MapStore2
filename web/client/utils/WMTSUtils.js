@@ -9,8 +9,8 @@
 
 import { getEquivalentSRS, getEPSGCode } from './CoordinatesUtils';
 import { findGeoServerName, getLayerUrl } from './LayersUtils';
-
-import { isString, isArray, isObject, head, castArray, slice, sortBy } from 'lodash';
+import { isString, isArray, isObject, head, slice, sortBy } from 'lodash';
+import { castArray } from './ArrayUtils';
 
 let WMTSUtils;
 export const getDefaultMatrixId = (options) => {

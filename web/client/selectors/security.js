@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import castArray from "lodash/castArray";
+import { castArray } from '../utils/ArrayUtils';
 import get from 'lodash/get';
 import { createControlEnabledSelector } from "./controls";
 

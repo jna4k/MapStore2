@@ -7,7 +7,8 @@
  */
 import axios from '../../libs/ajax';
 
-import { uniqBy, castArray } from 'lodash';
+import { uniqBy } from 'lodash';
+import { castArray } from '../../utils/ArrayUtils';
 import { getNameParts } from '../../utils/StyleEditorUtils';
 
 /**

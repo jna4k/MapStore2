@@ -6,8 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {compose, withHandlers, withProps} from 'recompose';
+import { castArray } from '../../../utils/ArrayUtils';
 
-import { castArray, get } from 'lodash';
+import { get } from 'lodash';
 import deleteWidget from './deleteWidget';
 import { editableWidget, defaultIcons, withHeaderTools } from './tools';
 import { getScales } from '../../../utils/MapUtils';

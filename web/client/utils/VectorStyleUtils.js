@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isNil, flatten, isEmpty, castArray, max, isArray } from 'lodash';
+import { isNil, flatten, isEmpty, max, isArray } from 'lodash';
+import { castArray } from './ArrayUtils';
 
 import { set } from './ImmutableUtils';
 import { colorToRgbaStr } from './ColorUtils';

@@ -7,7 +7,8 @@
  */
 
 import Rx from 'rxjs';
-import { get, isNil, find, pick, toPairs, castArray, isEmpty } from 'lodash';
+import { get, isNil, find, pick, toPairs, isEmpty } from 'lodash';
+import { castArray } from '../utils/ArrayUtils';
 import { saveAs } from 'file-saver';
 import { v1 as uuidv1 } from 'uuid';
 import { LOCATION_CHANGE } from 'connected-react-router';

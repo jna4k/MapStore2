@@ -9,7 +9,7 @@
 
 import PropTypes from 'prop-types';
 
-import { castArray } from 'lodash';
+import { castArray } from '../../../utils/ArrayUtils';
 import { getContext, mapProps, compose } from 'recompose';
 import { getLocalizedProp } from '../../../utils/LocaleUtils';
 

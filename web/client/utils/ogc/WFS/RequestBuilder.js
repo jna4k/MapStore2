@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import filterBuilder from '../Filter/FilterBuilder';
-import castArray from 'lodash/castArray';
+import { castArray } from '../../ArrayUtils';
 import {wfsToGmlVersion} from "./base";
 const getStaticAttributesWFS1 = (ver) => 'service="WFS" version="' + ver + '" ' +
     (ver === "1.0.0" ? 'outputFormat="GML2" ' : "") +
