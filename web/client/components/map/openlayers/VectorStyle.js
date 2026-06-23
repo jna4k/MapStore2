@@ -7,7 +7,7 @@
 */
 import isNil from 'lodash/isNil';
 import trim from 'lodash/trim';
-import isString from 'lodash/isString';
+import { isString } from '../../../utils/Utils';
 import isArray from 'lodash/isArray';
 import { castArray } from '../../../utils/ArrayUtils';
 import head from 'lodash/head';

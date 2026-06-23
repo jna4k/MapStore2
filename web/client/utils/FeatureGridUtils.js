@@ -6,7 +6,8 @@
   * LICENSE file in the root directory of this source tree.
   */
 
-import { identity, trim, fill, findIndex, get, isArray, isNil, isString, isPlainObject, includes, isEmpty } from 'lodash';
+import { identity, trim, fill, findIndex, get, isArray, isNil, isPlainObject, includes, isEmpty } from 'lodash';
+import { isString } from './Utils';
 
 import {
     findGeometryProperty,

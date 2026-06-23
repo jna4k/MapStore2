@@ -7,7 +7,8 @@
  */
 
 import { Observable } from 'rxjs';
-import { isEmpty, isString } from 'lodash';
+import { isEmpty } from 'lodash';
+import { isString } from '../utils/Utils';
 import {
     SELECT_VIEW,
     UPDATE_VIEWS,

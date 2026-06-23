@@ -7,7 +7,8 @@
  */
 
 import { Observable } from 'rxjs';
-import { get, pick, omit, isObject, isString, isArray, find, cloneDeep } from 'lodash';
+import { get, pick, omit, isObject, isArray, find, cloneDeep } from 'lodash';
+import { isString } from '../utils/Utils';
 
 import MapUtils from '../utils/MapUtils';
 import Api from '../api/GeoStoreDAO';

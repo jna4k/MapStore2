@@ -7,7 +7,8 @@
 */
 
 import Url from "url";
-import { isArray, isString, isEqual, sortBy, find } from 'lodash';
+import { isArray, isEqual, sortBy, find } from 'lodash';
+import { isString } from './Utils';
 import queryString from 'query-string';
 
 export const urlParts = (url) => {

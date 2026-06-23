@@ -7,7 +7,8 @@
   */
 
 import url from 'url';
-import { endsWith, isString, isArray, random } from 'lodash';
+import { endsWith, isArray, random } from 'lodash';
+import { isString } from '../../utils/Utils';
 
 /**
  * Common WPS routines and XML combinators

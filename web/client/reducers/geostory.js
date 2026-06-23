@@ -5,7 +5,8 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { get, isString, isNumber, findIndex, find, isPlainObject, isArray, uniqBy } from "lodash";
+import { get, isNumber, findIndex, find, isPlainObject, isArray, uniqBy } from "lodash";
+import { isString } from '../utils/Utils';
 import { castArray } from '../utils/ArrayUtils';
 import { set, unset, arrayUpdate, compose,
     arrayDelete } from '../utils/ImmutableUtils';

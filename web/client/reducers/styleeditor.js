@@ -19,7 +19,7 @@ import {
     UPDATE_EDITOR_METADATA
 } from '../actions/styleeditor';
 
-import isString from 'lodash/isString';
+import { isString } from '../utils/Utils';
 
 function styleeditor(state = {}, action) {
     switch (action.type) {

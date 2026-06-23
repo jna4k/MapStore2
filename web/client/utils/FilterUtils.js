@@ -29,7 +29,8 @@ export const cqlToOgc = (cqlFilter, fOpts) => {
     return toFilter(read(cqlFilter));
 };
 
-import { get, isNil, isArray, find, findIndex, isString, flatten, isEmpty } from 'lodash';
+import { get, isNil, isArray, find, findIndex, flatten, isEmpty } from 'lodash';
+import { isString } from './Utils';
 import { INTERACTIVE_LEGEND_ID } from './LegendUtils';
 import { geoStylerStyleFilter } from './styleparser/StyleParserUtils';
 let FilterUtils;

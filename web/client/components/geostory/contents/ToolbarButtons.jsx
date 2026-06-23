@@ -14,7 +14,7 @@ import ToolbarDropdownButton from '../common/ToolbarDropdownButton';
 import withConfirm from "../../misc/withConfirm";
 import { CustomThemePickerMenuItem } from '../common/CustomThemePicker';
 import isObject from "lodash/isObject";
-import isString from "lodash/isString";
+import { isString } from '../../../utils/Utils';
 const DeleteButton = withConfirm(ToolbarButton);
 const BUTTON_CLASSES = 'square-button no-border';
 const BUTTON_BSSTYLE = { primary: 'btn-primary', "default": 'btn-default'};

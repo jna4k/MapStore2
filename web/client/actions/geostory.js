@@ -5,7 +5,7 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import isString from 'lodash/isString';
+import { isString } from '../utils/Utils';
 import { v4 as uuid } from "uuid";
 import { Modes, getDefaultSectionTemplate } from '../utils/GeoStoryUtils';
 

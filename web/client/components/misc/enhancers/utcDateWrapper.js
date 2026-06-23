@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { compose, withHandlers, withPropsOnChange } from 'recompose';
-import {isString, isDate} from 'lodash';
+import {isDate} from 'lodash';
+import { isString } from '../../../utils/Utils';
 import moment from 'moment';
 
 import {

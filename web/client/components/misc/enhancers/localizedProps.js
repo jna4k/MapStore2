@@ -11,7 +11,8 @@ import { getMessageById } from '../../../utils/LocaleUtils';
 import { extractLocalizedString } from '../../I18N/LocalizedString';
 
 import PropTypes from 'prop-types';
-import { isArray, isNil, isString } from 'lodash';
+import { isArray, isNil } from 'lodash';
+import { isString } from '../../../utils/Utils';
 import { getContext, mapProps, compose } from 'recompose';
 import { castArray } from '../../../utils/ArrayUtils';
 

@@ -1,4 +1,5 @@
-import { isString, isDate, get } from 'lodash';
+import { isDate, get } from 'lodash';
+import { isString } from './Utils';
 import { castArray } from './ArrayUtils';
 import moment from 'moment';
 import {getDateFormat} from './LocaleUtils';

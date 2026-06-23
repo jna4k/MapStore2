@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { keys, values, omit, get, head, isString, flatten, uniqWith, find, identity } from 'lodash';
+import { keys, values, omit, get, head, flatten, uniqWith, find, identity } from 'lodash';
+import { isString } from './Utils';
 
 /**
  * Extracts params and character content of a all tags with a specified from a specific namespace

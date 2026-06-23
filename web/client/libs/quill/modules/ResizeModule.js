@@ -8,7 +8,8 @@
 
 import './assets/css/resizemodule.css';
 
-import { defaultsDeep, isObject, isString } from 'lodash';
+import { defaultsDeep, isObject } from 'lodash';
+import { isString } from '../../../utils/Utils';
 
 const IconAlignLeft = '<span class="glyphicon glyphicon-align-left" style="display: inline-block; margin-top: 4px;"></span>';
 const IconAlignCenter = '<span class="glyphicon glyphicon-align-center" style="display: inline-block; margin-top: 4px;"></span>';

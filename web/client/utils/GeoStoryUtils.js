@@ -17,7 +17,7 @@ import isArray from "lodash/isArray";
 import values from "lodash/values";
 import filter from "lodash/filter";
 import merge from "lodash/merge";
-import isString from "lodash/isString";
+import { isString } from './Utils';
 import isObject from "lodash/isObject";
 import includes from "lodash/includes";
 import replace from 'lodash/replace';

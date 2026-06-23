@@ -24,7 +24,7 @@ import {
     computeGeodesicCoordinates
 } from './MathUtils';
 import throttle from 'lodash/throttle';
-import isString from 'lodash/isString';
+import { isString } from '../Utils';
 import { computePositionInfo } from './ClickUtils';
 import {
     generateEditingStyle,

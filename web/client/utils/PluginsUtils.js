@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import {endsWith, get, head, isArray, isObject, isString, memoize, omit, size, maxBy } from 'lodash';
-import { isFunction } from './Utils';
+import {endsWith, get, head, isArray, isObject, memoize, omit, size, maxBy } from 'lodash';
+import { isFunction, isString } from './Utils';
 import {connect as originalConnect} from 'react-redux';
 import url from 'url';
 import curry from 'lodash/curry';

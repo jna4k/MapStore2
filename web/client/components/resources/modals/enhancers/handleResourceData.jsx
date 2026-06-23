@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {isString, isUndefined} from 'lodash';
+import {isUndefined} from 'lodash';
+import { isString } from '../../../../utils/Utils';
 import React from 'react';
 import { branch, compose, renderComponent, withHandlers, withState, withStateHandlers } from 'recompose';
 

@@ -1,7 +1,7 @@
 import filterBuilder from '../../ogc/Filter/FilterBuilder';
 import fromObject from '../../ogc/Filter/fromObject';
 import { read } from '../../ogc/Filter/CQL/parser';
-import { isString } from 'lodash';
+import { isString } from '../../Utils';
 
 /**
  * Converts a CQL filter to OGC filter

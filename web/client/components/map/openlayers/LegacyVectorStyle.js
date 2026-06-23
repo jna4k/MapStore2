@@ -4,7 +4,7 @@ import markerShadow from './img/marker-shadow.png';
 import last from 'lodash/last';
 import head from 'lodash/head';
 import trim from 'lodash/trim';
-import isString from 'lodash/isString';
+import { isString } from '../../../utils/Utils';
 import isArray from 'lodash/isArray';
 import isNil from 'lodash/isNil';
 

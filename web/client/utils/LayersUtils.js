@@ -8,7 +8,7 @@
 
 import toBbox from 'turf-bbox';
 import { v1 as uuidv1 } from 'uuid';
-import isString from 'lodash/isString';
+import { isString } from './Utils';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import head from 'lodash/head';

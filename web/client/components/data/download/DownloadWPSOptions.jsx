@@ -9,7 +9,8 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Glyphicon, FormControl } from 'react-bootstrap';
 import Select from 'react-select';
-import { isString, head } from 'lodash';
+import { head } from 'lodash';
+import { isString } from '../../../utils/Utils';
 
 import SwitchButton from '../../misc/switch/SwitchButton';
 import Message from '../../I18N/Message';

@@ -5,7 +5,8 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { isString, isNil } from 'lodash';
+import { isNil } from 'lodash';
+import { isString } from '../utils/Utils';
 import { Observable } from 'rxjs';
 
 import {getIdentifyFlow, isDataFormat} from '../utils/MapInfoUtils';

@@ -10,7 +10,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { isString } from 'lodash';
+import { isString } from '../../utils/Utils';
 import { DropdownList as Combobox } from 'react-widgets';
 
 import Message from '../../components/I18N/Message';

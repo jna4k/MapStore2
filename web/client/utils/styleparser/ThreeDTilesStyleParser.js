@@ -7,7 +7,7 @@
  */
 
 import { trim } from 'lodash';
-import isString from 'lodash/isString';
+import { isString } from '../Utils';
 import tinycolor from 'tinycolor2';
 
 const DEFAULT_POINT_SIZE = 1;

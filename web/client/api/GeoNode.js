@@ -9,7 +9,7 @@
 import isEmpty from "lodash/isEmpty";
 import mergeWith from 'lodash/mergeWith';
 import isArray from 'lodash/isArray';
-import isString from 'lodash/isString';
+import { isString } from '../utils/Utils';
 import { castArray } from '../utils/ArrayUtils';
 import omit from 'lodash/omit';
 import axios from '../libs/ajax';

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { isString } from 'lodash';
+import { isString } from '../../../../../utils/Utils';
 import PropertiesViewer from './PropertiesViewer';
 import { getRowViewer } from '../../../../../utils/MapInfoUtils';
 import { ANNOTATIONS } from '../../../../../plugins/Annotations/utils/AnnotationsUtils';

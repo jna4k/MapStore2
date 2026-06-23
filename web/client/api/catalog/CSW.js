@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { head, isString, includes, sortBy, uniq, isEmpty } from 'lodash';
+import { head, includes, sortBy, uniq, isEmpty } from 'lodash';
+import { isString } from '../../utils/Utils';
 import { castArray } from '../../utils/ArrayUtils';
 import { getLayerFromRecord as getLayerFromWMSRecord } from './WMS';
 import { getMessageById } from '../../utils/LocaleUtils';

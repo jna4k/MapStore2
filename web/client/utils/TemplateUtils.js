@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {isString, has, trim, template} from 'lodash';
+import {has, trim, template} from 'lodash';
+import { isString } from './Utils';
 
 /**
  * check if a string attribute is inside of a given object

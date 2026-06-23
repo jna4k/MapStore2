@@ -6,7 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isEqual, get, isString } from 'lodash';
+import { isEqual, get } from 'lodash';
+import { isString } from '../utils/Utils';
 import { castArray } from '../utils/ArrayUtils';
 
 import axios from '../libs/ajax';

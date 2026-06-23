@@ -9,7 +9,8 @@
 import * as Rx from 'rxjs';
 import axios from 'axios';
 import xpathlib from 'xpath';
-import { head, get, find, isArray, isString, isObject, keys, toPairs, merge, truncate } from 'lodash';
+import { head, get, find, isArray, isObject, keys, toPairs, merge, truncate } from 'lodash';
+import { isString } from '../utils/Utils';
 import { castArray } from '../utils/ArrayUtils';
 
 import {

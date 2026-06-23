@@ -14,7 +14,8 @@ import ResizableModal from '../../../components/misc/ResizableModal';
 import Portal from '../../../components/misc/Portal';
 import { getUserAttributes } from '../../../utils/SecurityUtils';
 import Message from '../../../components/I18N/Message';
-import { isArray, isObject, isString } from 'lodash';
+import { isArray, isObject } from 'lodash';
+import { isString } from '../../../utils/Utils';
 
 /**
  * A Modal window to show password reset form

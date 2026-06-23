@@ -7,7 +7,7 @@
 */
 
 import {Observable} from "rxjs";
-import isString from "lodash/isString";
+import { isString } from '../../utils/Utils';
 import { error } from '../../actions/notifications';
 import { createResource, createCategory, updateResource, getResourceDataByName, getResourceIdByName, deleteResource } from '../persistence';
 

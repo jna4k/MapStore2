@@ -13,7 +13,7 @@ import './map/css/map.css';
 import Message from '../components/I18N/Message';
 import ConfigUtils from '../utils/ConfigUtils';
 import { setMapResolutions, mapPluginLoad } from '../actions/map';
-import { isString } from 'lodash';
+import { isString } from '../utils/Utils';
 import selector from './map/selector';
 import MapSettings from './map/mapsettings/MapSettings';
 import mapReducer from "../reducers/map";

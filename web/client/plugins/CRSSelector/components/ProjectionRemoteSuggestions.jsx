@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import { isString } from 'lodash';
+import { isString } from '../../../utils/Utils';
 
 import Message from '../../../components/I18N/Message';
 import tooltip from '../../../components/misc/enhancers/tooltip';

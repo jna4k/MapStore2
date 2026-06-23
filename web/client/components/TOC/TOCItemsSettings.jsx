@@ -14,7 +14,8 @@ import DockablePanel from '../misc/panels/DockablePanel';
 import Toolbar from '../misc/toolbar/Toolbar';
 import tooltip from '../misc/enhancers/tooltip';
 const NavItemT = tooltip(NavItem);
-import { head, isObject, isString } from 'lodash';
+import { head, isObject } from 'lodash';
+import { isString } from '../../utils/Utils';
 import Message from '../I18N/Message';
 
 /**

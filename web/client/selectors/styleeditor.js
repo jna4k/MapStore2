@@ -6,7 +6,8 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import { get, head, uniqBy, find, isString } from 'lodash';
+import { get, head, uniqBy, find } from 'lodash';
+import { isString } from '../utils/Utils';
 
 import { layerSettingSelector, getSelectedLayer } from './layers';
 import { STYLE_ID_SEPARATOR, extractFeatureProperties, isSameOrigin } from '../utils/StyleEditorUtils';

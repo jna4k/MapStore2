@@ -9,7 +9,8 @@
 
 import { getEquivalentSRS, getEPSGCode } from './CoordinatesUtils';
 import { findGeoServerName, getLayerUrl } from './LayersUtils';
-import { isString, isArray, isObject, head, slice, sortBy } from 'lodash';
+import { isArray, isObject, head, slice, sortBy } from 'lodash';
+import { isString } from './Utils';
 import { castArray } from './ArrayUtils';
 
 let WMTSUtils;

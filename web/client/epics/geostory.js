@@ -9,7 +9,7 @@
 
 import { Observable } from 'rxjs';
 import head from 'lodash/head';
-import isString from 'lodash/isString';
+import { isString } from '../utils/Utils';
 import isNil from 'lodash/isNil';
 import lastIndexOf from 'lodash/lastIndexOf';
 import words from 'lodash/words';

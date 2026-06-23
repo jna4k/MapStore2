@@ -9,7 +9,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { isString } from 'lodash';
+import { isString } from '../../utils/Utils';
 import defaultIcon from '../map/openlayers/img/marker-icon.png';
 import { createSvgUrl, isSymbolStyle } from '../../utils/VectorStyleUtils';
 

@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isString } from 'lodash';
+import { isString } from '../../utils/Utils';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Badge} from 'react-bootstrap';

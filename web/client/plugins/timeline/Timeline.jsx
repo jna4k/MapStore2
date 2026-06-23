@@ -8,7 +8,8 @@
 import React, { lazy } from 'react';
 
 import { connect } from 'react-redux';
-import { isString, isObject, differenceBy, isNil, some } from 'lodash';
+import { isObject, differenceBy, isNil, some } from 'lodash';
+import { isString } from '../../utils/Utils';
 import { currentTimeSelector } from '../../selectors/dimension';
 import { selectTime, selectLayer, onRangeChanged } from '../../actions/timeline';
 import withSuspense from '../../components/misc/withSuspense';

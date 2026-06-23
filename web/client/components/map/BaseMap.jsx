@@ -8,7 +8,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { isString } from 'lodash';
+import { isString } from '../../utils/Utils';
 import { createVectorFeatureFilter } from '../../utils/FilterUtils';
 
 /**

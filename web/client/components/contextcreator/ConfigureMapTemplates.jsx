@@ -7,7 +7,8 @@
 */
 
 import React from 'react';
-import {get, isString, isObject} from 'lodash';
+import {get, isObject} from 'lodash';
+import { isString } from '../../utils/Utils';
 import {Glyphicon} from 'react-bootstrap';
 import jsonlint from 'jsonlint-mod';
 

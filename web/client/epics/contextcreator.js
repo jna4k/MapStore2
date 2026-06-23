@@ -8,7 +8,8 @@
 
 import Rx from 'rxjs';
 import jsonlint from 'jsonlint-mod';
-import {pick, get, uniq, intersection, head, keys, values, findIndex, find, cloneDeep, isString, isEmpty} from 'lodash';
+import {pick, get, uniq, intersection, head, keys, values, findIndex, find, cloneDeep, isEmpty} from 'lodash';
+import { isString } from '../utils/Utils';
 import {push} from 'connected-react-router';
 import Api from '../api/GeoStoreDAO';
 

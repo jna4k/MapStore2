@@ -64,7 +64,7 @@ import {
 } from './StyleParserUtils';
 import { drawIcons } from './IconUtils';
 
-import isString from 'lodash/isString';
+import { isString } from '../Utils';
 import { geometryFunctionsLibrary } from './GeometryFunctionsUtils';
 import { DEFAULT_SCREEN_DPI, getScale } from '../MapUtils';
 

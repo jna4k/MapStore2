@@ -7,7 +7,8 @@
  */
 import { withPropsOnChange } from 'recompose';
 
-import { get, mapValues, isString, isArray } from 'lodash';
+import { get, mapValues, isArray } from 'lodash';
+import { isString } from '../../../../utils/Utils';
 import { castArray } from '../../../../utils/ArrayUtils';
 
 const parseRules = ({accessInfo, postProcessValue, reduceFun}) => rawRules => {

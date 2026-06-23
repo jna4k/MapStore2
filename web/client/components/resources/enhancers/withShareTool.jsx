@@ -11,7 +11,7 @@ import {compose, withState} from 'recompose';
 import ConfigUtils from '../../../utils/ConfigUtils';
 import SharePanel from '../../share/SharePanel';
 import {getApiUrl, getConfigUrl} from '../../../utils/ShareUtils';
-import {isString} from 'lodash';
+import { isString } from '../../../utils/Utils';
 /**
  * @deprecated
  */

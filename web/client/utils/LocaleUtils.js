@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { isString } from './Utils';
 
 /*
  * Copyright 2018, GeoSolutions Sas.
