@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import {createSink} from 'recompose';
 import expect from 'expect';
 import withSelectedNode from '../withSelectedNode';
-import {isEmpty, isNull} from 'lodash';
+import {isEmpty} from 'lodash';
 
 describe('withSelectedNode enhancer', () => {
     beforeEach((done) => {
@@ -42,7 +42,7 @@ describe('withSelectedNode enhancer', () => {
             expect(props.editNode).toExist();
             expect(isEmpty(props.nodes)).toBe(false);
             expect(isEmpty(props.selectedNode)).toBe(false);
-            expect(isNull(props.selectedNode)).toBe(false);
+            expect(props.selectedNode === null).toBe(false);
             expect(props.selectedNode).toEqual({id: "layer2"});
             expect(props.selectedNode).toNotEqual({id: "layer1"});
             done();
@@ -57,7 +57,7 @@ describe('withSelectedNode enhancer', () => {
             expect(props.editNode).toExist();
             expect(isEmpty(props.nodes)).toBe(false);
             expect(isEmpty(props.selectedNode)).toBe(false);
-            expect(isNull(props.selectedNode)).toBe(false);
+            expect(props.selectedNode === null).toBe(false);
             expect(props.selectedNode).toEqual({id: "layer2"});
             done();
         }));

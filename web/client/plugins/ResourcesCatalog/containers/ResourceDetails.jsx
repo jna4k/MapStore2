@@ -9,7 +9,7 @@
 import React, { useRef } from 'react';
 import url from 'url';
 import PropTypes from 'prop-types';
-import {isEmpty, isNull} from 'lodash';
+import {isEmpty} from 'lodash';
 import { Alert, Glyphicon } from 'react-bootstrap';
 
 import useRequestResource from '../hooks/useRequestResource';
@@ -121,7 +121,7 @@ function ResourceDetails({
                 editing={editing}
                 tools={
                     <FlexBox centerChildrenVertically gap="sm">
-                        {!isNull(user) && <>
+                        {user !== null && <>
                             {!isSpecificResourceType && editing ? <Button
                                 tooltipId="resourcesCatalog.apply"
                                 className={isEmpty(pendingChanges) ? undefined : 'ms-notification-circle warning'}
