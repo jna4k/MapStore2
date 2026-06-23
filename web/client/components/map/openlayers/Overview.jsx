@@ -8,7 +8,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Layers from '../../../utils/openlayers/Layers';
-import isFinite from 'lodash/isFinite';
 
 import OverviewMap from 'ol/control/OverviewMap';
 
@@ -120,8 +119,8 @@ export default class Overview extends React.Component {
         let mapSize = this.props.map.getSize();
         let xMove = offset.left * Math.abs(mapSize[0] / vWidth);
         let yMove = offset.top * Math.abs(mapSize[1] / vHeight);
-        xMove = isFinite(xMove) ? xMove : 0;
-        yMove = isFinite(yMove) ? yMove : 0;
+        xMove = Number.isFinite(xMove) ? xMove : 0;
+        yMove = Number.isFinite(yMove) ? yMove : 0;
         let bottomLeft = [0 + xMove, mapSize[1] + yMove];
         let topRight = [mapSize[0] + xMove, 0 + yMove];
         let left = this.props.map.getCoordinateFromPixel(bottomLeft) || [0, 0];
