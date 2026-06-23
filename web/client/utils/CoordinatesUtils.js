@@ -21,8 +21,7 @@ import {
     isNumber,
     slice,
     head,
-    last,
-    isNaN
+    last
 } from 'lodash';
 import { isFunction } from './Utils';
 import turfCircle from '@turf/circle';
@@ -413,8 +412,8 @@ export const reprojectBbox = (bbox, source, dest) => {
             // normalize option for reproject is falling back to 0 that could works for single point
             // but not bounds
             return [
-                isNaN(x) || x === undefined ? defaultX : x,
-                isNaN(y) || y === undefined ? defaultY : y
+                Number.isNaN(x) || x === undefined ? defaultX : x,
+                Number.isNaN(y) || y === undefined ? defaultY : y
             ];
         }
         // if null could means that latitude conversion could not be computed
@@ -797,7 +796,7 @@ export const parseString = (str) => {
     const coord = str.split(' ');
     const x = parseFloat(coord[0]);
     const y = parseFloat(coord[1]);
-    return !isNaN(x) && !isNaN(y) && {x, y} || null;
+    return !Number.isNaN(x) && !Number.isNaN(y) && {x, y} || null;
 };
 export const getWMSBoundingBox = (BoundingBox, mapSRS) => {
     const SRS = mapSRS || 'EPSG:3857';
@@ -929,10 +928,10 @@ export const centerToVisibleArea = (center, map, layout = {}, resolution = 0) =>
 export const calculateCircleRadiusFromPixel = (coordinatesFromPixelConverter, pixel = {}, center = [], pixelRadius, defaultRadius = 0.01) => {
     const radiusA = isArray(center) ? center : [center.x, center.y];
 
-    if (isNumber(radiusA[0]) && !isNaN(radiusA[0]) &&
-        isNumber(radiusA[1]) && !isNaN(radiusA[1]) &&
-        isNumber(pixel.x) && !isNaN(pixel.x) &&
-        isNumber(pixel.y) && !isNaN(pixel.y)) {
+    if (isNumber(radiusA[0]) && !Number.isNaN(radiusA[0]) &&
+        isNumber(radiusA[1]) && !Number.isNaN(radiusA[1]) &&
+        isNumber(pixel.x) && !Number.isNaN(pixel.x) &&
+        isNumber(pixel.y) && !Number.isNaN(pixel.y)) {
         const pixelCoords = isFunction(coordinatesFromPixelConverter) ? coordinatesFromPixelConverter([
             pixel.x,
             pixel.y >= pixelRadius ? pixel.y - pixelRadius : pixel.y + pixelRadius
