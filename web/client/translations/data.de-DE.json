@@ -135,6 +135,8 @@
       "templatePreview": "Vorschau template",
       "heightOffset": "Höhenversatz (m)",
       "wmsLayerTileSize": "Kachelgröße (WMS)",
+      "maxFeaturesInView": "Maximale Anzahl von Features in der Ansicht",
+      "maxFeaturesInViewTooltip": "Wenn der Wert undefiniert ist, funktioniert die aktuelle Funktionalität wie gewohnt (d. h. alle Features laden)",
       "serverType": "Servertyp",
       "formatError": "Es war nicht möglich, Format und Informationsblattformat vom konfigurierten Dienst abzurufen. Wahrscheinlich verwenden Sie einen No-Vendor-Dienst und dieser wird nicht unterstützt (z. B. GeoNetwork).",
       "serverTypeOption": {
@@ -707,6 +709,7 @@
       "toggleLayerVisibilityWarning": "Layer-Sichtbarkeit ändern, Warnung: Layer wurde nicht richtig geladen",
       "createWidget": "Widget für die ausgewählte Ebene erstellen",
       "editLayerProperties": "Eigenschaften der Ebene ändern",
+      "createWidgetForMap": "Widget für die Karte erstellen",
       "browseData": "Attributtabelle der ausgewählten Ebene öffnen",
       "removeLayer": "Ebene entfernen",
       "loadingerror": "Diese Ebene wurde nicht korrekt geladen oder ist nicht verfügbar",
@@ -1735,6 +1738,33 @@
         "label": "Dateimetadaten beim Speichern herunterladen",
         "tooltip": "Diese Option ruft Metadaten ab, um das Zoomen auf Ebene zu unterstützen. Es kann den Suchvorgang verlangsamen, wenn die Bilder zu groß oder zu viele sind."
       },
+      "resourceTypes": {
+        "label": "Ressourcentypen",
+        "dataset": "Datensätze",
+        "document": "Dokumente",
+        "map": "Karten"
+      },
+      "subtypes": {
+        "label": "Inhaltstyp",
+        "vector": "Vektor",
+        "raster": "Raster",
+        "vector_time": "Zeitreihe",
+        "3dtiles": "3D Tiles",
+        "tabular": "Tabellarisch",
+        "image": "Bild",
+        "video": "Video",
+        "audio": "Audio",
+        "text": "Text",
+        "archive": "Archiv",
+        "presentation": "Präsentation",
+        "file": "File"
+      },
+      "filterFields": {
+        "category": "Kategorie",
+        "keyword": "Schlüsselwort",
+        "region": "Region",
+        "extent": "Ausdehnungsfilter"
+      },
       "tagFilterType": {
         "label": "Tag-Filtertyp",
         "category": "Kategorie",
@@ -2264,6 +2294,8 @@
           "selectALayer": "Wähle eine Ebene",
           "selectLayers": "Wählen Sie eine oder mehrere Ebenen aus",
           "selectAMap": "Wählen Sie eine oder mehrere Karten aus",
+          "selectMapLayers": "Wählen Sie eine Ebene aus der Karte",
+          "noFilterableMapLayers": "In keiner Karte können Ebenen gefiltert werden. Fügen Sie zuerst ein WMS- oder WFS-Layer hinzu.",
           "configureChartOptions": "Diagrammoptionen konfigurieren",
           "configureWidgetOptions": "Widget-Optionen konfigurieren",
           "errorChart": "Mindestens ein Diagramm ist ungültig",
@@ -2584,6 +2616,8 @@
         "actions": "Aktionen",
 
         "layoutTabLabel": "Layout",
+        "description": "Beschreibung",
+        "descriptionPlaceholder": "Beschreibung eingeben...",
         "title": "Titel",
         "label": "Beschriftung",
         "icon": "Symbol",
@@ -2639,6 +2673,12 @@
         "forceSelection": "Auswahl der Streitkräfte",
         "forceSelectionTooltip": "Wenn aktiviert, muss ein Filterelement ausgewählt werden",
         "forceSelectionEnabledTooltip": "Wenn die erzwungene Auswahl aktiviert ist, muss mindestens ein Element ausgewählt werden",
+        "defaultExpanded": "Standard erweitert",
+        "defaultExpandedTooltip": "Wenn aktiviert, wird der Filter standardmäßig erweitert; andernfalls wird der Filter-Kartenbereich standardmäßig eingeklappt",
+        "disableFilter": "Diesen Filter deaktivieren",
+        "enableFilter": "Aktivieren Sie diesen Filter",
+        "collapseFilter": "Filter zuklappen",
+        "expandFilter": "Filter erweitern",
         "showNoTargetsInfoLabel": "Keine Zielmeldung",
         "showNoTargetsInfoDescription": "Wenn kein Ziel mit dem Filter verbunden ist oder die verbundenen Ebenen/Widgets nicht sichtbar sind, wird eine Meldung angezeigt, die den Benutzer darüber informiert, dass der Filter keine Wirkung hat.",
         "noInteractionsInfo": "Kein Ziel verbunden. Verwenden Sie das Verbindungsfenster, um den Filter mit Ebenen oder Widgets zu verbinden.",
@@ -4568,6 +4608,10 @@
       "loadingAPI": "API wird geladen...",
       "cyclomedia": {
         "initializing": "Initialisiere Street Smart API...",
+        "logout": "Street Smart Abmelden",
+        "tryForceLogout": "Street Smart Abmeldung erzwingen",
+        "confirmLogout": "Sind Sie sicher, dass Sie sich von Street Smart abmelden möchten?",
+        "loggingOut": "Street Smart Abmeldung läuft...",
         "loadingAPI": "Lade Street Smart API...",
         "changeCredentials": "Street Smart-Anmeldeinformationen ändern",
         "insertCredentials": "Geben Sie Ihre Street Smart-Anmeldeinformationen ein",
@@ -4578,8 +4622,10 @@
         "zoomIn": "Bitte zoomen Sie in die Karte, um die Street-View-Abdeckung zu sehen",
         "errorOccurred": "Fehler aufgetreten: ",
         "errors": {
+          "notLoggedIn": "Nicht angemeldet",
           "invalidCredentials": "Ungültige Anmeldeinformationen",
-          "projectionNotAvailable": "Die konfigurierte Projektion {srs} ist nicht verfügbar. Bitte kontaktieren Sie den Administrator."
+          "projectionNotAvailable": "Die konfigurierte Projektion {srs} ist nicht verfügbar. Bitte kontaktieren Sie den Administrator.",
+          "apiLoadFailed": "Die Street Smart API konnte nicht geladen werden. Bitte überprüfen Sie Ihre Netzwerkverbindung oder kontaktieren Sie den Administrator."
         },
         "reloadAPI": "API neu laden"
       },

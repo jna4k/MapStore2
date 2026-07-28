@@ -132,6 +132,8 @@
       "templateFormatInfoAlert2": "Use ${ attribute } para ajustar las propiedades que necesita visualizar",
       "heightOffset": "Desplazamiento de altura (m)",
       "wmsLayerTileSize": "Tamaño del mosaico (WMS)",
+      "maxFeaturesInView": "Número máximo de entidades en la vista",
+      "maxFeaturesInViewTooltip": "Cuando el valor es indefinido, la funcionalidad actual funciona como de costumbre (es decir, cargar todas las entidades)",
       "serverType": "Tipo de servidor",
       "formatError": "No fue posible recuperar el formato y el formato de la hoja de información del servicio configurado. Probablemente esté utilizando un servicio sin proveedor y no es compatible (por ejemplo, GeoNetwork)",
       "serverTypeOption": {
@@ -669,6 +671,7 @@
       "toggleLayerVisibilityWarning": "Alternar la visibilidad de la capa, Advertencia: la capa no se cargó correctamente",
       "createWidget": "Crea un widget para la capa seleccionada",
       "editLayerProperties": "Modificar las propiedades de la capa",
+      "createWidgetForMap": "Crear un widget para el mapa",
       "browseData": "Abrir la tabla de atributos",
       "removeLayer": "Borrar la capa",
       "loadingerror": "La capa no se ha cargado correctamente o no está disponible",
@@ -1696,6 +1699,33 @@
         "label": "Descargar metadatos del archivo al guardar",
         "tooltip": "Esta opción recuperará metadatos para admitir el zoom a la capa. Puede ralentizar la operación de búsqueda si las imágenes son demasiado grandes o demasiadas."
       },
+      "resourceTypes": {
+        "label": "Tipos de recurso",
+        "dataset": "Conjuntos de datos",
+        "document": "Documentos",
+        "map": "Mapas"
+      },
+      "subtypes": {
+        "label": "Tipo de contenido",
+        "vector": "Vectorial",
+        "raster": "Raster",
+        "vector_time": "Serie temporal",
+        "3dtiles": "3D Tiles",
+        "tabular": "Tabular",
+        "image": "Imagen",
+        "video": "Vídeo",
+        "audio": "Audio",
+        "text": "Texto",
+        "archive": "Archivo",
+        "presentation": "Presentación",
+        "file": "File"
+      },
+      "filterFields": {
+        "category": "Categoría",
+        "keyword": "Palabra clave",
+        "region": "Región",
+        "extent": "Filtro de extensión"
+      },
       "tagFilterType": {
         "label": "Tipo de filtro de etiqueta",
         "category": "Categoría",
@@ -2225,6 +2255,8 @@
           "selectALayer": "Seleccionar una capa",
           "selectLayers": "Seleccione una o más capas",
           "selectAMap": "Seleccione uno o más mapas",
+          "selectMapLayers": "Seleccione una capa del mapa",
+          "noFilterableMapLayers": "No hay capas en el mapa que se puedan filtrar. Agregue una capa WMS o WFS primero.",
           "configureChartOptions": "Configurar opciones de gráfico",
           "configureWidgetOptions": "Configurar las opciones del widget",
           "errorChart": "Uno o más gráficos no son válidos",
@@ -2544,6 +2576,8 @@
         "style": "Estilo",
         "actions": "Acciones",
         "layoutTabLabel": "Diseño",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Introduzca la descripción...",
         "title": "Título",
         "label": "Etiqueta",
         "icon": "Icono",
@@ -2596,6 +2630,12 @@
         "forceSelection": "Forzar selección",
         "forceSelectionTooltip": "Si está habilitado, debe seleccionarse un elemento del filtro",
         "forceSelectionEnabledTooltip": "Cuando la selección forzada está habilitada, debe seleccionarse al menos un elemento",
+        "defaultExpanded": "Expandido por defecto",
+        "defaultExpandedTooltip": "Si está marcado, el filtro se muestra expandido por defecto; de lo contrario, el cartel de filtro comienza colapsado",
+        "disableFilter": "Deshabilitar este filtro",
+        "enableFilter": "Habilitar este filtro",
+        "collapseFilter": "Colapsar filtro",
+        "expandFilter": "Expandir filtro",
         "showNoTargetsInfoLabel": "Mensaje de ausencia de objetivo",
         "showNoTargetsInfoDescription": "Cuando no hay ningún objetivo conectado al filtro, o las capas/widgets conectados no son visibles, aparece un mensaje para notificar al usuario que el filtro no tendrá efecto.",
         "noInteractionsInfo": "No hay ningún objetivo conectado. Utilice el panel de conexiones para conectar el filtro a capas o widgets.",
@@ -4525,6 +4565,10 @@
       "loadingAPI": "Cargando API...",
       "cyclomedia": {
         "initializing": "Inicializando la API de Street Smart...",
+        "logout": "Cerrar sesión de Street Smart",
+        "tryForceLogout": "Forzar cierre de sesión de Street Smart",
+        "confirmLogout": "¿Está seguro de que desea cerrar sesión de Street Smart?",
+        "loggingOut": "Cerrando sesión de Street Smart...",
         "loadingAPI": "Cargando la API de Street Smart...",
         "changeCredentials": "Cambiar credenciales de Street Smart",
         "insertCredentials": "Inserte sus credenciales de Street Smart",
@@ -4535,8 +4579,10 @@
         "zoomIn": "Por favor, acerque el mapa para ver la cobertura de vista de calle",
         "errorOccurred": "Se produjo un error: ",
         "errors": {
+          "notLoggedIn": "No ha iniciado sesión",
           "invalidCredentials": "Credenciales inválidas",
-          "projectionNotAvailable": "La proyección {srs} configurada no está disponible. Por favor, contacte al administrador."
+          "projectionNotAvailable": "La proyección {srs} configurada no está disponible. Por favor, contacte al administrador.",
+          "apiLoadFailed": "No se pudo cargar la API de Street Smart. Compruebe su conexión de red o contacte al administrador."
         },
         "reloadAPI": "Recargar API"
       },
